@@ -113,6 +113,12 @@ button {
 }
 
 /* App */
+header {
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+}
+
 .breadcrumb {
   background-color: var(--dark-gray-11);
   border-radius: 1rem;
@@ -129,8 +135,4 @@ button {
   content: '🞂';
   color: var(--color-text-secondary);
   margin-inline: 0.5rem;
-}
-
-main {
-  padding-inline: 1rem;
 }
