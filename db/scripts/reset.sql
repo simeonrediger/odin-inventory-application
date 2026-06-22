@@ -9,10 +9,10 @@ CREATE DOMAIN trimmed_nonblank_text AS text CHECK (
 
 CREATE TABLE genres (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name trimmed_nonblank_text NOT NULL
+  name trimmed_nonblank_text NOT NULL UNIQUE
 );
 
 CREATE TABLE artists (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name trimmed_nonblank_text NOT NULL
+  name trimmed_nonblank_text NOT NULL UNIQUE
 );
