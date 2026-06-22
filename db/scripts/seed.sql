@@ -1,3 +1,21 @@
+INSERT INTO genres
+  (name)
+VALUES
+  ('alternative'),
+  ('blues'),
+  ('classical'),
+  ('country'),
+  ('dance'),
+  ('electronic'),
+  ('emo'),
+  ('hip-hop'),
+  ('indie'),
+  ('jazz'),
+  ('metal'),
+  ('pop'),
+  ('punk'),
+  ('rock');
+
 INSERT INTO artists
   (name)
 VALUES
