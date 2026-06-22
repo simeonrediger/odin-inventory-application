@@ -1,18 +1,18 @@
 INSERT INTO artists
   (name)
 VALUES
-  ('Tool'),
-  ('System of a Down'),
-  ('Queens of the Stone Age'),
   ('A Perfect Circle'),
-  ('Nothing But Thieves'),
-  ('Jimmy Eat World'),
-  ('White Lies'),
-  ('Two Door Cinema Club'),
-  ('The Strokes'),
-  ('The Shins'),
-  ('Spoon'),
-  ('Radiohead'),
   ('Carpenter Brut'),
+  ('Jimmy Eat World'),
+  ('Nothing But Thieves'),
+  ('Queens of the Stone Age'),
+  ('Radiohead'),
+  ('RÜFÜS DU SOL'),
   ('So Below'),
-  ('RÜFÜS DU SOL');
+  ('Spoon'),
+  ('System of a Down'),
+  ('The Shins'),
+  ('The Strokes'),
+  ('Tool'),
+  ('Two Door Cinema Club'),
+  ('White Lies');
