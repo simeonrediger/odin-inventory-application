@@ -1,0 +1,108 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+textarea {
+  border: none;
+  font-size: 1em;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Colors */
+html {
+  --black: #000;
+  --dark-gray-15: #080808;
+  --dark-gray-11: #282828;
+  --gray: #888;
+  --white: #fff;
+
+  --pale-light-red: #f88;
+  --pale-blue: #0077ff;
+  --pale-light-blue: #a4cefe;
+
+  --color-app-bg: var(--dark-gray-15);
+  --color-text: var(--white);
+  --color-link: var(--pale-light-blue);
+  --color-input-bg: var(--dark-gray-11);
+  --color-input-text: var(--white);
+  --color-button-bg-primary: var(--pale-blue);
+  --color-button-bg-secondary: var(--dark-gray-11);
+  --color-button-text: var(--white);
+
+  --color-required: var(--pale-light-red);
+  --color-error: var(--pale-light-red);
+}
+
+/* Base */
+body {
+  background-color: var(--color-app-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: 1rem 2rem;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+input,
+textarea,
+button {
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+input,
+textarea {
+  background-color: var(--color-input-bg);
+  color: var(--color-input-text);
+}
+
+button {
+  background-color: var(--color-button-bg-primary);
+  color: var(--color-button-text);
+}
+
+/* App */
