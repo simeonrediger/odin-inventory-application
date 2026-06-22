@@ -1,0 +1,10 @@
+{
+  "name": "inventory-application",
+  "type": "module",
+  "engines": {
+    "node": "24.11.x"
+  },
+  "dependencies": {
+    "prettier": "^3.8.4"
+  }
+}
