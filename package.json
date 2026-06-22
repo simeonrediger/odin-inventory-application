@@ -9,6 +9,7 @@
     "node": "24.11.x"
   },
   "dependencies": {
+    "ejs": "^6.0.1",
     "express": "^5.2.1",
     "prettier": "^3.8.4"
   }
