@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "start:dev": "node --watch --env-file-if-exists=.env app.js"
+    "start:dev": "node --watch --env-file-if-exists=.env app.js",
+    "db:init": "node --env-file=.env db/scripts/init-db.js"
   },
   "engines": {
     "node": "24.11.x"
@@ -11,6 +12,7 @@
   "dependencies": {
     "ejs": "^6.0.1",
     "express": "^5.2.1",
+    "pg": "^8.22.0",
     "prettier": "^3.8.4"
   }
 }
