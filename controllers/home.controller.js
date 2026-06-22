@@ -1,3 +1,3 @@
 export function getHome(req, res) {
-  res.render('home', { title: 'Record Store - Inventory' });
+  res.render('home', { pageName: 'Inventory' });
 }
