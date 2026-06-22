@@ -1,7 +1,12 @@
-export function findArtists() {
-  // TODO
-  return [
-    { id: 1, name: 'Artist Name 1' },
-    { id: 2, name: 'Artist Name 2' },
-  ];
+import pool from './pool.js';
+
+export async function findArtists() {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM artists
+    ORDER BY name
+    `,
+  );
+
+  return rows;
 }
