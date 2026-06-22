@@ -21,6 +21,7 @@ h6 {
   font-weight: normal;
 }
 
+ol,
 ul {
   list-style: none;
 }
@@ -55,6 +56,7 @@ html {
   --dark-gray-15: #080808;
   --dark-gray-11: #282828;
   --gray: #888;
+  --light-gray-6: #bbb;
   --white: #fff;
 
   --pale-light-red: #f88;
@@ -63,6 +65,7 @@ html {
 
   --color-app-bg: var(--dark-gray-15);
   --color-text: var(--white);
+  --color-text-secondary: var(--light-gray-6);
   --color-link: var(--pale-light-blue);
   --color-input-bg: var(--dark-gray-11);
   --color-input-text: var(--white);
@@ -110,3 +113,24 @@ button {
 }
 
 /* App */
+.breadcrumb {
+  background-color: var(--dark-gray-11);
+  border-radius: 1rem;
+  display: inline-flex;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 1rem;
+}
+
+.breadcrumb :not(a) {
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb > :not(:last-child)::after {
+  content: '🞂';
+  color: var(--color-text-secondary);
+  margin-inline: 0.5rem;
+}
+
+main {
+  padding-inline: 1rem;
+}
