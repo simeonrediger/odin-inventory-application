@@ -1,0 +1,24 @@
+<%- include('../partials/layout-start') %>
+
+<header>
+  <h1><%= siteName %></h1>
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+      <li><a href="/">Inventory</a></li>
+      <li aria-current="page">Genres</li>
+    </ol>
+  </nav>
+</header>
+<main>
+  <ul>
+    <% genres.forEach(genre => { %>
+      <li>
+        <a href="/genres/<%= genre.id %>">
+          <%= genre.name %>
+        </a>
+      </li>
+    <% }); %>
+  </ul>
+</main>
+
+<%- include('../partials/layout-end') %>
