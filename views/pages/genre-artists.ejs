@@ -1,0 +1,29 @@
+<%- include('../partials/layout-start') %>
+
+<header>
+  <h1><%= siteName %></h1>
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+      <li><a href="/">Inventory</a></li>
+      <li><a href="/genres">Genres</a></li>
+      <li aria-current="page"><%= genre.name %></li>
+    </ol>
+  </nav>
+</header>
+<main>
+  <% if (artists.length > 0) { %>
+    <ul>
+      <% artists.forEach(artist => { %>
+        <li>
+          <a href="/artists/<%= artist.id %>">
+            <%= artist.name %>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    No <%= genre.name %> artists found
+  <% } %>
+</main>
+
+<%- include('../partials/layout-end') %>
