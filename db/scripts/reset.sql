@@ -1,6 +1,4 @@
-DROP TABLE IF EXISTS genre_artists;
-DROP TABLE IF EXISTS genres;
-DROP TABLE IF EXISTS artists;
+DROP TABLE IF EXISTS genre_artists, genres, artists;
 DROP DOMAIN IF EXISTS trimmed_nonblank_text;
 
 CREATE DOMAIN trimmed_nonblank_text AS text CHECK (
