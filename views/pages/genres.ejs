@@ -10,15 +10,19 @@
   </nav>
 </header>
 <main>
-  <ul>
-    <% genres.forEach(genre => { %>
-      <li>
-        <a href="/genres/<%= genre.id %>">
-          <%= genre.name %>
-        </a>
-      </li>
-    <% }); %>
-  </ul>
+  <% if (genres.length > 0) { %>
+    <ul>
+      <% genres.forEach(genre => { %>
+        <li>
+          <a href="/genres/<%= genre.id %>">
+            <%= genre.name %>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    No genres found
+  <% } %>
 </main>
 
 <%- include('../partials/layout-end') %>
