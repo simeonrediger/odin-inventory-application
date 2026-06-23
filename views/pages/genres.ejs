@@ -14,7 +14,8 @@
     <ul>
       <% genres.forEach(genre => { %>
         <li>
-          <a href="/genres/<%= genre.id %>">
+          <% const slug = genre.name.toLowerCase().replace(' ', '-'); %>
+          <a href="/genres/<%= genre.id %>/<%= slug %>">
             <%= genre.name %>
           </a>
         </li>
