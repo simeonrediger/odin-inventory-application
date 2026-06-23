@@ -10,15 +10,19 @@
   </nav>
 </header>
 <main>
-  <ul>
-    <% artists.forEach(artist => { %>
-      <li>
-        <a href="/artists/<%= artist.id %>">
-          <%= artist.name %>
-        </a>
-      </li>
-    <% }); %>
-  </ul>
+  <% if (artists.length > 0) { %>
+    <ul>
+      <% artists.forEach(artist => { %>
+        <li>
+          <a href="/artists/<%= artist.id %>">
+            <%= artist.name %>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    No artists found
+  <% } %>
 </main>
 
 <%- include('../partials/layout-end') %>
