@@ -21,3 +21,16 @@ CREATE TABLE genre_artists (
   artist_id integer NOT NULL REFERENCES artists,
   PRIMARY KEY (genre_id, artist_id)
 );
+
+CREATE OR REPLACE PROCEDURE add_artist_to_genres(
+  artist_name text,
+  genre_names text[]
+)
+LANGUAGE sql
+AS $$
+  INSERT INTO genre_artists (genre_id, artist_id)
+  SELECT genres.id, artists.id
+  FROM artists
+  INNER JOIN genres ON genres.name = ANY(genre_names)
+  WHERE artists.name = artist_name;
+$$;
