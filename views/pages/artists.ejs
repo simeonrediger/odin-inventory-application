@@ -14,7 +14,8 @@
     <ul>
       <% artists.forEach(artist => { %>
         <li>
-          <a href="/artists/<%= artist.id %>">
+          <% const slug = artist.name.toLowerCase().replace(' ', '-'); %>
+          <a href="/artists/<%= artist.id %>/<%= slug %>">
             <%= artist.name %>
           </a>
         </li>
