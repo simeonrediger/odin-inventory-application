@@ -27,6 +27,6 @@ CREATE TABLE records (
   name trimmed_nonblank_text NOT NULL,
   artist_id integer NOT NULL REFERENCES artists,
   UNIQUE (artist_id, name),
-  quantity integer NOT NULL DEFAULT 0,
-  price bigint NOT NULL CHECK (price >= 0)
+  price bigint NOT NULL CHECK (price >= 0),
+  quantity integer NOT NULL DEFAULT 0
 );
