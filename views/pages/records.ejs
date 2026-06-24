@@ -29,7 +29,7 @@
             %>
             <th scope="row" class="record-name"><%= record.name %></th>
             <td class="record-artist">
-              <a href="/artists/<%= artistId %>/<%= artistName %>">
+              <a href="/artists/<%= artistId %>/<%= getSlug(artistName) %>">
                 <%= artistName %>
               </a>
             </td>
