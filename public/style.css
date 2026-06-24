@@ -55,6 +55,7 @@ html {
   --black: #000;
   --dark-gray-15: #080808;
   --dark-gray-11: #282828;
+  --dark-gray-8: #444;
   --gray: #888;
   --light-gray-6: #bbb;
   --white: #fff;
@@ -72,6 +73,7 @@ html {
   --color-button-bg-primary: var(--pale-blue);
   --color-button-bg-secondary: var(--dark-gray-11);
   --color-button-text: var(--white);
+  --color-table-separator: var(--dark-gray-8);
 
   --color-required: var(--pale-light-red);
   --color-error: var(--pale-light-red);
@@ -135,4 +137,16 @@ header {
   content: '🞂';
   color: var(--color-text-secondary);
   margin-inline: 0.5rem;
+}
+
+.records-table tr {
+  outline: 1px solid var(--color-table-separator);
+}
+
+.records-table :is(th, td) {
+  padding: 0.5rem 1rem;
+}
+
+.record-name {
+  text-align: start;
 }
