@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS genre_artists, genres, artists;
+DROP TABLE IF EXISTS genre_artists, genres, artists, records;
 DROP DOMAIN IF EXISTS trimmed_nonblank_text;
 
 CREATE DOMAIN trimmed_nonblank_text AS text CHECK (
@@ -34,3 +34,12 @@ AS $$
   INNER JOIN genres ON genres.name = ANY(genre_names)
   WHERE artists.name = artist_name;
 $$;
+
+CREATE TABLE records (
+  id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name trimmed_nonblank_text NOT NULL,
+  artist_id integer NOT NULL REFERENCES artists,
+  UNIQUE (artist_id, name),
+  quantity integer NOT NULL DEFAULT 0,
+  price bigint NOT NULL CHECK (price >= 0)
+);
