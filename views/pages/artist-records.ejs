@@ -13,12 +13,9 @@
 <main>
   <% if (records.length > 0) { %>
     <ul>
-      <% const artistSlug = artist.name.toLowerCase().replaceAll(' ', '-'); %>
+      <% const artistSlug = getSlug(artist.name); %>
       <% records.forEach(record => { %>
         <li>
-          <%
-            const recordSlug = record.name.toLowerCase().replaceAll(' ', '-');
-          %>
           <a href="/artists/<%=
               artist.id
             %>/<%=
@@ -26,7 +23,7 @@
             %>/<%=
               record.id
             %>/<%=
-              recordSlug
+              getSlug(record.name)
             %>">
             <%= record.name %>
           </a>

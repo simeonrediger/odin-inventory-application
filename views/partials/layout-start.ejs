@@ -4,6 +4,8 @@ siteName = 'Record Store';
 function getPageTitle(pageName) {
   return `${siteName} - ${pageName}`;
 }
+
+getSlug = (text) => text.toLowerCase().replaceAll(' ', '-');
 %>
 
 <!doctype html>
