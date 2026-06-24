@@ -1,0 +1,49 @@
+<%- include('../partials/layout-start') %>
+
+<header>
+  <h1><%= siteName %></h1>
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+      <li><a href="/">Inventory</a></li>
+      <li aria-current="page">Records</li>
+    </ol>
+  </nav>
+</header>
+<main>
+  <% if (records.length > 0) { %>
+    <table class="records-table">
+      <thead>
+        <tr>
+          <th scope="col" class="record-name">Record</th>
+          <th scope="col" class="record-artist">Artist</th>
+          <th scope="col" class="record-price">Price</th>
+          <th scope="col" class="record-quantity">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% records.forEach(record => { %>
+          <tr>
+            <% const artistName = record['artist_name']; %>
+            <th scope="row" class="record-name"><%= record.name %></th>
+            <td class="record-artist">
+              <a href="/artists/<%=
+                  record['artist_id']
+                %>/<%=
+                  artistName
+                %>"
+              >
+                <%= artistName %>
+              </a>
+            </td>
+            <td class="record-price"><%= formatPrice(record.price) %></td>
+            <td class="record-quantity"><%= record.quantity %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    No <%= artist.name %> records found
+  <% } %>
+</main>
+
+<%- include('../partials/layout-end') %>
