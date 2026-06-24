@@ -1,0 +1,41 @@
+<%- include('../partials/layout-start') %>
+
+<header>
+  <h1><%= siteName %></h1>
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+      <li><a href="/">Inventory</a></li>
+      <li><a href="/artists">Artists</a></li>
+      <li aria-current="page"><%= artist.name %></li>
+    </ol>
+  </nav>
+</header>
+<main>
+  <% if (records.length > 0) { %>
+    <ul>
+      <% const artistSlug = artist.name.toLowerCase().replace(' ', '-'); %>
+      <% records.forEach(record => { %>
+        <li>
+          <%
+            const recordSlug = record.name.toLowerCase().replace(' ', '-');
+          %>
+          <a href="/artists/<%=
+              artist.id
+            %>/<%=
+              artistSlug
+            %>/<%=
+              record.id
+            %>/<%=
+              recordSlug
+            %>">
+            <%= record.name %>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    No <%= artist.name %> records found
+  <% } %>
+</main>
+
+<%- include('../partials/layout-end') %>

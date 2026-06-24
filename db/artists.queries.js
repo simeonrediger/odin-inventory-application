@@ -10,3 +10,24 @@ export async function findArtists() {
 
   return rows;
 }
+
+export async function findArtistById(id) {
+  const { rows } = await pool.query('SELECT * FROM artists WHERE id = $1', [
+    id,
+  ]);
+
+  return rows[0];
+}
+
+export async function findRecordsByArtistId(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT records.* FROM records
+    WHERE records.artist_id = $1
+    ORDER BY records.name
+    `,
+    [id],
+  );
+
+  return rows;
+}
