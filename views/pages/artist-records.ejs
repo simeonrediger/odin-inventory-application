@@ -13,11 +13,11 @@
 <main>
   <% if (records.length > 0) { %>
     <ul>
-      <% const artistSlug = artist.name.toLowerCase().replace(' ', '-'); %>
+      <% const artistSlug = artist.name.toLowerCase().replaceAll(' ', '-'); %>
       <% records.forEach(record => { %>
         <li>
           <%
-            const recordSlug = record.name.toLowerCase().replace(' ', '-');
+            const recordSlug = record.name.toLowerCase().replaceAll(' ', '-');
           %>
           <a href="/artists/<%=
               artist.id
