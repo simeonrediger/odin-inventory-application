@@ -40,8 +40,10 @@ async function seedGenreArtists(client) {
     SELECT genres.id, artists.id
     FROM json_to_recordset($1::json)
       AS seed_artists(name text, genres text[])
+    CROSS JOIN LATERAL unnest(seed_artists.genres)
+      AS genre_name
     INNER JOIN genres
-      ON genres.name = ANY(seed_artists.genres)
+      ON genres.name = genre_name
     INNER JOIN artists
       ON artists.name = seed_artists.name
     `,
