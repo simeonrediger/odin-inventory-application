@@ -13,8 +13,7 @@ export async function findGenreById(id) {
 export async function findArtistsByGenreId(genreId) {
   const { rows } = await pool.query(
     `
-    SELECT artists.id, artists.name
-    FROM artists
+    SELECT artists.* FROM artists
     INNER JOIN genre_artists
       ON artists.id = genre_artists.artist_id
     WHERE genre_artists.genre_id = $1
