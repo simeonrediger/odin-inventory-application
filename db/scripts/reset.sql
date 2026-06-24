@@ -22,19 +22,6 @@ CREATE TABLE genre_artists (
   PRIMARY KEY (genre_id, artist_id)
 );
 
-CREATE OR REPLACE PROCEDURE add_artist_to_genres(
-  artist_name text,
-  genre_names text[]
-)
-LANGUAGE sql
-AS $$
-  INSERT INTO genre_artists (genre_id, artist_id)
-  SELECT genres.id, artists.id
-  FROM artists
-  INNER JOIN genres ON genres.name = ANY(genre_names)
-  WHERE artists.name = artist_name;
-$$;
-
 CREATE TABLE records (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name trimmed_nonblank_text NOT NULL,

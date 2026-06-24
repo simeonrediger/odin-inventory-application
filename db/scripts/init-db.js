@@ -3,6 +3,7 @@
 
 import { Client } from 'pg';
 import fs from 'node:fs/promises';
+import seed from './seed.js';
 
 const targetEnv = process.argv[2];
 validateEnv(targetEnv);
@@ -19,7 +20,7 @@ console.log(`Resetting tables...`);
 await client.query(await fs.readFile('db/scripts/reset.sql', 'utf8'));
 
 console.log(`Seeding tables...`);
-await client.query(await fs.readFile('db/scripts/seed.sql', 'utf8'));
+await seed(client);
 
 console.log('Done');
 await client.end();
