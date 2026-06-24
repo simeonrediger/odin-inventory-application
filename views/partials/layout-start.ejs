@@ -6,6 +6,7 @@ function getPageTitle(pageName) {
 }
 
 getSlug = text => text.toLowerCase().replaceAll(' ', '-');
+formatPrice = price => '$' + Number(price / 100).toFixed(2);
 %>
 
 <!doctype html>

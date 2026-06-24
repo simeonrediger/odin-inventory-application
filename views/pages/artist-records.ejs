@@ -16,12 +16,16 @@
       <thead>
         <tr>
           <th scope="col" class="record-name">Record</th>
+          <th scope="col" class="record-price">Price</th>
+          <th scope="col" class="record-quantity">Quantity</th>
         </tr>
       </thead>
       <tbody>
         <% records.forEach(record => { %>
           <tr>
             <th scope="row" class="record-name"><%= record.name %></th>
+            <td class="record-price"><%= formatPrice(record.price) %></td>
+            <td class="record-quantity"><%= record.quantity %></td>
           </tr>
         <% }); %>
       </tbody>

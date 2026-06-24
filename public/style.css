@@ -150,3 +150,8 @@ header {
 .record-name {
   text-align: start;
 }
+
+.record-price,
+.record-quantity {
+  text-align: end;
+}
