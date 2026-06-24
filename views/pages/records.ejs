@@ -23,15 +23,13 @@
       <tbody>
         <% records.forEach(record => { %>
           <tr>
-            <% const artistName = record['artist_name']; %>
+            <%
+              const artistId = record['artist_id'];
+              const artistName = record['artist_name'];
+            %>
             <th scope="row" class="record-name"><%= record.name %></th>
             <td class="record-artist">
-              <a href="/artists/<%=
-                  record['artist_id']
-                %>/<%=
-                  artistName
-                %>"
-              >
+              <a href="/artists/<%= artistId %>/<%= artistName %>">
                 <%= artistName %>
               </a>
             </td>
