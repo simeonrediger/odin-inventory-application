@@ -77,6 +77,9 @@ html {
 
   --color-required: var(--pale-light-red);
   --color-error: var(--pale-light-red);
+
+  --color-delete-button-bg: transparent;
+  --color-delete-button-text: var(--color-error);
 }
 
 /* Base */
@@ -157,4 +160,13 @@ header {
 .record-price,
 .record-quantity {
   text-align: end;
+}
+
+.record-actions {
+  text-align: center;
+}
+
+.delete-button {
+  background-color: var(--color-delete-button-bg);
+  color: var(--color-delete-button-text);
 }

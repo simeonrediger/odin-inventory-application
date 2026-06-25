@@ -11,3 +11,9 @@ export async function getArtistRecords(req, res) {
   const records = await db.findRecordsByArtistId(id);
   res.render('artist-records', { pageName: artist.name, artist, records });
 }
+
+export async function deleteArtistRecord(req, res) {
+  const { id, slug, recordId } = req.params;
+  await db.deleteRecordById(recordId);
+  res.redirect(`/artists/${id}/${slug}`);
+}

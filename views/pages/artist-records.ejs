@@ -18,14 +18,35 @@
           <th scope="col" class="record-name">Record</th>
           <th scope="col" class="record-price">Price</th>
           <th scope="col" class="record-quantity">Quantity</th>
+          <th scope="col" class="record-actions" aria-label="Actions"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody data-listener="delete">
         <% records.forEach(record => { %>
-          <tr>
-            <th scope="row" class="record-name"><%= record.name %></th>
+          <tr data-record>
+            <th scope="row" data-record-name class="record-name">
+              <%= record.name %>
+            </th>
             <td class="record-price"><%= formatPrice(record.price) %></td>
             <td class="record-quantity"><%= record.quantity %></td>
+            <td class="record-actions">
+              <form
+                action="/artists/<%=
+                  artist.id
+                %>/<%=
+                  getSlug(artist.name)
+                %>/records/<%=
+                  record.id
+                %>/delete"
+                method="post"
+              >
+                <button
+                  type="submit"
+                  data-action="delete"
+                  class="delete-button"
+                >Delete</button>
+              </form>
+            </td>
           </tr>
         <% }); %>
       </tbody>
