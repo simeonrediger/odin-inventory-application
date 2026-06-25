@@ -1,17 +1,11 @@
-<%
-function getPageTitle(pageName) {
-  return `${siteName} - ${pageName}`;
-}
-%>
-
 <!doctype html>
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= getPageTitle(pageName) %></title>
-    <link rel="stylesheet" href="/style.css">
+    <title><%= `${siteName} - ${pageName}` %></title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
 
   <body>
