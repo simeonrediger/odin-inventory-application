@@ -1,6 +1,7 @@
 import path from 'node:path';
 import express from 'express';
 
+import * as siteLocals from './views/site-locals.js';
 import homeRouter from './routes/home.router.js';
 import genresRouter from './routes/genres.router.js';
 import artistsRouter from './routes/artists.router.js';
@@ -11,6 +12,7 @@ app.set('views', path.join(import.meta.dirname, 'views/pages'));
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(import.meta.dirname, 'public')));
+app.use(siteLocals.load);
 app.use('/', homeRouter);
 app.use('/genres', genresRouter);
 app.use('/artists', artistsRouter);
