@@ -26,8 +26,7 @@ export async function findArtistById(id) {
 export async function findRecordsByArtistId(id) {
   const { rows } = await pool.query(
     `
-    SELECT records.*
-    FROM records
+    SELECT * FROM records
     WHERE records.artist_id = $1
     ORDER BY records.name
     `,
