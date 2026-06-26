@@ -31,7 +31,7 @@
             <td class="record-quantity"><%= record.quantity %></td>
             <td class="record-actions">
               <form
-                action="<%= getRecordPath(record) %>/delete?_method=DELETE"
+                action="<%= getRecordPath(record) %>?_method=DELETE"
                 method="post"
                 data-action="delete"
                 data-resource-name="<%= record.name %>"

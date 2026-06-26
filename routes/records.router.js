@@ -6,7 +6,7 @@ const recordsRouter = Router();
 
 recordsRouter.get('/', recordsController.getRecords);
 recordsRouter.delete(
-  '/:id/:slug/delete',
+  '/:id/:slug',
   validateReturnUrl,
   recordsController.deleteRecord,
 );
