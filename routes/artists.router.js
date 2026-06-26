@@ -5,7 +5,7 @@ const artistsRouter = Router();
 
 artistsRouter.get('/', artistsController.getArtists);
 artistsRouter.get('/:id/:slug', artistsController.getArtistRecords);
-artistsRouter.post(
+artistsRouter.delete(
   '/:id/:slug/records/:recordId/delete',
   artistsController.deleteArtistRecord,
 );
