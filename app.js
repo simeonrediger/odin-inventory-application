@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(import.meta.dirname, 'public')));
 app.use(methodOverride('_method'));
-app.use(siteLocals.load);
+app.use(siteLocals.assign);
 app.use('/', homeRouter);
 app.use('/genres', genresRouter);
 app.use('/artists', artistsRouter);
