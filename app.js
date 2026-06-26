@@ -21,6 +21,10 @@ app.use('/genres', genresRouter);
 app.use('/artists', artistsRouter);
 app.use('/records', recordsRouter);
 
+app.use((req, res) => {
+  res.status(404).render('not-found', { pageName: 'Page Not Found' });
+});
+
 app.use((error, req, res, next) => {
   console.error(error);
   res
