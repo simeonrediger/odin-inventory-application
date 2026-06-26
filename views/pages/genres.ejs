@@ -4,7 +4,7 @@
   <h1><%= siteName %></h1>
   <nav aria-label="Breadcrumb">
     <ol class="breadcrumb">
-      <li><a href="/">Inventory</a></li>
+      <li><a href="<%= getHomePath() %>">Inventory</a></li>
       <li aria-current="page">Genres</li>
     </ol>
   </nav>
@@ -14,7 +14,7 @@
     <ul>
       <% genres.forEach(genre => { %>
         <li>
-          <a href="/genres/<%= genre.id %>/<%= getSlug(genre.name) %>">
+          <a href="<%= getGenrePath(genre) %>">
             <%= genre.name %>
           </a>
         </li>

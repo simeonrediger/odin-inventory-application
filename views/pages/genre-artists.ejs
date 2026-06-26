@@ -4,8 +4,8 @@
   <h1><%= siteName %></h1>
   <nav aria-label="Breadcrumb">
     <ol class="breadcrumb">
-      <li><a href="/">Inventory</a></li>
-      <li><a href="/genres">Genres</a></li>
+      <li><a href="<%= getHomePath() %>">Inventory</a></li>
+      <li><a href="<%= getGenresPath() %>">Genres</a></li>
       <li aria-current="page"><%= genre.name %></li>
     </ol>
   </nav>
@@ -15,7 +15,7 @@
     <ul>
       <% artists.forEach(artist => { %>
         <li>
-          <a href="/artists/<%= artist.id %>/<%= getSlug(artist.name) %>">
+          <a href="<%= getArtistPath(artist) %>">
             <%= artist.name %>
           </a>
         </li>
