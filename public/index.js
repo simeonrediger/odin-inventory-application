@@ -13,8 +13,8 @@ function handleSubmitDelete(event) {
     return event.preventDefault();
   }
 
-  const recordName = deleteForm.dataset.recordName;
-  const deleteConfirmed = confirm(`Delete ${recordName} record?`);
+  const resourceName = deleteForm.dataset.resourceName;
+  const deleteConfirmed = confirm(`Delete ${resourceName}?`);
 
   if (!deleteConfirmed) {
     event.preventDefault();
