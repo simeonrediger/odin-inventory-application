@@ -4,3 +4,8 @@ export async function getRecords(req, res) {
   const records = await db.findRecords();
   res.render('records', { pageName: 'Records', records });
 }
+
+export async function deleteRecord(req, res) {
+  await db.deleteRecordById(req.params.id);
+  res.redirect('/artists'); // TODO
+}

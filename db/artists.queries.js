@@ -35,13 +35,3 @@ export async function findRecordsByArtistId(id) {
 
   return rows;
 }
-
-export async function deleteRecordById(id) {
-  await pool.query(
-    `
-    DELETE FROM records
-    WHERE records.id = $1
-    `,
-    [id],
-  );
-}
