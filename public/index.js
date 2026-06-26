@@ -3,21 +3,17 @@ bindEvents();
 function bindEvents() {
   document
     .querySelector('[data-listener="delete"]')
-    ?.addEventListener('click', handleDeleteClick);
+    ?.addEventListener('submit', handleSubmitDelete);
 }
 
-function handleDeleteClick(event) {
-  const deleteButton = event.target.closest('[data-action="delete"]');
+function handleSubmitDelete(event) {
+  const deleteForm = event.target.closest('[data-action="delete"]');
 
-  if (!deleteButton) {
-    return;
+  if (!deleteForm) {
+    return event.preventDefault();
   }
 
-  const recordName = deleteButton
-    .closest('[data-record]')
-    .querySelector('[data-record-name]')
-    .textContent.trim();
-
+  const recordName = deleteForm.dataset.recordName;
   const deleteConfirmed = confirm(`Delete ${recordName} record?`);
 
   if (!deleteConfirmed) {

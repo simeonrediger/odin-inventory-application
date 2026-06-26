@@ -23,8 +23,8 @@
       </thead>
       <tbody data-listener="delete">
         <% records.forEach(record => { %>
-          <tr data-record>
-            <th scope="row" data-record-name class="record-name">
+          <tr>
+            <th scope="row" class="record-name">
               <%= record.name %>
             </th>
             <td class="record-price"><%= formatPrice(record.price) %></td>
@@ -33,12 +33,10 @@
               <form
                 action="<%= getRecordPath(record) %>/delete?_method=DELETE"
                 method="post"
+                data-action="delete"
+                data-record-name="<%= record.name %>"
               >
-                <button
-                  type="submit"
-                  data-action="delete"
-                  class="delete-button"
-                >Delete</button>
+                <button type="submit" class="delete-button">Delete</button>
               </form>
             </td>
           </tr>
