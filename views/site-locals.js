@@ -1,6 +1,14 @@
 export function assign(req, res, next) {
-  res.locals.siteName = 'Record Store';
-  res.locals.getSlug = text => text.toLowerCase().replaceAll(' ', '-');
-  res.locals.formatPrice = price => '$' + Number(price / 100).toFixed(2);
+  Object.assign(res.locals, siteLocals);
   next();
 }
+
+const siteLocals = {
+  siteName: 'Record Store',
+  getSlug(text) {
+    return text.toLowerCase().replaceAll(' ', '-');
+  },
+  formatPrice(price) {
+    return '$' + Number(price / 100).toFixed(2);
+  },
+};
