@@ -21,6 +21,13 @@ app.use('/genres', genresRouter);
 app.use('/artists', artistsRouter);
 app.use('/records', recordsRouter);
 
+app.use((error, req, res, next) => {
+  console.error(error);
+  res
+    .status(error.statusCode || 500)
+    .send(error.message || 'Unknown error occurred');
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, error => {
   if (error) {
