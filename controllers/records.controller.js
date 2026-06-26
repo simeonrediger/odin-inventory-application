@@ -7,5 +7,5 @@ export async function getRecords(req, res) {
 
 export async function deleteRecord(req, res) {
   await db.deleteRecordById(req.params.id);
-  res.redirect('/artists'); // TODO
+  res.redirect(req.body.returnTo);
 }

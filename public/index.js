@@ -17,6 +17,9 @@ function handleSubmitDelete(event) {
   const deleteConfirmed = confirm(`Delete ${resourceName}?`);
 
   if (!deleteConfirmed) {
-    event.preventDefault();
+    return event.preventDefault();
   }
+
+  const returnToInput = deleteForm.querySelector('[name="returnTo"]');
+  returnToInput.value = location.pathname + location.search + location.hash;
 }
