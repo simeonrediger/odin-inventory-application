@@ -7,6 +7,7 @@ import homeRouter from './routes/home.router.js';
 import genresRouter from './routes/genres.router.js';
 import artistsRouter from './routes/artists.router.js';
 import recordsRouter from './routes/records.router.js';
+import * as errorController from './controllers/error.controller.js';
 
 const app = express();
 app.set('views', path.join(import.meta.dirname, 'views/pages'));
@@ -25,12 +26,7 @@ app.use((req, res) => {
   res.status(404).render('not-found', { pageName: 'Page Not Found' });
 });
 
-app.use((error, req, res, next) => {
-  console.error(error);
-  res
-    .status(error.statusCode || 500)
-    .send(error.message || 'Unknown error occurred');
-});
+app.use(errorController.handleServerError);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, error => {
