@@ -176,6 +176,11 @@ header {
   margin-inline: 0.5rem;
 }
 
+.new-resource-button {
+  display: block;
+  margin-block: 0.75rem;
+}
+
 .modal {
   background-color: var(--color-app-bg);
   border: 1px solid var(--color-modal-border);
