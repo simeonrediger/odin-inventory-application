@@ -24,8 +24,8 @@ CREATE TABLE genre_artists (
 
 CREATE TABLE records (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name trimmed_nonblank_text NOT NULL,
   artist_id integer NOT NULL REFERENCES artists,
+  name trimmed_nonblank_text NOT NULL,
   UNIQUE (artist_id, name),
   price bigint NOT NULL CHECK (price >= 0),
   quantity integer NOT NULL DEFAULT 0

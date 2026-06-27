@@ -6,8 +6,8 @@ export async function getRecords(req, res) {
 }
 
 export async function createRecord(req, res) {
-  const { name, artistId, price, quantity } = req.body;
-  await db.records.create({ name, artistId, price, quantity });
+  const { artistId, name, price, quantity } = req.body;
+  await db.records.create({ artistId, name, price, quantity });
   res.redirect(req.body.returnTo);
 }
 

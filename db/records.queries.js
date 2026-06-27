@@ -4,9 +4,9 @@ export async function find() {
   const { rows } = await pool.query(
     `
     SELECT
-      records.name,
       artists.id AS artist_id,
       artists.name AS artist_name,
+      records.name,
       records.price,
       records.quantity
     FROM records
@@ -32,15 +32,15 @@ export async function findByArtistId(artistId) {
   return rows;
 }
 
-export async function create({ name, artistId, price, quantity }) {
+export async function create({ artistId, name, price, quantity }) {
   await pool.query(
     `
     INSERT INTO records
-      (name, artist_id, price, quantity)
+      (artist_id, name, price, quantity)
     VALUES
       ($1, $2, $3, $4)
     `,
-    [name, artistId, price, quantity],
+    [artistId, name, price, quantity],
   );
 }
 
