@@ -8,6 +8,6 @@ export async function getGenres(req, res) {
 export async function getGenreArtists(req, res) {
   const { id } = req.params;
   const genre = await db.genres.findGenreById(id);
-  const artists = await db.genres.findArtistsByGenreId(id);
+  const artists = await db.artists.findArtistsByGenreId(id);
   res.render('genre-artists', { pageName: genre.name, genre, artists });
 }
