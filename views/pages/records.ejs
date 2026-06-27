@@ -24,15 +24,9 @@
         <% records.forEach(record => { %>
           <tr>
             <th scope="row" class="record-name"><%= record.name %></th>
-            <%
-              const artist = {
-                id: record['artist_id'],
-                name: record['artist_name'],
-              };
-            %>
             <td class="record-artist">
-              <a href="<%= getArtistPath(artist) %>">
-                <%= artist.name %>
+              <a href="<%= getArtistPath(record.artist) %>">
+                <%= record.artist.name %>
               </a>
             </td>
             <td class="record-price"><%= formatPrice(record.price) %></td>
