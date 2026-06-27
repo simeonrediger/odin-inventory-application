@@ -19,6 +19,19 @@ export async function findRecords() {
   return rows;
 }
 
+export async function findRecordsByArtistId(artistId) {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM records
+    WHERE artist_id = $1
+    ORDER BY name
+    `,
+    [artistId],
+  );
+
+  return rows;
+}
+
 export async function createRecord({ name, artistId, price, quantity }) {
   await pool.query(
     `

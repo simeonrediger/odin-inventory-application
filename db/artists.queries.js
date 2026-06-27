@@ -22,16 +22,3 @@ export async function findArtistById(id) {
 
   return rows[0];
 }
-
-export async function findRecordsByArtistId(id) {
-  const { rows } = await pool.query(
-    `
-    SELECT * FROM records
-    WHERE records.artist_id = $1
-    ORDER BY records.name
-    `,
-    [id],
-  );
-
-  return rows;
-}

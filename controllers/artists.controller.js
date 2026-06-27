@@ -8,6 +8,6 @@ export async function getArtists(req, res) {
 export async function getArtistRecords(req, res) {
   const { id } = req.params;
   const artist = await db.artists.findArtistById(id);
-  const records = await db.artists.findRecordsByArtistId(id);
+  const records = await db.records.findRecordsByArtistId(id);
   res.render('artist-records', { pageName: artist.name, artist, records });
 }
