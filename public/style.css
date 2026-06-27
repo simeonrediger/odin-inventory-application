@@ -131,6 +131,10 @@ button {
 }
 
 /* Utilities */
+.error {
+  color: var(--color-error);
+}
+
 .vertical-form {
   display: flex;
   flex-direction: column;

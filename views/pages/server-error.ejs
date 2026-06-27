@@ -10,7 +10,10 @@
   </nav>
 </header>
 <main>
-  <p>Server Error <%= error.statusCode %>: <%= error.message %></p>
+  <p>
+    Server Error <%= error.statusCode %>:
+    <span class="error"><%= error.message %></span>
+  </p>
 </main>
 
 <%- include('../partials/layout-end') %>
