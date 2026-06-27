@@ -1,6 +1,6 @@
 import pool from './pool.js';
 
-export async function find() {
+export async function findWithArtistName() {
   const { rows } = await pool.query(
     `
     SELECT
