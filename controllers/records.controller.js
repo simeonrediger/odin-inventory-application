@@ -1,7 +1,8 @@
 import db from '../db/queries.js';
 
 export async function getRecords(req, res) {
-  const records = await db.records.findWithArtist();
+  const { artistId } = req.query;
+  const records = await db.records.findWithArtist({ artistId });
   res.render('records', { pageName: 'Records', records });
 }
 

@@ -1,8 +1,8 @@
 import pool from './pool.js';
 
-export async function findWithArtist() {
-  const { rows } = await pool.query(
-    `
+export async function findWithArtist({ artistId } = {}) {
+  const parameters = [];
+  let sql = `
     SELECT
       to_jsonb(artists) AS artist,
       records.name,
@@ -11,10 +11,16 @@ export async function findWithArtist() {
     FROM records
     INNER JOIN artists
       ON artists.id = records.artist_id
-    ORDER BY records.name
-    `,
-  );
+  `;
 
+  if (artistId !== undefined) {
+    parameters.push(artistId);
+    sql += 'WHERE artists.id = $1';
+  }
+
+  sql += ' ORDER BY records.name';
+
+  const { rows } = await pool.query(sql, parameters);
   return rows;
 }
 
