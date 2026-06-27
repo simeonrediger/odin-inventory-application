@@ -1,6 +1,6 @@
 import pool from './pool.js';
 
-export async function findGenres() {
+export async function find() {
   const { rows } = await pool.query(
     `
     SELECT * FROM genres
@@ -10,7 +10,7 @@ export async function findGenres() {
   return rows;
 }
 
-export async function findGenreById(id) {
+export async function findById(id) {
   const { rows } = await pool.query(
     `
     SELECT * FROM genres

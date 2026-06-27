@@ -1,6 +1,6 @@
 import pool from './pool.js';
 
-export async function findArtists() {
+export async function find() {
   const { rows } = await pool.query(
     `
     SELECT * FROM artists
@@ -11,7 +11,7 @@ export async function findArtists() {
   return rows;
 }
 
-export async function findArtistById(id) {
+export async function findById(id) {
   const { rows } = await pool.query(
     `
     SELECT * FROM artists
@@ -23,7 +23,7 @@ export async function findArtistById(id) {
   return rows[0];
 }
 
-export async function findArtistsByGenreId(genreId) {
+export async function findByGenreId(genreId) {
   const { rows } = await pool.query(
     `
     SELECT artists.*

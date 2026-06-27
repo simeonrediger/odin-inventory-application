@@ -1,6 +1,6 @@
 import pool from './pool.js';
 
-export async function findRecords() {
+export async function find() {
   const { rows } = await pool.query(
     `
     SELECT
@@ -19,7 +19,7 @@ export async function findRecords() {
   return rows;
 }
 
-export async function findRecordsByArtistId(artistId) {
+export async function findByArtistId(artistId) {
   const { rows } = await pool.query(
     `
     SELECT * FROM records
@@ -32,7 +32,7 @@ export async function findRecordsByArtistId(artistId) {
   return rows;
 }
 
-export async function createRecord({ name, artistId, price, quantity }) {
+export async function create({ name, artistId, price, quantity }) {
   await pool.query(
     `
     INSERT INTO records
@@ -44,7 +44,7 @@ export async function createRecord({ name, artistId, price, quantity }) {
   );
 }
 
-export async function deleteRecordById(id) {
+export async function deleteById(id) {
   await pool.query(
     `
     DELETE FROM records

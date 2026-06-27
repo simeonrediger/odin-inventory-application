@@ -1,13 +1,13 @@
 import db from '../db/queries.js';
 
 export async function getArtists(req, res) {
-  const artists = await db.artists.findArtists();
+  const artists = await db.artists.find();
   res.render('artists', { pageName: 'Artists', artists });
 }
 
 export async function getArtistRecords(req, res) {
   const { id } = req.params;
-  const artist = await db.artists.findArtistById(id);
-  const records = await db.records.findRecordsByArtistId(id);
+  const artist = await db.artists.findById(id);
+  const records = await db.records.findByArtistId(id);
   res.render('artist-records', { pageName: artist.name, artist, records });
 }
