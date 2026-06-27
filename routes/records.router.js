@@ -4,7 +4,10 @@ import { validateReturnUrl } from '../validators/validation.js';
 
 const recordsRouter = Router();
 
-recordsRouter.get('/', recordsController.getRecords);
+recordsRouter
+  .route('/')
+  .get(recordsController.getRecords)
+  .post(validateReturnUrl, recordsController.createRecord);
 recordsRouter.delete(
   '/:id/:slug',
   validateReturnUrl,

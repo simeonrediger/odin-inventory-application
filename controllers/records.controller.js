@@ -5,6 +5,12 @@ export async function getRecords(req, res) {
   res.render('records', { pageName: 'Records', records });
 }
 
+export async function createRecord(req, res) {
+  const { name, artistId, price, quantity } = req.body;
+  await db.createRecord({ name, artistId, price, quantity });
+  res.redirect(req.body.returnTo);
+}
+
 export async function deleteRecord(req, res) {
   await db.deleteRecordById(req.params.id);
   res.redirect(req.body.returnTo);

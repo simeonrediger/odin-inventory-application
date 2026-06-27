@@ -27,8 +27,8 @@ const siteLocals = {
   getRecordsPath() {
     return '/records';
   },
-  getRecordPath({ id, name }) {
-    return `/records/${id}/${getSlug(name)}`;
+  getRecordPath({ id, name } = {}) {
+    return id == null ? '/records' : `/records/${id}/${getSlug(name)}`;
   },
 };
 

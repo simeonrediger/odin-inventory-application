@@ -19,6 +19,18 @@ export async function findRecords() {
   return rows;
 }
 
+export async function createRecord({ name, artistId, price, quantity }) {
+  await pool.query(
+    `
+    INSERT INTO records
+      (name, artist_id, price, quantity)
+    VALUES
+      ($1, $2, $3, $4)
+    `,
+    [name, artistId, price, quantity],
+  );
+}
+
 export async function deleteRecordById(id) {
   await pool.query(
     `

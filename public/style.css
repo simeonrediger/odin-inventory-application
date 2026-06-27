@@ -63,6 +63,7 @@ html {
   --pale-light-red: #f88;
   --pale-blue: #0077ff;
   --pale-light-blue: #a4cefe;
+  --transparent-black: #0009;
 
   --color-app-bg: var(--dark-gray-15);
   --color-text: var(--white);
@@ -70,9 +71,12 @@ html {
   --color-link: var(--pale-light-blue);
   --color-input-bg: var(--dark-gray-11);
   --color-input-text: var(--white);
+  --color-input-text-disabled: var(--gray);
   --color-button-bg-primary: var(--pale-blue);
   --color-button-bg-secondary: var(--dark-gray-11);
   --color-button-text: var(--white);
+  --color-modal-border: var(--dark-gray-8);
+  --color-modal-backdrop: var(--transparent-black);
   --color-table-separator: var(--dark-gray-8);
 
   --color-required: var(--pale-light-red);
@@ -112,9 +116,33 @@ textarea {
   color: var(--color-input-text);
 }
 
+:is(input, textarea):disabled {
+  color: var(--color-input-text-disabled);
+  cursor: not-allowed;
+}
+
+input[type='number'] {
+  appearance: textfield;
+}
+
 button {
   background-color: var(--color-button-bg-primary);
   color: var(--color-button-text);
+}
+
+/* Utilities */
+.vertical-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.vertical-form > :is(input, textarea) {
+  margin-bottom: 0.5rem;
+}
+
+.vertical-form button {
+  margin-top: 0.625rem;
 }
 
 /* App */
@@ -142,6 +170,27 @@ header {
   content: '🞂';
   color: var(--color-text-secondary);
   margin-inline: 0.5rem;
+}
+
+.modal {
+  background-color: var(--color-app-bg);
+  border: 1px solid var(--color-modal-border);
+  border-radius: 1rem;
+  color: var(--color-text);
+  padding: 1.5rem;
+
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  inset-inline-start: 50%;
+}
+
+.modal::backdrop {
+  background-color: var(--color-modal-backdrop);
+}
+
+.records-table {
+  margin-block: 0.75rem;
 }
 
 .records-table tr {
