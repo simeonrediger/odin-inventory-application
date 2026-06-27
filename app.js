@@ -22,10 +22,7 @@ app.use('/genres', genresRouter);
 app.use('/artists', artistsRouter);
 app.use('/records', recordsRouter);
 
-app.use((req, res) => {
-  res.status(404).render('not-found', { pageName: 'Page Not Found' });
-});
-
+app.use(errorController.handleNotFoundError);
 app.use(errorController.handleServerError);
 
 const PORT = process.env.PORT || 3000;

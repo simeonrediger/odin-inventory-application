@@ -1,3 +1,7 @@
+export function handleNotFoundError(req, res) {
+  res.status(404).render('not-found', { pageName: 'Page Not Found' });
+}
+
 export function handleServerError(error, req, res, next) {
   console.error(error);
   error.statusCode ||= 500;
