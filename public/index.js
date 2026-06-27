@@ -7,12 +7,7 @@ function bindEvents() {
 }
 
 function handleSubmitDelete(event) {
-  const deleteForm = event.target.closest('[data-action="delete"]');
-
-  if (!deleteForm) {
-    return event.preventDefault();
-  }
-
+  const deleteForm = event.target;
   const resourceName = deleteForm.dataset.resourceName;
   const deleteConfirmed = confirm(`Delete ${resourceName}?`);
 
