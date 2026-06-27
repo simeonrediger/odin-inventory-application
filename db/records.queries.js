@@ -4,7 +4,7 @@ export async function findWithArtist() {
   const { rows } = await pool.query(
     `
     SELECT
-      row_to_json(artists) AS artist,
+      to_jsonb(artists) AS artist,
       records.name,
       records.price,
       records.quantity
