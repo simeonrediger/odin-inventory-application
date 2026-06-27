@@ -1,9 +1,15 @@
 bindEvents();
 
 function bindEvents() {
-  document
-    .querySelector('[data-listener="delete"]')
-    ?.addEventListener('submit', handleSubmitDelete);
+  document.addEventListener('submit', handleSubmit);
+}
+
+function handleSubmit(event) {
+  switch (event.target.dataset.action) {
+    case 'delete':
+      handleSubmitDelete(event);
+      break;
+  }
 }
 
 function handleSubmitDelete(event) {
