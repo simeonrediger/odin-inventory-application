@@ -23,6 +23,31 @@ export async function findById(id) {
   return rows[0];
 }
 
+export async function findByIdWithRecords(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT
+      artists.*,
+      (
+        SELECT COALESCE(
+          jsonb_agg(
+            to_jsonb(records) - 'artist_id'
+            ORDER BY records.name
+          ) FILTER (WHERE records.id IS NOT NULL),
+          '[]'::jsonb
+        )
+        FROM records
+        WHERE records.artist_id = artists.id
+      ) AS records
+    FROM artists
+    WHERE artists.id = $1
+    `,
+    [id],
+  );
+
+  return rows[0];
+}
+
 export async function findByGenreId(genreId) {
   const { rows } = await pool.query(
     `

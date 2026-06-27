@@ -42,7 +42,7 @@
       <button type="submit">Create record</button>
     </form>
   </dialog>
-  <% if (records.length > 0) { %>
+  <% if (artist.records.length > 0) { %>
     <table class="records-table">
       <thead>
         <tr>
@@ -53,7 +53,7 @@
         </tr>
       </thead>
       <tbody>
-        <% records.forEach(record => { %>
+        <% artist.records.forEach(record => { %>
           <tr>
             <th scope="row" class="record-name">
               <%= record.name %>

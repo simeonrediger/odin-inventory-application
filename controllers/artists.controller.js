@@ -7,7 +7,6 @@ export async function getArtists(req, res) {
 
 export async function getArtistRecords(req, res) {
   const { id } = req.params;
-  const artist = await db.artists.findById(id);
-  const records = await db.records.findByArtistId(id);
-  res.render('artist-records', { pageName: artist.name, artist, records });
+  const artist = await db.artists.findByIdWithRecords(id);
+  res.render('artist-records', { pageName: artist.name, artist });
 }
