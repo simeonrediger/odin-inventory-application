@@ -5,6 +5,7 @@ export async function findWithArtist({ artistId } = {}) {
   let sql = `
     SELECT
       to_jsonb(artists) AS artist,
+      records.id,
       records.name,
       records.price,
       records.quantity
