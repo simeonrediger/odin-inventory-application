@@ -57,6 +57,16 @@
       <% } %>
     </form>
   </dialog>
+  <form action="<%= getRecordPath() %>" method="get" class="search-form">
+    <label for="search-artist-id">Search by artist</label>
+    <select name="artistId" id="search-artist-id">
+      <option value="" selected>All</option>
+      <% artists.forEach(artist => { %>
+        <option value="<%= artist.id %>"><%= artist.name %></option>
+      <% }); %>
+    </select>
+    <button type="submit">Go</button>
+  </form>
   <% if (records.length > 0) { %>
     <table class="records-table">
       <thead>

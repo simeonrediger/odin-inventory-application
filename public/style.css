@@ -221,6 +221,14 @@ header {
   background-color: var(--color-button-bg-secondary);
 }
 
+.search-form {
+  margin-block: 0.75rem;
+
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
 .records-table {
   margin-block: 0.75rem;
 }
