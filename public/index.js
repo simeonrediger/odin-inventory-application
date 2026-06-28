@@ -36,6 +36,9 @@ function handleClick(event) {
 
 function handleSubmit(event) {
   switch (event.target.dataset.action) {
+    case 'search':
+      handleSubmitSearch(event);
+      return;
     case 'create':
       handleSubmitCreate(event);
       break;
@@ -43,6 +46,11 @@ function handleSubmit(event) {
       handleSubmitDelete(event);
       break;
   }
+}
+
+function handleSubmitSearch(event) {
+  const searchForm = event.target;
+  disableEmptyFields(searchForm);
 }
 
 function handleSubmitCreate(event) {
@@ -60,6 +68,14 @@ function handleSubmitDelete(event) {
   }
 
   populateReturnUrl(deleteForm);
+}
+
+function disableEmptyFields(form) {
+  for (const input of form.elements) {
+    if (input.value === '') {
+      input.disabled = true;
+    }
+  }
 }
 
 function populateReturnUrl(form) {

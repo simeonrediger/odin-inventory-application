@@ -57,7 +57,12 @@
       <% } %>
     </form>
   </dialog>
-  <form action="<%= getRecordPath() %>" method="get" class="search-form">
+  <form
+    action="<%= getRecordPath() %>"
+    method="get"
+    data-action="search"
+    class="search-form"
+  >
     <label for="search-artist-id">Search by artist</label>
     <select name="artistId" id="search-artist-id">
       <% let artistSelected = false; %>
