@@ -189,7 +189,6 @@ header {
   border: 1px solid var(--color-modal-border);
   border-radius: 1rem;
   color: var(--color-text);
-  padding: 1.5rem;
 
   position: fixed;
   transform: translate(-50%, -50%);
@@ -199,6 +198,10 @@ header {
 
 .modal::backdrop {
   background-color: var(--color-modal-backdrop);
+}
+
+.modal-form {
+  padding: 1.5rem;
 }
 
 .errors {
