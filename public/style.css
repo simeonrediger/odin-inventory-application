@@ -83,6 +83,8 @@ html {
   --color-required: var(--pale-light-red);
   --color-error: var(--pale-light-red);
 
+  --color-edit-button-bg: transparent;
+  --color-edit-button-text: var(--light-gray-6);
   --color-delete-button-bg: transparent;
   --color-delete-button-text: var(--color-error);
 }
@@ -267,6 +269,16 @@ header {
 
 .record-actions {
   text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-button {
+  background-color: var(--color-edit-button-bg);
+  color: var(--color-edit-button-text);
 }
 
 .delete-button {

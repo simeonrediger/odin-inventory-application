@@ -180,15 +180,18 @@
             <td class="record-price"><%= formatPrice(record.price) %></td>
             <td class="record-quantity"><%= record.quantity %></td>
             <td class="record-actions">
-              <form
-                action="<%= getRecordPath(record) %>?_method=DELETE"
-                method="post"
-                data-action="delete"
-                data-resource-name="<%= record.name %>"
-              >
-                <input type="hidden" name="returnTo" />
-                <button type="submit" class="delete-button">Delete</button>
-              </form>
+              <div class="action-buttons">
+                <button type="button" class="edit-button">Edit</button>
+                <form
+                  action="<%= getRecordPath(record) %>?_method=DELETE"
+                  method="post"
+                  data-action="delete"
+                  data-resource-name="<%= record.name %>"
+                >
+                  <input type="hidden" name="returnTo" />
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </div>
             </td>
           </tr>
         <% }); %>
