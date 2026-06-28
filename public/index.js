@@ -75,7 +75,7 @@ function disableEmptyFields(form) {
 
   for (const input of form.elements) {
     if (input.value === '') {
-      input.disabled = true;
+      input.removeAttribute('name');
     } else {
       queryIsEmpty = false;
     }
