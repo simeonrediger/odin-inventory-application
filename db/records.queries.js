@@ -23,8 +23,9 @@ export async function find({ name, artistId } = {}) {
   return rows;
 }
 
-export async function findWithArtist({ artistId } = {}) {
+export async function findWithArtist({ genreId, artistId } = {}) {
   const parameters = [];
+  const filters = [];
   let sql = `
     SELECT
       to_jsonb(artists) AS artist,
@@ -37,9 +38,22 @@ export async function findWithArtist({ artistId } = {}) {
       ON artists.id = records.artist_id
   `;
 
+  if (genreId !== undefined) {
+    parameters.push(genreId);
+    sql += `
+      INNER JOIN genre_artists
+        ON genre_artists.artist_id = artists.id
+    `;
+    filters.push(`genre_artists.genre_id = $${parameters.length}`);
+  }
+
   if (artistId !== undefined) {
     parameters.push(artistId);
-    sql += `WHERE artists.id = $${parameters.length}`;
+    filters.push(`artists.id = $${parameters.length}`);
+  }
+
+  if (filters.length > 0) {
+    sql += ` WHERE ${filters.join(' AND ')}`;
   }
 
   sql += ' ORDER BY records.name, artists.name';

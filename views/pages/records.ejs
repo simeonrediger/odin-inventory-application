@@ -101,6 +101,33 @@
     data-action="search"
     class="search-form"
   >
+    <label for="search-genre-id">Search by genre</label>
+    <select name="genreId" id="search-genre-id">
+      <% let genreSelected = false; %>
+      <option
+        value=""
+        <% if (rawQuery.genreId === undefined) {
+          genreSelected = true;
+        %>
+          selected
+        <% } %>
+      >Any</option>
+      <% genres.forEach(genre => { %>
+        <option
+          value="<%= genre.id %>"
+          <% if (genre.id == rawQuery.genreId) {
+            genreSelected = true;
+          %>
+            selected
+          <% } %>
+        ><%= genre.name %></option>
+      <% }); %>
+      <% if (!genreSelected) { %>
+        <option value="<%= rawQuery.genreId %>" selected hidden>
+          Genre does not exist
+        </option>
+      <% } %>
+    </select>
     <label for="search-artist-id">Search by artist</label>
     <select name="artistId" id="search-artist-id">
       <% let artistSelected = false; %>

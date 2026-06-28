@@ -1,7 +1,10 @@
 import { body, query, validationResult, matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
-export const validateQuery = [query('artistId').optional().isInt({ min: 1 })];
+export const validateQuery = [
+  query('genreId').optional().isInt({ min: 1 }),
+  query('artistId').optional().isInt({ min: 1 }),
+];
 
 export const validateRecord = [
   body('artistId')

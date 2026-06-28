@@ -224,9 +224,18 @@ header {
 .search-form {
   margin-block: 0.75rem;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: max-content max-content;
   align-items: baseline;
   gap: 0.5rem;
+}
+
+.search-form label {
+  justify-self: end;
+}
+
+.search-form button {
+  grid-column: 1 / -1;
 }
 
 .records-table {
