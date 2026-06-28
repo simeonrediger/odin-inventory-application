@@ -42,7 +42,7 @@ export async function findWithArtist({ artistId } = {}) {
     sql += `WHERE artists.id = $${parameters.length}`;
   }
 
-  sql += ' ORDER BY records.name';
+  sql += ' ORDER BY records.name, artists.name';
 
   const { rows } = await pool.query(sql, parameters);
   return rows;
