@@ -10,7 +10,11 @@ const recordsRouter = Router();
 
 recordsRouter
   .route('/')
-  .get(validateQuery, recordsController.getRecords)
+  .get(
+    recordsController.setRawQuery,
+    validateQuery,
+    recordsController.getRecords,
+  )
   .post(validateReturnUrl, validateRecord, recordsController.createRecord);
 recordsRouter.delete(
   '/:id/:slug',

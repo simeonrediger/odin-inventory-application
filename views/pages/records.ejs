@@ -106,7 +106,7 @@
       <% let artistSelected = false; %>
       <option
         value=""
-        <% if (!query.artistId) {
+        <% if (rawQuery.artistId === undefined) {
           artistSelected = true;
         %>
           selected
@@ -115,7 +115,7 @@
       <% artists.forEach(artist => { %>
         <option
           value="<%= artist.id %>"
-          <% if (artist.id == query.artistId) {
+          <% if (artist.id == rawQuery.artistId) {
             artistSelected = true;
           %>
             selected
@@ -123,7 +123,7 @@
         ><%= artist.name %></option>
       <% }); %>
       <% if (!artistSelected) { %>
-        <option value="<%= query.artistId %>" selected hidden>
+        <option value="<%= rawQuery.artistId %>" selected hidden>
           Artist does not exist
         </option>
       <% } %>
