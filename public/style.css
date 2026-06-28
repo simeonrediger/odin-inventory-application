@@ -238,6 +238,11 @@ header {
   text-align: start;
 }
 
+:not(.table-header-row) > .record-name {
+  font-style: italic;
+  font-weight: normal;
+}
+
 .record-price,
 .record-quantity {
   text-align: end;
