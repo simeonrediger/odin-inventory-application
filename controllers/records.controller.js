@@ -2,10 +2,11 @@ import { validationResult, matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
 export async function getRecords(req, res) {
-  const { artistId } = matchedData(req);
+  const query = matchedData(req);
+  const { artistId } = query;
   const records = await db.records.findWithArtist({ artistId });
   const artists = await db.artists.find();
-  res.render('records', { pageName: 'Records', records, artists });
+  res.render('records', { pageName: 'Records', records, artists, query });
 }
 
 export async function createRecord(req, res) {

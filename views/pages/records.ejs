@@ -60,10 +60,30 @@
   <form action="<%= getRecordPath() %>" method="get" class="search-form">
     <label for="search-artist-id">Search by artist</label>
     <select name="artistId" id="search-artist-id">
-      <option value="" selected>All</option>
+      <% let artistSelected = false; %>
+      <option
+        value=""
+        <% if (!query.artistId) {
+          artistSelected = true;
+        %>
+          selected
+        <% } %>
+      >All</option>
       <% artists.forEach(artist => { %>
-        <option value="<%= artist.id %>"><%= artist.name %></option>
+        <option
+          value="<%= artist.id %>"
+          <% if (artist.id == query.artistId) {
+            artistSelected = true;
+          %>
+            selected
+          <% } %>
+        ><%= artist.name %></option>
       <% }); %>
+      <% if (!artistSelected) { %>
+        <option value="<%= query.artistId %>" selected hidden>
+          Artist does not exist
+        </option>
+      <% } %>
     </select>
     <button type="submit">Go</button>
   </form>
