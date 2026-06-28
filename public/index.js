@@ -71,10 +71,19 @@ function handleSubmitDelete(event) {
 }
 
 function disableEmptyFields(form) {
+  let queryIsEmpty = true;
+
   for (const input of form.elements) {
     if (input.value === '') {
       input.disabled = true;
+    } else {
+      queryIsEmpty = false;
     }
+  }
+
+  if (queryIsEmpty) {
+    location.href = location.pathname + location.hash;
+    return event.preventDefault();
   }
 }
 
