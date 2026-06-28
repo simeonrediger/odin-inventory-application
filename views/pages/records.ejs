@@ -36,7 +36,13 @@
       <label for="new-entry-name">Name</label>
       <input type="text" name="name" id="new-entry-name" required />
       <label for="new-entry-price">Price</label>
-      <input type="number" name="price" id="new-entry-price" required />
+      <input
+        type="number"
+        name="price"
+        id="new-entry-price"
+        step="0.01"
+        required
+      />
       <label for="new-entry-quantity">Quantity</label>
       <input type="number" name="quantity" id="new-entry-quantity" />
       <input type="hidden" name="returnTo" />
