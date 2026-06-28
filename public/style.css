@@ -152,6 +152,11 @@ button {
   margin-top: 0.625rem;
 }
 
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* App */
 header {
   margin-bottom: 0.75rem;
@@ -212,6 +217,10 @@ header {
 
 .errors > li {
   margin-inline-start: 1.125rem;
+}
+
+.cancel-button {
+  background-color: var(--color-button-bg-secondary);
 }
 
 .records-table {

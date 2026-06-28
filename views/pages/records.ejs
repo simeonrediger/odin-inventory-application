@@ -40,7 +40,14 @@
       <label for="new-entry-quantity">Quantity</label>
       <input type="number" name="quantity" id="new-entry-quantity" />
       <input type="hidden" name="returnTo" />
-      <button type="submit">Create record</button>
+      <div class="space-between">
+        <button
+          type="button"
+          data-action="close-new-entry"
+          class="cancel-button"
+        >Cancel</button>
+        <button type="submit">Create record</button>
+      </div>
       <% if (locals.newEntryErrors) { %>
         <ul class="errors">
           <% newEntryErrors.forEach(error => { %>

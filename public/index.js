@@ -23,7 +23,14 @@ function handleClick(event) {
     case 'start-new-entry':
       newEntryForm.reset();
       newEntryModal.showModal();
-      break;
+      return;
+    case 'close-new-entry':
+      newEntryModal.close();
+      return;
+  }
+
+  if (newEntryModal?.open && !newEntryForm.contains(event.target)) {
+    newEntryModal.close();
   }
 }
 
