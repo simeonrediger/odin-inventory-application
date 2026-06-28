@@ -10,15 +10,16 @@ export async function getRecords(req, res) {
 }
 
 export async function createRecord(req, res) {
+  const record = matchedData(req);
   const errors = validationResult(req).array();
 
   if (errors.length !== 0) {
     res.status(400);
+    res.locals.newEntryFields = record;
     res.locals.newEntryErrors = errors;
     return getRecords(req, res);
   }
 
-  const record = matchedData(req);
   await db.records.create(record);
   res.redirect(req.body.returnTo);
 }

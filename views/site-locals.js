@@ -6,8 +6,9 @@ export function assign(req, res, next) {
 const siteLocals = {
   siteName: 'Record Store',
   getSlug,
+  centsToDollars,
   formatPrice(price) {
-    return '$' + Number(price / 100).toFixed(2);
+    return '$' + centsToDollars(price);
   },
   getHomePath() {
     return '/';
@@ -34,4 +35,8 @@ const siteLocals = {
 
 function getSlug(text) {
   return text.toLowerCase().replaceAll(' ', '-');
+}
+
+function centsToDollars(n) {
+  return Number(n / 100).toFixed(2);
 }
