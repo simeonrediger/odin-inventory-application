@@ -23,8 +23,10 @@ export const validateRecord = [
     .custom(recordNameIsUnique),
   body('price')
     .trim()
-    .isNumeric({ min: 0 })
-    .withMessage('Price must be a non-negative number'),
+    .isFloat({ min: 0 })
+    .withMessage('Price must be a non-negative number')
+    .isDecimal({ decimal_digits: '0,2' })
+    .withMessage('Price must not exceed two decimal places'),
   body('quantity')
     .trim()
     .optional({ checkFalsy: true })
