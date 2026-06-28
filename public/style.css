@@ -138,20 +138,6 @@ button {
   color: var(--color-error);
 }
 
-.vertical-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.vertical-form > :is(input, textarea, select) {
-  margin-bottom: 0.5rem;
-}
-
-.vertical-form button {
-  margin-top: 0.625rem;
-}
-
 .space-between {
   display: flex;
   justify-content: space-between;
@@ -207,6 +193,18 @@ header {
 
 .modal-form {
   padding: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.modal-form > :is(input, textarea, select) {
+  margin-bottom: 0.5rem;
+}
+
+.modal-form button {
+  margin-top: 0.625rem;
 }
 
 .errors {
