@@ -28,7 +28,8 @@ ul {
 
 button,
 input,
-textarea {
+textarea,
+select {
   border: none;
   font-size: 1em;
 }
@@ -105,18 +106,20 @@ a:hover {
 
 input,
 textarea,
+select,
 button {
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
 }
 
 input,
-textarea {
+textarea,
+select {
   background-color: var(--color-input-bg);
   color: var(--color-input-text);
 }
 
-:is(input, textarea):disabled {
+:is(input, textarea, select):disabled {
   color: var(--color-input-text-disabled);
   cursor: not-allowed;
 }
@@ -141,7 +144,7 @@ button {
   gap: 0.125rem;
 }
 
-.vertical-form > :is(input, textarea) {
+.vertical-form > :is(input, textarea, select) {
   margin-bottom: 0.5rem;
 }
 
