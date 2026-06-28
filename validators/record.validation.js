@@ -26,7 +26,8 @@ export const validateRecord = [
     .isFloat({ min: 0 })
     .withMessage('Price must be a non-negative number')
     .isDecimal({ decimal_digits: '0,2' })
-    .withMessage('Price must not exceed two decimal places'),
+    .withMessage('Price must not exceed two decimal places')
+    .customSanitizer(dollarsToCents),
   body('quantity')
     .trim()
     .optional({ checkFalsy: true })
@@ -56,4 +57,8 @@ async function recordNameIsUnique(name, { req }) {
   if (records.length > 0) {
     throw new Error(`Record name already exists: ${name}`);
   }
+}
+
+function dollarsToCents(dollars) {
+  return Math.round(dollars * 100);
 }
