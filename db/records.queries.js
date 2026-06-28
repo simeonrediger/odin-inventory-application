@@ -39,7 +39,7 @@ export async function findWithArtist({ artistId } = {}) {
 
   if (artistId !== undefined) {
     parameters.push(artistId);
-    sql += 'WHERE artists.id = $1';
+    sql += `WHERE artists.id = $${parameters.length}`;
   }
 
   sql += ' ORDER BY records.name';
