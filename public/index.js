@@ -73,9 +73,9 @@ function handleSubmitDelete(event) {
 function disableEmptyFields(form) {
   let queryIsEmpty = true;
 
-  for (const input of form.elements) {
-    if (input.value === '') {
-      input.removeAttribute('name');
+  for (const field of form.elements) {
+    if (field.value === '') {
+      field.removeAttribute('name');
     } else {
       queryIsEmpty = false;
     }
@@ -88,6 +88,6 @@ function disableEmptyFields(form) {
 }
 
 function populateReturnUrl(form) {
-  const returnToInput = form.querySelector('[name="returnTo"]');
-  returnToInput.value = location.pathname + location.search + location.hash;
+  const returnToField = form.querySelector('[name="returnTo"]');
+  returnToField.value = location.pathname + location.search + location.hash;
 }
