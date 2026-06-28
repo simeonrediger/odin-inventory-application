@@ -27,7 +27,7 @@
     >
       <h2>New record</h2>
       <label for="new-entry-artist-id">Artist</label>
-      <select type="text" name="artistId" id="new-entry-artist-id" required>
+      <select name="artistId" id="new-entry-artist-id" required>
         <option value="" selected disabled hidden>Select one</option>
         <% artists.forEach(artist => { %>
           <option value="<%= artist.id %>"><%= artist.name %></option>
