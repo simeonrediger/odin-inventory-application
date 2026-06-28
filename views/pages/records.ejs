@@ -20,6 +20,9 @@
       action="<%= getRecordPath() %>"
       method="post"
       data-action="create"
+      <% if (locals.newEntryErrors && newEntryErrors.length > 0) { %>
+        data-invalid
+      <% } %>
       class="vertical-form"
     >
       <h2>New record</h2>
@@ -38,6 +41,13 @@
       <input type="number" name="quantity" id="new-entry-quantity" />
       <input type="hidden" name="returnTo" />
       <button type="submit">Create record</button>
+      <% if (locals.newEntryErrors) { %>
+        <ul class="errors">
+          <% newEntryErrors.forEach(error => { %>
+            <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      <% } %>
     </form>
   </dialog>
   <% if (records.length > 0) { %>

@@ -3,9 +3,19 @@ bindEvents();
 const newEntryModal = document.querySelector('[data-modal="new-entry"]');
 const newEntryForm = newEntryModal?.querySelector('form');
 
+if (newEntryForm) {
+  openInvalidFormModal();
+}
+
 function bindEvents() {
   document.addEventListener('click', handleClick);
   document.addEventListener('submit', handleSubmit);
+}
+
+function openInvalidFormModal() {
+  if (newEntryForm.hasAttribute('data-invalid')) {
+    newEntryModal.showModal();
+  }
 }
 
 function handleClick(event) {

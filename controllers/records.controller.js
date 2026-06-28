@@ -1,3 +1,4 @@
+import { validationResult, matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
 export async function getRecords(req, res) {
@@ -8,8 +9,16 @@ export async function getRecords(req, res) {
 }
 
 export async function createRecord(req, res) {
-  const { artistId, name, price, quantity } = req.body;
-  await db.records.create({ artistId, name, price, quantity });
+  const errors = validationResult(req).array();
+
+  if (errors.length !== 0) {
+    res.status(400);
+    res.locals.newEntryErrors = errors;
+    return getRecords(req, res);
+  }
+
+  const record = matchedData(req);
+  await db.records.create(record);
   res.redirect(req.body.returnTo);
 }
 

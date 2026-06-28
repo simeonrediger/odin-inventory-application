@@ -201,6 +201,16 @@ header {
   background-color: var(--color-modal-backdrop);
 }
 
+.errors {
+  color: var(--color-error);
+  list-style-type: disc;
+  margin-top: 0.75rem;
+}
+
+.errors > li {
+  margin-inline-start: 1.125rem;
+}
+
 .records-table {
   margin-block: 0.75rem;
 }
