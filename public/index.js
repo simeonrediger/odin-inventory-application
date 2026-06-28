@@ -50,7 +50,7 @@ function handleSubmit(event) {
 
 function handleSubmitSearch(event) {
   const searchForm = event.target;
-  disableEmptyFields(searchForm);
+  omitEmptyFields(searchForm);
 }
 
 function handleSubmitCreate(event) {
@@ -70,7 +70,7 @@ function handleSubmitDelete(event) {
   populateReturnUrl(deleteForm);
 }
 
-function disableEmptyFields(form) {
+function omitEmptyFields(form) {
   let queryIsEmpty = true;
 
   for (const field of form.elements) {
