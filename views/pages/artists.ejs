@@ -13,11 +13,7 @@
   <% if (artists.length > 0) { %>
     <ul>
       <% artists.forEach(artist => { %>
-        <li>
-          <a href="<%= getArtistPath(artist) %>">
-            <%= artist.name %>
-          </a>
-        </li>
+        <li><%= artist.name %></li>
       <% }); %>
     </ul>
   <% } else { %>
