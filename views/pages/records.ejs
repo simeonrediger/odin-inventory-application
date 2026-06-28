@@ -27,16 +27,16 @@
     >
       <h2>New record</h2>
       <label for="new-entry-artist-id">Artist</label>
-      <select type="text" name="artistId" id="new-entry-artist-id">
-        <option selected disabled hidden>Select one</option>
+      <select type="text" name="artistId" id="new-entry-artist-id" required>
+        <option value="" selected disabled hidden>Select one</option>
         <% artists.forEach(artist => { %>
           <option value="<%= artist.id %>"><%= artist.name %></option>
         <% }); %>
       </select>
       <label for="new-entry-name">Name</label>
-      <input type="text" name="name" id="new-entry-name" />
+      <input type="text" name="name" id="new-entry-name" required />
       <label for="new-entry-price">Price</label>
-      <input type="number" name="price" id="new-entry-price" />
+      <input type="number" name="price" id="new-entry-price" required />
       <label for="new-entry-quantity">Quantity</label>
       <input type="number" name="quantity" id="new-entry-quantity" />
       <input type="hidden" name="returnTo" />
