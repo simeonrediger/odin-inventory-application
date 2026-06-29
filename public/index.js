@@ -41,10 +41,10 @@ function handleSubmit(event) {
       return;
     case 'create':
       handleSubmitCreate(event);
-      break;
+      return;
     case 'delete':
       handleSubmitDelete(event);
-      break;
+      return;
   }
 }
 
