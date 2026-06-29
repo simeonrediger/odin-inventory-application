@@ -1,3 +1,5 @@
+import { getSlug, getRecordPath } from '../shared/formatting.js';
+
 export function assign(req, res, next) {
   Object.assign(res.locals, siteLocals);
   next();
@@ -28,14 +30,8 @@ const siteLocals = {
   getRecordsPath() {
     return '/records';
   },
-  getRecordPath({ id, name } = {}) {
-    return id == null ? '/records' : `/records/${id}/${getSlug(name)}`;
-  },
+  getRecordPath,
 };
-
-function getSlug(text) {
-  return text.toLowerCase().replaceAll(' ', '-');
-}
 
 function centsToDollars(n) {
   return Number(n / 100).toFixed(2);
