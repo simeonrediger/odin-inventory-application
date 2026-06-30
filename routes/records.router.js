@@ -11,7 +11,7 @@ const recordsRouter = Router();
 recordsRouter
   .route('/')
   .get(
-    recordsController.setRawQuery,
+    recordsController.captureRawQuery,
     validateQuery,
     recordsController.getRecords,
   )
