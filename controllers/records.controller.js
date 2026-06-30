@@ -1,7 +1,7 @@
 import { validationResult, matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
-export async function captureRawQuery(req, res, next) {
+export function captureRawQuery(req, res, next) {
   res.locals.rawQuery = req.query;
   next();
 }
