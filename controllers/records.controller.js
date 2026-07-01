@@ -8,9 +8,7 @@ export function preserveRawQuery(req, res, next) {
 
 export async function getRecords(req, res) {
   const { genreId, artistId } = matchedData(req);
-  const validQuery =
-    genreId === res.locals.rawQuery.genreId &&
-    artistId === res.locals.rawQuery.artistId;
+  const validQuery = genreId && artistId;
   const records = validQuery
     ? await db.records.findWithArtist({ genreId, artistId })
     : [];
@@ -32,9 +30,7 @@ export async function createRecord(req, res) {
     res.locals.newEntryErrors = errors;
 
     const { genreId, artistId } = matchedData(req, { locations: ['query'] });
-    const validQuery =
-      genreId === res.locals.rawQuery.genreId &&
-      artistId === res.locals.rawQuery.artistId;
+    const validQuery = genreId && artistId;
     const records = validQuery
       ? await db.records.findWithArtist({ genreId, artistId })
       : [];
