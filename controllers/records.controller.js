@@ -31,7 +31,7 @@ export async function createRecord(req, res) {
     res.locals.newEntryFields = record;
     res.locals.newEntryErrors = errors;
 
-    const { genreId, artistId } = matchedData(req);
+    const { genreId, artistId } = matchedData(req, { locations: ['query'] });
     const validQuery =
       genreId === res.locals.rawQuery.genreId &&
       artistId === res.locals.rawQuery.artistId;
