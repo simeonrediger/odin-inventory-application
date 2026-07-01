@@ -2,7 +2,7 @@ import { validationResult, matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
 export function preserveRawQuery(req, res, next) {
-  res.locals.rawQuery = req.query;
+  assignRawQuery(req, res);
   next();
 }
 
@@ -52,4 +52,8 @@ export async function createRecord(req, res) {
 export async function deleteRecord(req, res) {
   await db.records.deleteById(req.params.id);
   res.redirect(req.body.returnTo);
+}
+
+function assignRawQuery(req, res) {
+  res.locals.rawQuery = req.query;
 }
