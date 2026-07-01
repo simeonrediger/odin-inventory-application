@@ -2,7 +2,13 @@ import { validationResult, matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
 export function preserveRawQuery(req, res, next) {
-  res.locals.rawQuery = req.query;
+  assignRawQueryToLocals(res, req.query);
+  next();
+}
+
+export function preserveRawReturnUrlQuery(req, res, next) {
+  const returnUrlQuery = matchedData(req, { locations: ['query'] });
+  assignRawQueryToLocals(res, returnUrlQuery);
   next();
 }
 
@@ -50,6 +56,10 @@ export async function deleteRecord(req, res) {
   const { returnTo } = matchedData(req);
   await db.records.deleteById(req.params.id);
   res.redirect(returnTo);
+}
+
+function assignRawQueryToLocals(res, rawQuery) {
+  res.locals.rawQuery = rawQuery;
 }
 
 function validationErrors(req, { locations }) {

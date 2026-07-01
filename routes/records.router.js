@@ -3,6 +3,7 @@ import * as recordsController from '../controllers/records.controller.js';
 import { validateReturnUrl } from '../validators/validation.js';
 import {
   validateQuery,
+  validateReturnUrlQuery,
   validateRecord,
 } from '../validators/record.validation.js';
 
@@ -15,7 +16,14 @@ recordsRouter
     validateQuery,
     recordsController.getRecords,
   )
-  .post(validateReturnUrl, validateRecord, recordsController.createRecord);
+  .post(
+    validateReturnUrl,
+    validateReturnUrlQuery,
+    recordsController.preserveRawReturnUrlQuery,
+    validateQuery,
+    validateRecord,
+    recordsController.createRecord,
+  );
 recordsRouter.delete(
   '/:id/:slug',
   validateReturnUrl,

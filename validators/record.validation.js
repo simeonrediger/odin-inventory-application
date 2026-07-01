@@ -6,6 +6,22 @@ export const validateQuery = [
   query('artistId').optional().isInt({ min: 1 }),
 ];
 
+export const validateReturnUrlQuery = [
+  validateReturnUrlQueryParam('genreId'),
+  validateReturnUrlQueryParam('artistId'),
+];
+
+function validateReturnUrlQueryParam(param) {
+  return query(param).customSanitizer((value, { req }) =>
+    getReturnUrlQueryParam(value, { req, param }),
+  );
+}
+
+function getReturnUrlQueryParam(value, { req, param }) {
+  const { returnTo } = matchedData(req);
+  return new URL('https://example.invalid' + returnTo).searchParams.get(param);
+}
+
 export const validateRecord = [
   body('artistId')
     .trim()
