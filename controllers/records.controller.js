@@ -20,7 +20,7 @@ export async function getRecords(req, res) {
 }
 
 export async function createRecord(req, res) {
-  const { artistId, name, price, quantity } = matchedData(req, {
+  const { artistId, name, price, quantity, returnTo } = matchedData(req, {
     locations: ['body'],
   });
   const record = { artistId, name, price, quantity };
@@ -49,12 +49,13 @@ export async function createRecord(req, res) {
   }
 
   await db.records.create(record);
-  res.redirect(req.body.returnTo);
+  res.redirect(returnTo);
 }
 
 export async function deleteRecord(req, res) {
+  const { returnTo } = matchedData(req);
   await db.records.deleteById(req.params.id);
-  res.redirect(req.body.returnTo);
+  res.redirect(returnTo);
 }
 
 function assignRawQuery(req, res) {
