@@ -11,5 +11,5 @@ function isRootRelative(value) {
     }
   }
 
-  throw new TypeError('Return URL must be root-relative');
+  throw new TypeError(`Return URL must be root-relative. Got "${value}"`);
 }
