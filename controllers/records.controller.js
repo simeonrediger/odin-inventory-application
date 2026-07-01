@@ -13,9 +13,7 @@ export function preserveRawReturnUrlQuery(req, res, next) {
 }
 
 export async function getRecords(req, res) {
-  const records = await searchRecords(req);
-  const genres = await db.genres.find();
-  const artists = await db.artists.find();
+  const { records, genres, artists } = await getPageData(req);
   res.render('records', { pageName: 'Records', records, genres, artists });
 }
 
@@ -27,9 +25,7 @@ export async function createRecord(req, res) {
   const errors = validationErrors(req, { locations: ['body'] });
 
   if (errors.length !== 0) {
-    const records = await searchRecords(req);
-    const genres = await db.genres.find();
-    const artists = await db.artists.find();
+    const { records, genres, artists } = await getPageData(req);
     return res.status(400).render('records', {
       pageName: 'Records',
       records,
@@ -48,6 +44,13 @@ export async function deleteRecord(req, res) {
   const { returnTo } = matchedData(req);
   await db.records.deleteById(req.params.id);
   res.redirect(returnTo);
+}
+
+async function getPageData(req) {
+  const records = await searchRecords(req);
+  const genres = await db.genres.find();
+  const artists = await db.artists.find();
+  return { records, genres, artists };
 }
 
 async function searchRecords(req) {
