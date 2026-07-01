@@ -1,14 +1,15 @@
 import { body } from 'express-validator';
 
-export const validateReturnUrl = [
-  body('returnTo').customSanitizer(absoluteUrlToRoot),
-];
+export const validateReturnUrl = [body('returnTo').custom(isRootRelative)];
 
-function absoluteUrlToRoot(url) {
+function isRootRelative(value) {
   try {
-    new URL(url);
-    return '/';
+    new URL(value);
   } catch (error) {
-    return url;
+    if (value.startsWith('/')) {
+      return true;
+    }
   }
+
+  throw new TypeError('Return URL must be root-relative');
 }
