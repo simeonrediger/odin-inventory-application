@@ -30,21 +30,19 @@ export async function createRecord(req, res) {
   const errors = validationErrors(req, { locations: ['body'] });
 
   if (errors.length !== 0) {
-    res.status(400);
-    res.locals.newEntryFields = record;
-    res.locals.newEntryErrors = errors;
-
     const { genreId, artistId } = matchedData(req, { locations: ['query'] });
     const records = queryIsValid(req)
       ? await db.records.findWithArtist({ genreId, artistId })
       : [];
     const genres = await db.genres.find();
     const artists = await db.artists.find();
-    return res.render('records', {
+    return res.status(400).render('records', {
       pageName: 'Records',
       records,
       genres,
       artists,
+      newEntryFields: record,
+      newEntryErrors: errors,
     });
   }
 
