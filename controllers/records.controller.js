@@ -6,12 +6,6 @@ export function preserveRawQuery(req, res, next) {
   next();
 }
 
-export function preserveRawReturnUrlQuery(req, res, next) {
-  const returnUrlQuery = matchedData(req, { locations: ['query'] });
-  assignRawQueryToLocals(res, returnUrlQuery);
-  next();
-}
-
 export async function getRecords(req, res) {
   const { records, genres, artists } = await getPageData(req);
   res.render('records', { pageName: 'Records', records, genres, artists });
