@@ -48,7 +48,7 @@ async function getPageData(req) {
 }
 
 async function searchRecords(req) {
-  const { genreId, artistId } = matchedData(req);
+  const { genreId, artistId } = matchedData(req, { locations: ['query'] });
   const records = queryIsValid(req)
     ? await db.records.findWithArtist({ genreId, artistId })
     : [];
