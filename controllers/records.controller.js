@@ -27,7 +27,22 @@ export async function createRecord(req, res) {
     res.status(400);
     res.locals.newEntryFields = record;
     res.locals.newEntryErrors = errors;
-    return getRecords(req, res);
+
+    const { genreId, artistId } = matchedData(req);
+    const validQuery =
+      genreId === res.locals.rawQuery.genreId &&
+      artistId === res.locals.rawQuery.artistId;
+    const records = validQuery
+      ? await db.records.findWithArtist({ genreId, artistId })
+      : [];
+    const genres = await db.genres.find();
+    const artists = await db.artists.find();
+    return res.render('records', {
+      pageName: 'Records',
+      records,
+      genres,
+      artists,
+    });
   }
 
   await db.records.create(record);
