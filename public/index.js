@@ -76,7 +76,10 @@ function handleSubmitSearch(event) {
 
 function handleSubmitCreate(event) {
   const createForm = event.target;
-  populateReturnUrl(createForm);
+  populateReturnUrl(createForm, {
+    appendQueryToAction: true,
+    appendFragmentToAction: true,
+  });
 }
 
 function handleSubmitUpdate(event) {
@@ -120,7 +123,18 @@ function omitEmptyFields(form) {
   }
 }
 
-function populateReturnUrl(form) {
+function populateReturnUrl(
+  form,
+  { appendQueryToAction, appendFragmentToAction },
+) {
   const returnToField = form.querySelector('[name="returnTo"]');
   returnToField.value = location.pathname + location.search + location.hash;
+
+  if (appendQueryToAction) {
+    form.action += location.search;
+  }
+
+  if (appendFragmentToAction) {
+    form.action += location.hash;
+  }
 }
