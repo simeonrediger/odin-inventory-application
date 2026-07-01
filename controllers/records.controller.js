@@ -35,7 +35,7 @@ export async function createRecord(req, res) {
 }
 
 export async function deleteRecord(req, res) {
-  const { returnTo } = matchedData(req);
+  const { returnTo } = matchedData(req, { locations: ['body'] });
   await db.records.deleteById(req.params.id);
   res.redirect(returnTo);
 }
