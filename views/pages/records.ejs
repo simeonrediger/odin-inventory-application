@@ -89,7 +89,7 @@
       <% if (locals.newEntryErrors) { %>
         <ul class="errors">
           <% newEntryErrors.forEach(error => { %>
-            <li><%= error.msg %></li>
+            <li><%= error %></li>
           <% }); %>
         </ul>
       <% } %>
@@ -169,7 +169,7 @@
       <% if (locals.editEntryErrors) { %>
         <ul class="errors">
           <% editEntryErrors.forEach(error => { %>
-            <li><%= error.msg %></li>
+            <li><%= error %></li>
           <% }); %>
         </ul>
       <% } %>
