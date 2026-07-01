@@ -13,10 +13,7 @@ export function preserveRawReturnUrlQuery(req, res, next) {
 }
 
 export async function getRecords(req, res) {
-  const { genreId, artistId } = matchedData(req);
-  const records = queryIsValid(req)
-    ? await db.records.findWithArtist({ genreId, artistId })
-    : [];
+  const records = await searchRecords(req);
   const genres = await db.genres.find();
   const artists = await db.artists.find();
   res.render('records', { pageName: 'Records', records, genres, artists });
@@ -30,10 +27,7 @@ export async function createRecord(req, res) {
   const errors = validationErrors(req, { locations: ['body'] });
 
   if (errors.length !== 0) {
-    const { genreId, artistId } = matchedData(req, { locations: ['query'] });
-    const records = queryIsValid(req)
-      ? await db.records.findWithArtist({ genreId, artistId })
-      : [];
+    const records = await searchRecords(req);
     const genres = await db.genres.find();
     const artists = await db.artists.find();
     return res.status(400).render('records', {
@@ -54,6 +48,14 @@ export async function deleteRecord(req, res) {
   const { returnTo } = matchedData(req);
   await db.records.deleteById(req.params.id);
   res.redirect(returnTo);
+}
+
+async function searchRecords(req) {
+  const { genreId, artistId } = matchedData(req);
+  const records = queryIsValid(req)
+    ? await db.records.findWithArtist({ genreId, artistId })
+    : [];
+  return records;
 }
 
 function validationErrors(req, { locations }) {
