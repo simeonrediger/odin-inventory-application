@@ -20,7 +20,10 @@ export async function getRecords(req, res) {
 }
 
 export async function createRecord(req, res) {
-  const record = matchedData(req, { locations: ['body'] });
+  const { artistId, name, price, quantity } = matchedData(req, {
+    locations: ['body'],
+  });
+  const record = { artistId, name, price, quantity };
   const errors = validationErrors(req, { locations: ['body'] });
 
   if (errors.length !== 0) {
