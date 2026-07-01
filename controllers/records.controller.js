@@ -20,8 +20,8 @@ export async function getRecords(req, res) {
 }
 
 export async function createRecord(req, res) {
-  const record = matchedData(req);
-  const errors = validationResult(req).array();
+  const record = matchedData(req, { locations: ['body'] });
+  const errors = validationErrors(req, { locations: ['body'] });
 
   if (errors.length !== 0) {
     res.status(400);
@@ -56,4 +56,10 @@ export async function deleteRecord(req, res) {
 
 function assignRawQuery(req, res) {
   res.locals.rawQuery = req.query;
+}
+
+function validationErrors(req, { locations }) {
+  return validationResult(req)
+    .errors.filter(error => locations.includes(error.location))
+    .map(error => error.msg);
 }
