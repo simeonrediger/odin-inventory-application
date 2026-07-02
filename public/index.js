@@ -10,9 +10,7 @@ const editedRecordField = editEntryForm?.querySelector('[name="recordId"]');
 const deleteEntryModal = document.querySelector('[data-modal="delete-entry"]');
 const deleteEntryForm = deleteEntryModal?.querySelector('form');
 
-if (newEntryForm) {
-  openInvalidFormModal();
-}
+openInvalidFormModal();
 
 function bindEvents() {
   document.addEventListener('click', handleClick);
