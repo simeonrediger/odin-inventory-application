@@ -3,9 +3,9 @@ import { getRecordPath } from '/formatting.js';
 bindEvents();
 
 const modals = {
-  create: document.querySelector('[data-modal="new-entry"]'),
-  update: document.querySelector('[data-modal="edit-entry"]'),
-  delete: document.querySelector('[data-modal="delete-entry"]'),
+  create: document.querySelector('[data-modal="create"]'),
+  update: document.querySelector('[data-modal="update"]'),
+  delete: document.querySelector('[data-modal="delete"]'),
 };
 
 const forms = {

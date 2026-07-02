@@ -15,7 +15,7 @@
     data-action="start-create"
     class="new-resource-button"
   >+ New record</button>
-  <dialog data-modal="new-entry" class="modal">
+  <dialog data-modal="create" class="modal">
     <form
       action="<%= getRecordPath() %>"
       method="post"
@@ -95,7 +95,7 @@
       <% } %>
     </form>
   </dialog>
-  <dialog data-modal="edit-entry" class="modal">
+  <dialog data-modal="update" class="modal">
     <form
       method="post"
       data-action="update"
@@ -175,7 +175,7 @@
       <% } %>
     </form>
   </dialog>
-  <dialog data-modal="delete-entry" class="modal">
+  <dialog data-modal="delete" class="modal">
     <form
       method="post"
       data-action="delete"
