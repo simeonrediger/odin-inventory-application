@@ -64,6 +64,8 @@ function handleClick(event) {
     modals.create.close();
   } else if (modals.update?.open && !forms.update.contains(event.target)) {
     modals.update.close();
+  } else if (modals.delete?.open && !forms.delete.contains(event.target)) {
+    modals.delete.close();
   }
 }
 
