@@ -35,27 +35,27 @@ function openInvalidFormModal() {
 
 function handleClick(event) {
   switch (event.target.dataset.action) {
-    case 'start-new-entry':
+    case 'start-create':
       forms.create.reset();
       modals.create.showModal();
       return;
-    case 'close-new-entry':
+    case 'cancel-create':
       modals.create.close();
       return;
-    case 'start-edit-entry':
+    case 'start-update':
       forms.update.reset();
       editedRecordField.value = event.target.dataset.resourceId;
       editedRecordField.dataset.name = event.target.dataset.resourceName;
       modals.update.showModal();
       return;
-    case 'close-edit-entry':
+    case 'cancel-update':
       modals.update.close();
       return;
-    case 'start-delete-entry':
+    case 'start-delete':
       prepareDeleteForm();
       modals.delete.showModal();
       return;
-    case 'close-delete-entry':
+    case 'cancel-delete':
       modals.delete.close();
       return;
   }
