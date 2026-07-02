@@ -1,4 +1,4 @@
-import { getSlug, getRecordPath } from '/formatting.js';
+import { getRecordPath } from '/formatting.js';
 
 bindEvents();
 
