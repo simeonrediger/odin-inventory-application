@@ -36,16 +36,14 @@ function openInvalidFormModal() {
 function handleClick(event) {
   switch (event.target.dataset.action) {
     case 'start-create':
-      forms.create.reset();
+      prepareCreateForm();
       modals.create.showModal();
       return;
     case 'cancel-create':
       modals.create.close();
       return;
     case 'start-update':
-      forms.update.reset();
-      editedRecordField.value = event.target.dataset.resourceId;
-      editedRecordField.dataset.name = event.target.dataset.resourceName;
+      prepareUpdateForm();
       modals.update.showModal();
       return;
     case 'cancel-update':
@@ -114,6 +112,16 @@ function handleSubmitUpdate(event) {
 function handleSubmitDelete(event) {
   const deleteForm = event.target;
   populateReturnUrl(deleteForm);
+}
+
+function prepareCreateForm() {
+  forms.create.reset();
+}
+
+function prepareUpdateForm() {
+  forms.update.reset();
+  editedRecordField.value = event.target.dataset.resourceId;
+  editedRecordField.dataset.name = event.target.dataset.resourceName;
 }
 
 function prepareDeleteForm() {
