@@ -120,14 +120,14 @@ function prepareCreateForm() {
 
 function prepareUpdateForm(updateButton) {
   forms.update.reset();
-  editedRecordField.value = updateButton.dataset.resourceId;
-  editedRecordField.dataset.name = updateButton.dataset.resourceName;
+  const record = getRecordDataFromButton(updateButton);
+  editedRecordField.value = record.id;
+  editedRecordField.dataset.name = record.name;
 }
 
 function prepareDeleteForm(deleteButton) {
   forms.delete.reset();
-  const { resourceId, resourceName } = deleteButton.dataset;
-  const record = { id: resourceId, name: resourceName };
+  const record = getRecordDataFromButton(deleteButton);
   forms.delete.querySelector('[data-role="record-name"]').textContent =
     record.name;
   forms.delete.action = getFormAction({
@@ -136,6 +136,11 @@ function prepareDeleteForm(deleteButton) {
     includeLocationSearchParams: true,
     includeLocationFragment: true,
   });
+}
+
+function getRecordDataFromButton(button) {
+  const { resourceId: id, resourceName: name } = button.dataset;
+  return { id, name };
 }
 
 function getFormAction({
