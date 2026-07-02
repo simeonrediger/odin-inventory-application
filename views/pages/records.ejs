@@ -17,9 +17,9 @@
   >+ New record</button>
   <dialog data-modal="create" class="modal">
     <form
+      name="create"
       action="<%= getRecordPath() %>"
       method="post"
-      data-action="create"
       <% if (locals.newEntryErrors && newEntryErrors.length > 0) { %>
         data-invalid
       <% } %>
@@ -97,8 +97,8 @@
   </dialog>
   <dialog data-modal="update" class="modal">
     <form
+      name="update"
       method="post"
-      data-action="update"
       <% if (locals.editEntryErrors && editEntryErrors.length > 0) { %>
         data-invalid
       <% } %>
@@ -177,8 +177,8 @@
   </dialog>
   <dialog data-modal="delete" class="modal">
     <form
+      name="delete"
       method="post"
-      data-action="delete"
       <% if (locals.deleteEntryErrors && deleteEntryErrors.length > 0) { %>
         data-invalid
       <% } %>
@@ -209,9 +209,9 @@
     </form>
   </dialog>
   <form
+    name="search"
     action="<%= getRecordPath() %>"
     method="get"
-    data-action="search"
     class="search-form"
   >
     <label for="search-genre-id">Search by genre</label>

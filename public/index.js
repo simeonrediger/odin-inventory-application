@@ -70,7 +70,7 @@ function handleClick(event) {
 }
 
 function handleSubmit(event) {
-  switch (event.target.dataset.action) {
+  switch (event.target.getAttribute('name')) {
     case 'search':
       handleSubmitSearch(event);
       return;
