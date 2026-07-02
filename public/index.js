@@ -43,14 +43,14 @@ function handleClick(event) {
       modals.create.close();
       return;
     case 'start-update':
-      prepareUpdateForm();
+      prepareUpdateForm(event.target);
       modals.update.showModal();
       return;
     case 'cancel-update':
       modals.update.close();
       return;
     case 'start-delete':
-      prepareDeleteForm();
+      prepareDeleteForm(event.target);
       modals.delete.showModal();
       return;
     case 'cancel-delete':
@@ -118,15 +118,15 @@ function prepareCreateForm() {
   forms.create.reset();
 }
 
-function prepareUpdateForm() {
+function prepareUpdateForm(updateButton) {
   forms.update.reset();
-  editedRecordField.value = event.target.dataset.resourceId;
-  editedRecordField.dataset.name = event.target.dataset.resourceName;
+  editedRecordField.value = updateButton.dataset.resourceId;
+  editedRecordField.dataset.name = updateButton.dataset.resourceName;
 }
 
-function prepareDeleteForm() {
+function prepareDeleteForm(deleteButton) {
   forms.delete.reset();
-  const { resourceId, resourceName } = event.target.dataset;
+  const { resourceId, resourceName } = deleteButton.dataset;
   const record = { id: resourceId, name: resourceName };
   forms.delete.querySelector('[data-role="record-name"]').textContent =
     record.name;
