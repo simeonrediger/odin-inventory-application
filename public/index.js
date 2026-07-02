@@ -7,6 +7,8 @@ const newEntryForm = newEntryModal?.querySelector('form');
 const editEntryModal = document.querySelector('[data-modal="edit-entry"]');
 const editEntryForm = editEntryModal?.querySelector('form');
 const editedRecordField = editEntryForm?.querySelector('[name="recordId"]');
+const deleteEntryModal = document.querySelector('[data-modal="delete-entry"]');
+const deleteEntryForm = deleteEntryModal?.querySelector('form');
 
 if (newEntryForm) {
   openInvalidFormModal();
@@ -22,6 +24,8 @@ function openInvalidFormModal() {
     newEntryModal.showModal();
   } else if (editEntryForm.hasAttribute('data-invalid')) {
     editEntryModal.showModal();
+  } else if (deleteEntryForm.hasAttribute('data-invalid')) {
+    deleteEntryModal.showModal();
   }
 }
 
@@ -42,6 +46,13 @@ function handleClick(event) {
       return;
     case 'close-edit-entry':
       editEntryModal.close();
+      return;
+    case 'start-delete-entry':
+      prepareDeleteForm();
+      deleteEntryModal.showModal();
+      return;
+    case 'close-delete-entry':
+      deleteEntryModal.close();
       return;
   }
 
@@ -96,14 +107,48 @@ function handleSubmitUpdate(event) {
 
 function handleSubmitDelete(event) {
   const deleteForm = event.target;
-  const resourceName = deleteForm.dataset.resourceName;
-  const deleteConfirmed = confirm(`Delete ${resourceName}?`);
+  populateReturnUrl(deleteForm);
+}
 
-  if (!deleteConfirmed) {
-    return event.preventDefault();
+function prepareDeleteForm() {
+  deleteEntryForm.reset();
+  const { resourceId, resourceName } = event.target.dataset;
+  const record = { id: resourceId, name: resourceName };
+  deleteEntryForm.querySelector('[data-role="record-name"]').textContent =
+    record.name;
+  deleteEntryForm.action = getFormAction({
+    path: getRecordPath(record),
+    searchParams: { _method: 'DELETE' },
+    includeLocationSearchParams: true,
+    includeLocationFragment: true,
+  });
+}
+
+function getFormAction({
+  path,
+  searchParams,
+  includeLocationSearchParams,
+  includeLocationFragment,
+}) {
+  const url = new URL('https://example.invalid' + path);
+
+  if (includeLocationSearchParams) {
+    for (const [key, value] of new URL(location).searchParams.entries()) {
+      url.searchParams.set(key, value);
+    }
   }
 
-  populateReturnUrl(deleteForm);
+  if (searchParams) {
+    for (const [key, value] of Object.entries(searchParams)) {
+      url.searchParams.set(key, value);
+    }
+  }
+
+  if (includeLocationFragment) {
+    url.hash = location.hash;
+  }
+
+  return url.pathname + url.search + url.hash;
 }
 
 function omitEmptyFields(form) {

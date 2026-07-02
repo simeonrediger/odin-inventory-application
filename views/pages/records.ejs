@@ -175,6 +175,39 @@
       <% } %>
     </form>
   </dialog>
+  <dialog data-modal="delete-entry" class="modal">
+    <form
+      method="post"
+      data-action="delete"
+      <% if (locals.deleteEntryErrors && deleteEntryErrors.length > 0) { %>
+        data-invalid
+      <% } %>
+      class="modal-form"
+    >
+      <h2>Delete record</h2>
+      <% if (locals.deleteEntryErrors && deleteEntryErrors.length > 0) { %>
+        <p>Could not delete <span data-role="record-name">record</span>.</p>
+      <% } else { %>
+        <p>Delete <span data-role="record-name"></span>?</p>
+      <% } %>
+      <input type="hidden" name="returnTo" />
+      <% if (locals.deleteEntryErrors) { %>
+        <ul class="errors">
+          <% deleteEntryErrors.forEach(error => { %>
+            <li><%= error %></li>
+          <% }); %>
+        </ul>
+      <% } %>
+      <div class="space-between">
+        <button
+          type="button"
+          data-action="close-delete-entry"
+          class="cancel-button"
+        >Cancel</button>
+        <button type="submit" class="delete-submit-button">Delete record</button>
+      </div>
+    </form>
+  </dialog>
   <form
     action="<%= getRecordPath() %>"
     method="get"
@@ -268,15 +301,12 @@
                   data-resource-name="<%= record.name %>"
                   class="edit-button"
                 >Edit</button>
-                <form
-                  action="<%= getRecordPath(record) %>?_method=DELETE"
-                  method="post"
-                  data-action="delete"
+                <button
+                  data-action="start-delete-entry"
+                  data-resource-id="<%= record.id %>"
                   data-resource-name="<%= record.name %>"
-                >
-                  <input type="hidden" name="returnTo" />
-                  <button type="submit" class="delete-button">Delete</button>
-                </form>
+                  class="delete-button"
+                >Delete</button>
               </div>
             </td>
           </tr>

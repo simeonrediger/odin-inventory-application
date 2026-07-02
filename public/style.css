@@ -62,6 +62,7 @@ html {
   --white: #fff;
 
   --pale-light-red: #f88;
+  --red: #a00;
   --pale-blue: #0077ff;
   --pale-light-blue: #a4cefe;
   --transparent-black: #0009;
@@ -87,6 +88,7 @@ html {
   --color-edit-button-text: var(--light-gray-6);
   --color-delete-button-bg: transparent;
   --color-delete-button-text: var(--color-error);
+  --color-submit-delete-button-bg: var(--red);
 }
 
 /* Base */
@@ -221,6 +223,10 @@ header {
 
 .cancel-button {
   background-color: var(--color-button-bg-secondary);
+}
+
+.delete-submit-button {
+  background-color: var(--color-submit-delete-button-bg);
 }
 
 .search-form {

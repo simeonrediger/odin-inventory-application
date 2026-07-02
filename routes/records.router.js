@@ -25,6 +25,8 @@ recordsRouter
 recordsRouter.delete(
   '/:id/:slug',
   validateReturnUrl,
+  recordsController.preserveRawQuery,
+  validateQuery,
   recordsController.deleteRecord,
 );
 

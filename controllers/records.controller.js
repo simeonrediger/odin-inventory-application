@@ -36,6 +36,19 @@ export async function createRecord(req, res) {
 
 export async function deleteRecord(req, res) {
   const { returnTo } = matchedData(req, { locations: ['body'] });
+  const errors = validationErrors(req, { locations: ['body'] });
+
+  if (errors.length !== 0) {
+    const { records, genres, artists } = await getPageData(req);
+    return res.status(400).render('records', {
+      pageName: 'Records',
+      records,
+      genres,
+      artists,
+      deleteEntryErrors: errors,
+    });
+  }
+
   await db.records.deleteById(req.params.id);
   res.redirect(returnTo);
 }
