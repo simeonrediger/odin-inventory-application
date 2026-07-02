@@ -125,7 +125,7 @@ function omitEmptyFields(form) {
 
 function populateReturnUrl(
   form,
-  { appendQueryToAction, appendFragmentToAction },
+  { appendQueryToAction, appendFragmentToAction } = {},
 ) {
   const returnToField = form.querySelector('[name="returnTo"]');
   returnToField.value = location.pathname + location.search + location.hash;
