@@ -20,17 +20,17 @@
       name="create"
       action="<%= getRecordPath() %>"
       method="post"
-      <% if (locals.newEntryErrors && newEntryErrors.length > 0) { %>
+      <% if (locals.createErrors && createErrors.length > 0) { %>
         data-invalid
       <% } %>
       class="modal-form"
     >
       <h2>New record</h2>
-      <label for="new-entry-artist-id">Artist</label>
-      <select name="artistId" id="new-entry-artist-id" required>
+      <label for="create-artist-id">Artist</label>
+      <select name="artistId" id="create-artist-id" required>
         <option
           value=""
-          <% if (!locals.newEntryFields?.artistId) { %>
+          <% if (!locals.createFields?.artistId) { %>
             selected
           <% } %>
           disabled
@@ -39,41 +39,41 @@
         <% artists.forEach(artist => { %>
           <option
             value="<%= artist.id %>"
-            <% if (artist.id == locals.newEntryFields?.artistId) { %>
+            <% if (artist.id == locals.createFields?.artistId) { %>
               selected
             <% } %>
           ><%= artist.name %></option>
         <% }); %>
       </select>
-      <label for="new-entry-name">Name</label>
+      <label for="create-name">Name</label>
       <input
         type="text"
         name="name"
-        id="new-entry-name"
-        <% if (locals.newEntryFields?.name) { %>
-          value="<%= newEntryFields.name %>"
+        id="create-name"
+        <% if (locals.createFields?.name) { %>
+          value="<%= createFields.name %>"
         <% } %>
         required
       />
-      <label for="new-entry-price">Price</label>
+      <label for="create-price">Price</label>
       <input
         type="number"
         name="price"
-        id="new-entry-price"
-        <% if (locals.newEntryFields?.price) { %>
-          value="<%= centsToDollars(newEntryFields.price) %>"
+        id="create-price"
+        <% if (locals.createFields?.price) { %>
+          value="<%= centsToDollars(createFields.price) %>"
         <% } %>
         min="0"
         step="0.01"
         required
       />
-      <label for="new-entry-quantity">Quantity</label>
+      <label for="create-quantity">Quantity</label>
       <input
         type="number"
         name="quantity"
-        id="new-entry-quantity"
-        <% if (locals.newEntryFields?.quantity) { %>
-          value="<%= newEntryFields.quantity %>"
+        id="create-quantity"
+        <% if (locals.createFields?.quantity) { %>
+          value="<%= createFields.quantity %>"
         <% } %>
         min="0"
       />
@@ -86,9 +86,9 @@
         >Cancel</button>
         <button type="submit">Create record</button>
       </div>
-      <% if (locals.newEntryErrors) { %>
+      <% if (locals.createErrors) { %>
         <ul class="errors">
-          <% newEntryErrors.forEach(error => { %>
+          <% createErrors.forEach(error => { %>
             <li><%= error %></li>
           <% }); %>
         </ul>
@@ -99,18 +99,18 @@
     <form
       name="update"
       method="post"
-      <% if (locals.editEntryErrors && editEntryErrors.length > 0) { %>
+      <% if (locals.updateErrors && updateErrors.length > 0) { %>
         data-invalid
       <% } %>
       class="modal-form"
     >
       <h2>Edit record</h2>
       <input type="hidden" name="recordId" />
-      <label for="edit-entry-artist-id">Artist</label>
-      <select name="artistId" id="edit-entry-artist-id" required>
+      <label for="update-artist-id">Artist</label>
+      <select name="artistId" id="update-artist-id" required>
         <option
           value=""
-          <% if (!locals.editEntryFields?.artistId) { %>
+          <% if (!locals.updateFields?.artistId) { %>
             selected
           <% } %>
           disabled
@@ -119,41 +119,41 @@
         <% artists.forEach(artist => { %>
           <option
             value="<%= artist.id %>"
-            <% if (artist.id == locals.editEntryFields?.artistId) { %>
+            <% if (artist.id == locals.updateFields?.artistId) { %>
               selected
             <% } %>
           ><%= artist.name %></option>
         <% }); %>
       </select>
-      <label for="edit-entry-name">Name</label>
+      <label for="update-name">Name</label>
       <input
         type="text"
         name="name"
-        id="edit-entry-name"
-        <% if (locals.editEntryFields?.name) { %>
-          value="<%= editEntryFields.name %>"
+        id="update-name"
+        <% if (locals.updateFields?.name) { %>
+          value="<%= updateFields.name %>"
         <% } %>
         required
       />
-      <label for="edit-entry-price">Price</label>
+      <label for="update-price">Price</label>
       <input
         type="number"
         name="price"
-        id="edit-entry-price"
-        <% if (locals.editEntryFields?.price) { %>
-          value="<%= centsToDollars(editEntryFields.price) %>"
+        id="update-price"
+        <% if (locals.updateFields?.price) { %>
+          value="<%= centsToDollars(updateFields.price) %>"
         <% } %>
         min="0"
         step="0.01"
         required
       />
-      <label for="edit-entry-quantity">Quantity</label>
+      <label for="update-quantity">Quantity</label>
       <input
         type="number"
         name="quantity"
-        id="edit-entry-quantity"
-        <% if (locals.editEntryFields?.quantity) { %>
-          value="<%= editEntryFields.quantity %>"
+        id="update-quantity"
+        <% if (locals.updateFields?.quantity) { %>
+          value="<%= updateFields.quantity %>"
         <% } %>
         min="0"
       />
@@ -166,9 +166,9 @@
         >Cancel</button>
         <button type="submit">Update record</button>
       </div>
-      <% if (locals.editEntryErrors) { %>
+      <% if (locals.updateErrors) { %>
         <ul class="errors">
-          <% editEntryErrors.forEach(error => { %>
+          <% updateErrors.forEach(error => { %>
             <li><%= error %></li>
           <% }); %>
         </ul>
@@ -179,21 +179,21 @@
     <form
       name="delete"
       method="post"
-      <% if (locals.deleteEntryErrors && deleteEntryErrors.length > 0) { %>
+      <% if (locals.deleteErrors && deleteErrors.length > 0) { %>
         data-invalid
       <% } %>
       class="modal-form"
     >
       <h2>Delete record</h2>
-      <% if (locals.deleteEntryErrors && deleteEntryErrors.length > 0) { %>
+      <% if (locals.deleteErrors && deleteErrors.length > 0) { %>
         <p>Could not delete <span data-role="record-name">record</span>.</p>
       <% } else { %>
         <p>Delete <span data-role="record-name"></span>?</p>
       <% } %>
       <input type="hidden" name="returnTo" />
-      <% if (locals.deleteEntryErrors) { %>
+      <% if (locals.deleteErrors) { %>
         <ul class="errors">
-          <% deleteEntryErrors.forEach(error => { %>
+          <% deleteErrors.forEach(error => { %>
             <li><%= error %></li>
           <% }); %>
         </ul>

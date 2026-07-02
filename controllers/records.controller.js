@@ -25,8 +25,8 @@ export async function createRecord(req, res) {
       records,
       genres,
       artists,
-      newEntryFields: record,
-      newEntryErrors: errors,
+      createFields: record,
+      createErrors: errors,
     });
   }
 
@@ -45,7 +45,7 @@ export async function deleteRecord(req, res) {
       records,
       genres,
       artists,
-      deleteEntryErrors: errors,
+      deleteErrors: errors,
     });
   }
 
