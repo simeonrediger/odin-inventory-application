@@ -2,13 +2,19 @@ import { getSlug, getRecordPath } from '/formatting.js';
 
 bindEvents();
 
-const newEntryModal = document.querySelector('[data-modal="new-entry"]');
-const newEntryForm = newEntryModal?.querySelector('form');
-const editEntryModal = document.querySelector('[data-modal="edit-entry"]');
-const editEntryForm = editEntryModal?.querySelector('form');
-const editedRecordField = editEntryForm?.querySelector('[name="recordId"]');
-const deleteEntryModal = document.querySelector('[data-modal="delete-entry"]');
-const deleteEntryForm = deleteEntryModal?.querySelector('form');
+const modals = {
+  create: document.querySelector('[data-modal="new-entry"]'),
+  update: document.querySelector('[data-modal="edit-entry"]'),
+  delete: document.querySelector('[data-modal="delete-entry"]'),
+};
+
+const forms = {
+  create: modals.create?.querySelector('form'),
+  update: modals.update?.querySelector('form'),
+  delete: modals.delete?.querySelector('form'),
+};
+
+const editedRecordField = forms.update?.querySelector('[name="recordId"]');
 
 openInvalidFormModal();
 
@@ -18,46 +24,46 @@ function bindEvents() {
 }
 
 function openInvalidFormModal() {
-  if (newEntryForm.hasAttribute('data-invalid')) {
-    newEntryModal.showModal();
-  } else if (editEntryForm.hasAttribute('data-invalid')) {
-    editEntryModal.showModal();
-  } else if (deleteEntryForm.hasAttribute('data-invalid')) {
-    deleteEntryModal.showModal();
+  if (forms.create.hasAttribute('data-invalid')) {
+    modals.create.showModal();
+  } else if (forms.update.hasAttribute('data-invalid')) {
+    modals.update.showModal();
+  } else if (forms.delete.hasAttribute('data-invalid')) {
+    modals.delete.showModal();
   }
 }
 
 function handleClick(event) {
   switch (event.target.dataset.action) {
     case 'start-new-entry':
-      newEntryForm.reset();
-      newEntryModal.showModal();
+      forms.create.reset();
+      modals.create.showModal();
       return;
     case 'close-new-entry':
-      newEntryModal.close();
+      modals.create.close();
       return;
     case 'start-edit-entry':
-      editEntryForm.reset();
+      forms.update.reset();
       editedRecordField.value = event.target.dataset.resourceId;
       editedRecordField.dataset.name = event.target.dataset.resourceName;
-      editEntryModal.showModal();
+      modals.update.showModal();
       return;
     case 'close-edit-entry':
-      editEntryModal.close();
+      modals.update.close();
       return;
     case 'start-delete-entry':
       prepareDeleteForm();
-      deleteEntryModal.showModal();
+      modals.delete.showModal();
       return;
     case 'close-delete-entry':
-      deleteEntryModal.close();
+      modals.delete.close();
       return;
   }
 
-  if (newEntryModal?.open && !newEntryForm.contains(event.target)) {
-    newEntryModal.close();
-  } else if (editEntryModal?.open && !editEntryForm.contains(event.target)) {
-    editEntryModal.close();
+  if (modals.create?.open && !forms.create.contains(event.target)) {
+    modals.create.close();
+  } else if (modals.update?.open && !forms.update.contains(event.target)) {
+    modals.update.close();
   }
 }
 
@@ -109,12 +115,12 @@ function handleSubmitDelete(event) {
 }
 
 function prepareDeleteForm() {
-  deleteEntryForm.reset();
+  forms.delete.reset();
   const { resourceId, resourceName } = event.target.dataset;
   const record = { id: resourceId, name: resourceName };
-  deleteEntryForm.querySelector('[data-role="record-name"]').textContent =
+  forms.delete.querySelector('[data-role="record-name"]').textContent =
     record.name;
-  deleteEntryForm.action = getFormAction({
+  forms.delete.action = getFormAction({
     path: getRecordPath(record),
     searchParams: { _method: 'DELETE' },
     includeLocationSearchParams: true,
