@@ -24,11 +24,11 @@ function bindEvents() {
 }
 
 function openInvalidFormModal() {
-  if (forms.create.hasAttribute('data-invalid')) {
+  if (forms.create?.hasAttribute('data-invalid')) {
     modals.create.showModal();
-  } else if (forms.update.hasAttribute('data-invalid')) {
+  } else if (forms.update?.hasAttribute('data-invalid')) {
     modals.update.showModal();
-  } else if (forms.delete.hasAttribute('data-invalid')) {
+  } else if (forms.delete?.hasAttribute('data-invalid')) {
     modals.delete.showModal();
   }
 }
