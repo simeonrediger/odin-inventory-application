@@ -20,9 +20,7 @@
       name="create"
       action="<%= getRecordPath() %>"
       method="post"
-      <% if (locals.createErrors && createErrors.length > 0) { %>
-        data-invalid
-      <% } %>
+      <% if (locals.createErrors?.length > 0) { %> data-invalid <% } %>
       class="modal-form"
     >
       <h2>New record</h2>
@@ -30,9 +28,7 @@
       <select name="artistId" id="create-artist-id" required>
         <option
           value=""
-          <% if (!locals.createFields?.artistId) { %>
-            selected
-          <% } %>
+          <% if (!locals.createFields?.artistId) { %> selected <% } %>
           disabled
           hidden
         >Select one</option>
@@ -86,11 +82,9 @@
         >Cancel</button>
         <button type="submit">Create record</button>
       </div>
-      <% if (locals.createErrors) { %>
+      <% if (locals.createErrors?.length > 0) { %>
         <ul class="errors">
-          <% createErrors.forEach(error => { %>
-            <li><%= error %></li>
-          <% }); %>
+          <% createErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
         </ul>
       <% } %>
     </form>
@@ -99,9 +93,7 @@
     <form
       name="update"
       method="post"
-      <% if (locals.updateErrors && updateErrors.length > 0) { %>
-        data-invalid
-      <% } %>
+      <% if (locals.updateErrors?.length > 0) { %> data-invalid <% } %>
       class="modal-form"
     >
       <h2>Edit record</h2>
@@ -166,11 +158,9 @@
         >Cancel</button>
         <button type="submit">Update record</button>
       </div>
-      <% if (locals.updateErrors) { %>
+      <% if (locals.updateErrors?.length > 0) { %>
         <ul class="errors">
-          <% updateErrors.forEach(error => { %>
-            <li><%= error %></li>
-          <% }); %>
+          <% updateErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
         </ul>
       <% } %>
     </form>
@@ -179,23 +169,19 @@
     <form
       name="delete"
       method="post"
-      <% if (locals.deleteErrors && deleteErrors.length > 0) { %>
-        data-invalid
-      <% } %>
+      <% if (locals.deleteErrors?.length > 0) { %> data-invalid <% } %>
       class="modal-form"
     >
       <h2>Delete record</h2>
-      <% if (locals.deleteErrors && deleteErrors.length > 0) { %>
+      <% if (locals.deleteErrors?.length > 0) { %>
         <p>Could not delete <span data-role="record-name">record</span>.</p>
       <% } else { %>
         <p>Delete <span data-role="record-name"></span>?</p>
       <% } %>
       <input type="hidden" name="returnTo" />
-      <% if (locals.deleteErrors) { %>
+      <% if (locals.deleteErrors?.length > 0) { %>
         <ul class="errors">
-          <% deleteErrors.forEach(error => { %>
-            <li><%= error %></li>
-          <% }); %>
+          <% deleteErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
         </ul>
       <% } %>
       <div class="space-between">
