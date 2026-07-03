@@ -45,10 +45,7 @@ async function artistIdExists(artistId) {
 }
 
 function fieldIsValid(field) {
-  return (value, { req }) => {
-    const { errors } = validationResult(req);
-    return !errors?.some(error => error.path === field);
-  };
+  return (value, { req }) => !validationResult(req).mapped()[field];
 }
 
 async function recordNameIsUnique(name, { req }) {
