@@ -126,7 +126,8 @@ function closeModalIfExternalClick(target) {
 
 function getRecordDataFromButton(button) {
   const { resourceId: id, resourceName: name } = button.dataset;
-  return { id, name };
+  const record = { id, name };
+  return record;
 }
 
 function getFormAction({ path, searchParams = {} }) {
