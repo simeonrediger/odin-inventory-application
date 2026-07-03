@@ -52,11 +52,7 @@ function handleClick(event) {
       return modals.delete.close();
   }
 
-  for (const [type, modal] of Object.entries(modals)) {
-    if (modal.open && !modalForms[type].contains(event.target)) {
-      return modal.close();
-    }
-  }
+  closeModalIfExternalClick(event.target);
 }
 
 function handleSubmit(event) {
@@ -121,6 +117,14 @@ function handleSubmitDelete(event) {
 function handleSubmitSearch(event) {
   const searchForm = event.target;
   omitEmptyFields(searchForm);
+}
+
+function closeModalIfExternalClick(target) {
+  for (const [type, modal] of Object.entries(modals)) {
+    if (modal.open && !modalForms[type].contains(target)) {
+      return modal.close();
+    }
+  }
 }
 
 function getRecordDataFromButton(button) {
