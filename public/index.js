@@ -58,16 +58,12 @@ function handleClick(event) {
 function handleSubmit(event) {
   switch (event.target.getAttribute('name')) {
     case 'search':
-      return handleSubmitSearch(event);
+      return omitEmptyFields(event.target);
 
     case 'create':
-      return handleSubmitCreate(event);
-
     case 'update':
-      return handleSubmitUpdate(event);
-
     case 'delete':
-      return handleSubmitDelete(event);
+      return populateReturnUrl(event.target);
   }
 }
 
@@ -94,26 +90,6 @@ function prepareDeleteForm(deleteButton) {
     path: getRecordPath(record),
     searchParams: { _method: 'DELETE' },
   });
-}
-
-function handleSubmitCreate(event) {
-  const createForm = event.target;
-  populateReturnUrl(createForm);
-}
-
-function handleSubmitUpdate(event) {
-  const updateForm = event.target;
-  populateReturnUrl(updateForm);
-}
-
-function handleSubmitDelete(event) {
-  const deleteForm = event.target;
-  populateReturnUrl(deleteForm);
-}
-
-function handleSubmitSearch(event) {
-  const searchForm = event.target;
-  omitEmptyFields(searchForm);
 }
 
 function closeModalIfExternalClick(target) {
