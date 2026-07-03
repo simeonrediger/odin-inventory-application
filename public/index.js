@@ -64,12 +64,15 @@ function handleSubmit(event) {
     case 'search':
       handleSubmitSearch(event);
       return;
+
     case 'create':
       handleSubmitCreate(event);
       return;
+
     case 'update':
       handleSubmitUpdate(event);
       return;
+
     case 'delete':
       handleSubmitDelete(event);
       return;
