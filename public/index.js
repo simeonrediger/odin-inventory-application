@@ -69,7 +69,7 @@ function handleSubmit(event) {
       return;
     case 'update':
       handleSubmitUpdate(event);
-      break;
+      return;
     case 'delete':
       handleSubmitDelete(event);
       return;
