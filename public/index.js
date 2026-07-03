@@ -73,11 +73,7 @@ function handleSubmit(event) {
 
 function prepareCreateForm() {
   modalForms.create.reset();
-  modalForms.create.action = getFormAction({
-    path: getRecordPath(),
-    includeLocationSearchParams: true,
-    includeLocationFragment: true,
-  });
+  modalForms.create.action = getFormAction({ path: getRecordPath() });
 }
 
 function prepareUpdateForm(updateButton) {
@@ -86,8 +82,6 @@ function prepareUpdateForm(updateButton) {
   modalForms.update.action = getFormAction({
     path: getRecordPath(record),
     searchParams: { _method: 'PUT' },
-    includeLocationSearchParams: true,
-    includeLocationFragment: true,
   });
 }
 
@@ -99,8 +93,6 @@ function prepareDeleteForm(deleteButton) {
   modalForms.delete.action = getFormAction({
     path: getRecordPath(record),
     searchParams: { _method: 'DELETE' },
-    includeLocationSearchParams: true,
-    includeLocationFragment: true,
   });
 }
 
@@ -137,30 +129,18 @@ function getRecordDataFromButton(button) {
   return { id, name };
 }
 
-function getFormAction({
-  path,
-  searchParams,
-  includeLocationSearchParams,
-  includeLocationFragment,
-}) {
+function getFormAction({ path, searchParams = {} }) {
   const url = new URL('https://example.invalid' + path);
 
-  if (includeLocationSearchParams) {
-    for (const [key, value] of new URL(location).searchParams.entries()) {
-      url.searchParams.set(key, value);
-    }
+  for (const [key, value] of new URL(location).searchParams.entries()) {
+    url.searchParams.set(key, value);
   }
 
-  if (searchParams) {
-    for (const [key, value] of Object.entries(searchParams)) {
-      url.searchParams.set(key, value);
-    }
+  for (const [key, value] of Object.entries(searchParams)) {
+    url.searchParams.set(key, value);
   }
 
-  if (includeLocationFragment) {
-    url.hash = location.hash;
-  }
-
+  url.hash = location.hash;
   return url.pathname + url.search + url.hash;
 }
 
