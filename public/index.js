@@ -23,12 +23,10 @@ function bindEvents() {
 }
 
 function openInvalidFormModal() {
-  if (forms.create?.hasAttribute('data-invalid')) {
-    modals.create.showModal();
-  } else if (forms.update?.hasAttribute('data-invalid')) {
-    modals.update.showModal();
-  } else if (forms.delete?.hasAttribute('data-invalid')) {
-    modals.delete.showModal();
+  for (const [type, form] of Object.entries(forms)) {
+    if (form?.hasAttribute('data-invalid')) {
+      return modals[type]?.showModal();
+    }
   }
 }
 
