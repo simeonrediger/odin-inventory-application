@@ -94,7 +94,8 @@ function prepareDeleteForm(deleteButton) {
 
 function closeModalIfExternalClick(target) {
   for (const [type, modal] of Object.entries(modals)) {
-    if (modal.open && !modalForms[type].contains(target)) {
+    const modalForm = modalForms[type];
+    if (modal?.open && modalForm && !modalForm.contains(target)) {
       return modal.close();
     }
   }
