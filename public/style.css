@@ -137,11 +137,6 @@ button {
   color: var(--color-button-text);
 }
 
-/* Utilities */
-.error {
-  color: var(--color-error);
-}
-
 /* App */
 header {
   margin-bottom: 0.75rem;
@@ -206,8 +201,12 @@ header {
   margin-top: 0.625rem;
 }
 
+.error,
 .errors {
   color: var(--color-error);
+}
+
+.errors {
   list-style-type: disc;
   margin-block: 0.75rem;
 }
