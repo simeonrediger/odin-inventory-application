@@ -1,7 +1,5 @@
 import { getRecordPath } from '/formatting.js';
 
-bindEvents();
-
 const modals = {
   create: document.querySelector('[data-modal="create"]'),
   update: document.querySelector('[data-modal="update"]'),
@@ -16,6 +14,7 @@ const forms = {
 
 const editedRecordField = forms.update?.querySelector('[name="recordId"]');
 
+bindEvents();
 openInvalidFormModal();
 
 function bindEvents() {
