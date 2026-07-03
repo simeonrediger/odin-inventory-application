@@ -62,6 +62,12 @@
 
     <input type="hidden" name="returnTo" />
 
+    <% if (locals.updateErrors?.length > 0) { %>
+      <ul class="errors">
+        <% updateErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
+      </ul>
+    <% } %>
+
     <div class="cancel-confirm-button-row">
       <button
         type="button"
@@ -70,11 +76,5 @@
       >Cancel</button>
       <button type="submit">Update record</button>
     </div>
-
-    <% if (locals.updateErrors?.length > 0) { %>
-      <ul class="errors">
-        <% updateErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
-      </ul>
-    <% } %>
   </form>
 </dialog>
