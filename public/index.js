@@ -6,13 +6,13 @@ const modals = {
   delete: document.querySelector('[data-modal="delete"]'),
 };
 
-const forms = {
+const modalForms = {
   create: document.forms.create,
   update: document.forms.update,
   delete: document.forms.delete,
 };
 
-const editedRecordField = forms.update?.querySelector('[name="recordId"]');
+const editedRecordField = modalForms.update?.querySelector('[name="recordId"]');
 
 bindEvents();
 openModalIfFormInvalid();
@@ -23,7 +23,7 @@ function bindEvents() {
 }
 
 function openModalIfFormInvalid() {
-  for (const [type, form] of Object.entries(forms)) {
+  for (const [type, form] of Object.entries(modalForms)) {
     if (form?.hasAttribute('data-invalid')) {
       return modals[type]?.showModal();
     }
@@ -55,11 +55,11 @@ function handleClick(event) {
       return;
   }
 
-  if (modals.create?.open && !forms.create.contains(event.target)) {
+  if (modals.create?.open && !modalForms.create.contains(event.target)) {
     modals.create.close();
-  } else if (modals.update?.open && !forms.update.contains(event.target)) {
+  } else if (modals.update?.open && !modalForms.update.contains(event.target)) {
     modals.update.close();
-  } else if (modals.delete?.open && !forms.delete.contains(event.target)) {
+  } else if (modals.delete?.open && !modalForms.delete.contains(event.target)) {
     modals.delete.close();
   }
 }
@@ -112,22 +112,22 @@ function handleSubmitDelete(event) {
 }
 
 function prepareCreateForm() {
-  forms.create.reset();
+  modalForms.create.reset();
 }
 
 function prepareUpdateForm(updateButton) {
-  forms.update.reset();
+  modalForms.update.reset();
   const record = getRecordDataFromButton(updateButton);
   editedRecordField.value = record.id;
   editedRecordField.dataset.name = record.name;
 }
 
 function prepareDeleteForm(deleteButton) {
-  forms.delete.reset();
+  modalForms.delete.reset();
   const record = getRecordDataFromButton(deleteButton);
-  forms.delete.querySelector('[data-role="record-name"]').textContent =
+  modalForms.delete.querySelector('[data-role="record-name"]').textContent =
     record.name;
-  forms.delete.action = getFormAction({
+  modalForms.delete.action = getFormAction({
     path: getRecordPath(record),
     searchParams: { _method: 'DELETE' },
     includeLocationSearchParams: true,
