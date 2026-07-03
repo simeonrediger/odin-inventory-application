@@ -86,10 +86,7 @@ function handleSubmitSearch(event) {
 
 function handleSubmitCreate(event) {
   const createForm = event.target;
-  populateReturnUrl(createForm, {
-    appendQueryToAction: true,
-    appendFragmentToAction: true,
-  });
+  populateReturnUrl(createForm);
 }
 
 function handleSubmitUpdate(event) {
@@ -111,6 +108,11 @@ function handleSubmitDelete(event) {
 
 function prepareCreateForm() {
   modalForms.create.reset();
+  modalForms.create.action = getFormAction({
+    path: getRecordPath(),
+    includeLocationSearchParams: true,
+    includeLocationFragment: true,
+  });
 }
 
 function prepareUpdateForm(updateButton) {
@@ -182,18 +184,7 @@ function omitEmptyFields(form) {
   }
 }
 
-function populateReturnUrl(
-  form,
-  { appendQueryToAction, appendFragmentToAction } = {},
-) {
+function populateReturnUrl(form) {
   const returnToField = form.querySelector('[name="returnTo"]');
   returnToField.value = location.pathname + location.search + location.hash;
-
-  if (appendQueryToAction) {
-    form.action += location.search;
-  }
-
-  if (appendFragmentToAction) {
-    form.action += location.hash;
-  }
 }
