@@ -70,7 +70,8 @@ async function searchRecords(req) {
 
 function validationErrors(req, { locations }) {
   return validationResult(req)
-    .errors.filter(error => locations.includes(error.location))
+    .array()
+    .filter(error => locations.includes(error.location))
     .map(error => error.msg);
 }
 
