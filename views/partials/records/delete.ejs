@@ -6,16 +6,9 @@
     class="modal-form"
   >
     <h2>Delete record</h2>
-
-    <% if (locals.deleteErrors?.length > 0) { %>
-      <p>Could not delete <span data-role="record-name" class="record-name">
-        record
-      </span>.</p>
-    <% } else { %>
-      <p>Delete <span data-role="record-name" class="record-name">
-        record
-      </span>?</p>
-    <% } %>
+    <p>Delete <span data-role="record-name" class="record-name">
+      record
+    </span>?</p>
 
     <input type="hidden" name="returnTo" />
 
