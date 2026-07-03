@@ -15,14 +15,14 @@ const forms = {
 const editedRecordField = forms.update?.querySelector('[name="recordId"]');
 
 bindEvents();
-openInvalidFormModal();
+openModalIfFormInvalid();
 
 function bindEvents() {
   document.addEventListener('click', handleClick);
   document.addEventListener('submit', handleSubmit);
 }
 
-function openInvalidFormModal() {
+function openModalIfFormInvalid() {
   for (const [type, form] of Object.entries(forms)) {
     if (form?.hasAttribute('data-invalid')) {
       return modals[type]?.showModal();
