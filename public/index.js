@@ -34,19 +34,19 @@ function handleClick(event) {
       prepareCreateForm();
       return modals.create.showModal();
 
-    case 'cancel-create':
-      return modals.create.close();
-
     case 'start-update':
       prepareUpdateForm(event.target);
       return modals.update.showModal();
 
-    case 'cancel-update':
-      return modals.update.close();
-
     case 'start-delete':
       prepareDeleteForm(event.target);
       return modals.delete.showModal();
+
+    case 'cancel-create':
+      return modals.create.close();
+
+    case 'cancel-update':
+      return modals.update.close();
 
     case 'cancel-delete':
       return modals.delete.close();
