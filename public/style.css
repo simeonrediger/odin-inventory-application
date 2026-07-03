@@ -142,11 +142,6 @@ button {
   color: var(--color-error);
 }
 
-.space-between {
-  display: flex;
-  justify-content: space-between;
-}
-
 /* App */
 header {
   margin-bottom: 0.75rem;
@@ -219,6 +214,11 @@ header {
 
 .errors > li {
   margin-inline-start: 1.125rem;
+}
+
+.cancel-confirm-button-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 .cancel-button {
