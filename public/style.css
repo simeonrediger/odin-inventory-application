@@ -268,7 +268,7 @@ header {
   font-style: italic;
 }
 
-:not(.table-header-row) > .record-name {
+tbody .record-name {
   font-weight: normal;
 }
 
