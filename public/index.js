@@ -7,9 +7,9 @@ const modals = {
 };
 
 const forms = {
-  create: modals.create?.querySelector('form'),
-  update: modals.update?.querySelector('form'),
-  delete: modals.delete?.querySelector('form'),
+  create: document.forms.create,
+  update: document.forms.update,
+  delete: document.forms.delete,
 };
 
 const editedRecordField = forms.update?.querySelector('[name="recordId"]');
