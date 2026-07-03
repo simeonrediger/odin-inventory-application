@@ -16,7 +16,7 @@ export async function createRecord(req, res) {
     locations: ['body'],
   });
   const record = { artistId, name, price, quantity };
-  const errors = validationErrors(req, { locations: ['body'] });
+  const errors = getErrorsFromLocation(req, { locations: ['body'] });
 
   if (errors.length !== 0) {
     const { records, genres, artists } = await getPageData(req);
@@ -36,7 +36,7 @@ export async function createRecord(req, res) {
 
 export async function deleteRecord(req, res) {
   const { returnTo } = matchedData(req, { locations: ['body'] });
-  const errors = validationErrors(req, { locations: ['body'] });
+  const errors = getErrorsFromLocation(req, { locations: ['body'] });
 
   if (errors.length !== 0) {
     const { records, genres, artists } = await getPageData(req);
@@ -68,7 +68,7 @@ async function searchRecords(req) {
   return records;
 }
 
-function validationErrors(req, { locations }) {
+function getErrorsFromLocation(req, { locations }) {
   return validationResult(req)
     .array()
     .filter(error => locations.includes(error.location))
@@ -76,6 +76,6 @@ function validationErrors(req, { locations }) {
 }
 
 function queryIsValid(req) {
-  const errors = validationErrors(req, { locations: ['query'] });
+  const errors = getErrorsFromLocation(req, { locations: ['query'] });
   return errors.length === 0;
 }
