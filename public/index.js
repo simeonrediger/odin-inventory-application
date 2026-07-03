@@ -1,15 +1,15 @@
 import { getRecordPath } from '/formatting.js';
 
-const modals = {
-  create: document.querySelector('[data-modal="create"]'),
-  update: document.querySelector('[data-modal="update"]'),
-  delete: document.querySelector('[data-modal="delete"]'),
-};
-
 const modalForms = {
   create: document.forms.create,
   update: document.forms.update,
   delete: document.forms.delete,
+};
+
+const modals = {
+  create: modalForms.create?.closest('dialog'),
+  update: modalForms.update?.closest('dialog'),
+  delete: modalForms.delete?.closest('dialog'),
 };
 
 bindEvents();
