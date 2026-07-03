@@ -12,8 +12,6 @@ const modalForms = {
   delete: document.forms.delete,
 };
 
-const editedRecordField = modalForms.update?.querySelector('[name="recordId"]');
-
 bindEvents();
 openModalIfFormInvalid();
 
@@ -92,12 +90,6 @@ function handleSubmitCreate(event) {
 function handleSubmitUpdate(event) {
   const updateForm = event.target;
   populateReturnUrl(updateForm);
-
-  const record = {
-    id: editedRecordField.value,
-    name: editedRecordField.dataset.name,
-  };
-
   updateForm.action = `${getRecordPath(record)}?_method=PUT`;
 }
 
@@ -118,8 +110,6 @@ function prepareCreateForm() {
 function prepareUpdateForm(updateButton) {
   modalForms.update.reset();
   const record = getRecordDataFromButton(updateButton);
-  editedRecordField.value = record.id;
-  editedRecordField.dataset.name = record.name;
 }
 
 function prepareDeleteForm(deleteButton) {
