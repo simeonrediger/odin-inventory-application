@@ -32,25 +32,19 @@ function handleClick(event) {
   switch (event.target.dataset.action) {
     case 'start-create':
       prepareCreateForm();
-      modals.create.showModal();
-      return;
+      return modals.create.showModal();
     case 'cancel-create':
-      modals.create.close();
-      return;
+      return modals.create.close();
     case 'start-update':
       prepareUpdateForm(event.target);
-      modals.update.showModal();
-      return;
+      return modals.update.showModal();
     case 'cancel-update':
-      modals.update.close();
-      return;
+      return modals.update.close();
     case 'start-delete':
       prepareDeleteForm(event.target);
-      modals.delete.showModal();
-      return;
+      return modals.delete.showModal();
     case 'cancel-delete':
-      modals.delete.close();
-      return;
+      return modals.delete.close();
   }
 
   for (const [type, modal] of Object.entries(modals)) {
