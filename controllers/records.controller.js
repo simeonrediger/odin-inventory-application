@@ -31,7 +31,7 @@ export async function createRecord(req, res) {
   }
 
   await db.records.create(record);
-  res.redirect(returnTo);
+  res.redirect(303, returnTo);
 }
 
 export async function deleteRecord(req, res) {
@@ -50,7 +50,7 @@ export async function deleteRecord(req, res) {
   }
 
   await db.records.deleteById(req.params.id);
-  res.redirect(returnTo);
+  res.redirect(303, returnTo);
 }
 
 async function getPageData(req) {
