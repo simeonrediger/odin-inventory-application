@@ -55,12 +55,10 @@ function handleClick(event) {
       return;
   }
 
-  if (modals.create?.open && !modalForms.create.contains(event.target)) {
-    modals.create.close();
-  } else if (modals.update?.open && !modalForms.update.contains(event.target)) {
-    modals.update.close();
-  } else if (modals.delete?.open && !modalForms.delete.contains(event.target)) {
-    modals.delete.close();
+  for (const [type, modal] of Object.entries(modals)) {
+    if (modal.open && !modalForms[type].contains(event.target)) {
+      return modal.close();
+    }
   }
 }
 
