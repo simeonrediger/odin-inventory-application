@@ -77,27 +77,6 @@ function handleSubmit(event) {
   }
 }
 
-function handleSubmitSearch(event) {
-  const searchForm = event.target;
-  omitEmptyFields(searchForm);
-}
-
-function handleSubmitCreate(event) {
-  const createForm = event.target;
-  populateReturnUrl(createForm);
-}
-
-function handleSubmitUpdate(event) {
-  const updateForm = event.target;
-  populateReturnUrl(updateForm);
-  updateForm.action = `${getRecordPath(record)}?_method=PUT`;
-}
-
-function handleSubmitDelete(event) {
-  const deleteForm = event.target;
-  populateReturnUrl(deleteForm);
-}
-
 function prepareCreateForm() {
   modalForms.create.reset();
   modalForms.create.action = getFormAction({
@@ -123,6 +102,27 @@ function prepareDeleteForm(deleteButton) {
     includeLocationSearchParams: true,
     includeLocationFragment: true,
   });
+}
+
+function handleSubmitCreate(event) {
+  const createForm = event.target;
+  populateReturnUrl(createForm);
+}
+
+function handleSubmitUpdate(event) {
+  const updateForm = event.target;
+  populateReturnUrl(updateForm);
+  updateForm.action = `${getRecordPath(record)}?_method=PUT`;
+}
+
+function handleSubmitDelete(event) {
+  const deleteForm = event.target;
+  populateReturnUrl(deleteForm);
+}
+
+function handleSubmitSearch(event) {
+  const searchForm = event.target;
+  omitEmptyFields(searchForm);
 }
 
 function getRecordDataFromButton(button) {
