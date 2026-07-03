@@ -1,0 +1,34 @@
+<dialog data-modal="delete" class="modal">
+  <form
+    name="delete"
+    method="post"
+    <% if (locals.deleteErrors?.length > 0) { %> data-invalid <% } %>
+    class="modal-form"
+  >
+    <h2>Delete record</h2>
+
+    <% if (locals.deleteErrors?.length > 0) { %>
+      <p>Could not delete <span data-role="record-name">record</span>.</p>
+    <% } else { %>
+      <p>Delete <span data-role="record-name"></span>?</p>
+    <% } %>
+
+    <input type="hidden" name="returnTo" />
+
+    <% if (locals.deleteErrors?.length > 0) { %>
+      <ul class="errors">
+        <% deleteErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
+      </ul>
+    <% } %>
+
+    <div class="space-between">
+      <button
+        type="button"
+        data-action="cancel-delete"
+        class="cancel-button"
+      >Cancel</button>
+      <button type="submit" class="delete-submit-button">Delete record</button>
+    </div>
+
+  </form>
+</dialog>

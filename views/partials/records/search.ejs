@@ -1,0 +1,64 @@
+<form
+  name="search"
+  action="<%= getRecordPath() %>"
+  method="get"
+  class="search-form"
+>
+  <label for="search-genre-id">Search by genre</label>
+  <select name="genreId" id="search-genre-id">
+    <% let genreSelected = false; %>
+    <option
+      value=""
+      <% if (rawQuery.genreId === undefined) {
+        genreSelected = true;
+      %>
+        selected
+      <% } %>
+    >Any</option>
+    <% genres.forEach(genre => { %>
+      <option
+        value="<%= genre.id %>"
+        <% if (genre.id == rawQuery.genreId) {
+          genreSelected = true;
+        %>
+          selected
+        <% } %>
+      ><%= genre.name %></option>
+    <% }); %>
+    <% if (!genreSelected) { %>
+      <option value="<%= rawQuery.genreId %>" selected hidden>
+        Genre does not exist
+      </option>
+    <% } %>
+  </select>
+
+  <label for="search-artist-id">Search by artist</label>
+  <select name="artistId" id="search-artist-id">
+    <% let artistSelected = false; %>
+    <option
+      value=""
+      <% if (rawQuery.artistId === undefined) {
+        artistSelected = true;
+      %>
+        selected
+      <% } %>
+    >Any</option>
+    <% artists.forEach(artist => { %>
+      <option
+        value="<%= artist.id %>"
+        <% if (artist.id == rawQuery.artistId) {
+          artistSelected = true;
+        %>
+          selected
+        <% } %>
+      ><%= artist.name %></option>
+    <% }); %>
+    <% if (!artistSelected) { %>
+      <option value="<%= rawQuery.artistId %>" selected hidden>
+        Artist does not exist
+      </option>
+    <% } %>
+  </select>
+
+  <button type="submit">Search records</button>
+</form>
