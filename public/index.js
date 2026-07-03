@@ -119,7 +119,7 @@ function omitEmptyFields(form) {
 }
 
 function populateReturnUrl(form) {
-  const returnToField = form.querySelector('[name="returnTo"]');
+  const returnToField = form.elements.returnTo;
   returnToField.value = location.pathname + location.search + location.hash;
 }
 
