@@ -264,8 +264,11 @@ header {
   text-align: start;
 }
 
-:not(.table-header-row) > .record-name {
+.record-name {
   font-style: italic;
+}
+
+:not(.table-header-row) > .record-name {
   font-weight: normal;
 }
 
