@@ -62,20 +62,16 @@ function handleClick(event) {
 function handleSubmit(event) {
   switch (event.target.getAttribute('name')) {
     case 'search':
-      handleSubmitSearch(event);
-      return;
+      return handleSubmitSearch(event);
 
     case 'create':
-      handleSubmitCreate(event);
-      return;
+      return handleSubmitCreate(event);
 
     case 'update':
-      handleSubmitUpdate(event);
-      return;
+      return handleSubmitUpdate(event);
 
     case 'delete':
-      handleSubmitDelete(event);
-      return;
+      return handleSubmitDelete(event);
   }
 }
 
