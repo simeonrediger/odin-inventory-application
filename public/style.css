@@ -193,6 +193,12 @@ header {
   gap: 0.125rem;
 }
 
+label:has(+ :required)::after {
+  content: '*';
+  color: var(--color-required);
+  margin-inline-start: 0.1875rem;
+}
+
 .modal-form > :is(input, textarea, select) {
   margin-bottom: 0.5rem;
 }
