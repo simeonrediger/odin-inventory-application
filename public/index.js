@@ -83,6 +83,12 @@ function prepareCreateForm() {
 function prepareUpdateForm(updateButton) {
   modalForms.update.reset();
   const record = getRecordDataFromButton(updateButton);
+  modalForms.update.action = getFormAction({
+    path: getRecordPath(record),
+    searchParams: { _method: 'PUT' },
+    includeLocationSearchParams: true,
+    includeLocationFragment: true,
+  });
 }
 
 function prepareDeleteForm(deleteButton) {
@@ -106,7 +112,6 @@ function handleSubmitCreate(event) {
 function handleSubmitUpdate(event) {
   const updateForm = event.target;
   populateReturnUrl(updateForm);
-  updateForm.action = `${getRecordPath(record)}?_method=PUT`;
 }
 
 function handleSubmitDelete(event) {
