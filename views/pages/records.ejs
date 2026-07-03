@@ -10,13 +10,13 @@
   </nav>
 </header>
 <main>
-  <%- include('../partials/records/create') %>
-  <%- include('../partials/records/update') %>
-  <%- include('../partials/records/delete') %>
-  <%- include('../partials/records/search') %>
+  <%- include('../partials/records/records.create-modal.ejs') %>
+  <%- include('../partials/records/records.update-modal.ejs') %>
+  <%- include('../partials/records/records.delete-modal.ejs') %>
+  <%- include('../partials/records/records.search-form.ejs') %>
 
   <% if (records.length > 0) { %>
-    <%- include('../partials/records/list') %>
+    <%- include('../partials/records/records.list.ejs') %>
   <% } else { %>
     <p>No records found</p>
   <% } %>
