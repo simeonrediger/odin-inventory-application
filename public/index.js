@@ -100,27 +100,6 @@ function closeModalIfExternalClick(target) {
   }
 }
 
-function getRecordDataFromButton(button) {
-  const { resourceId: id, resourceName: name } = button.dataset;
-  const record = { id, name };
-  return record;
-}
-
-function getFormAction({ path, searchParams = {} }) {
-  const url = new URL('https://example.invalid' + path);
-
-  for (const [key, value] of new URL(location).searchParams.entries()) {
-    url.searchParams.set(key, value);
-  }
-
-  for (const [key, value] of Object.entries(searchParams)) {
-    url.searchParams.set(key, value);
-  }
-
-  url.hash = location.hash;
-  return url.pathname + url.search + url.hash;
-}
-
 function omitEmptyFields(form) {
   let queryIsEmpty = true;
 
@@ -141,4 +120,25 @@ function omitEmptyFields(form) {
 function populateReturnUrl(form) {
   const returnToField = form.querySelector('[name="returnTo"]');
   returnToField.value = location.pathname + location.search + location.hash;
+}
+
+function getRecordDataFromButton(button) {
+  const { resourceId: id, resourceName: name } = button.dataset;
+  const record = { id, name };
+  return record;
+}
+
+function getFormAction({ path, searchParams = {} }) {
+  const url = new URL('https://example.invalid' + path);
+
+  for (const [key, value] of new URL(location).searchParams.entries()) {
+    url.searchParams.set(key, value);
+  }
+
+  for (const [key, value] of Object.entries(searchParams)) {
+    url.searchParams.set(key, value);
+  }
+
+  url.hash = location.hash;
+  return url.pathname + url.search + url.hash;
 }
