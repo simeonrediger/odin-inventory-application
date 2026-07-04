@@ -22,6 +22,7 @@ recordsRouter
     validateRecord,
     recordsController.createRecord,
   );
+
 recordsRouter.delete(
   '/:id/:slug',
   validateReturnUrl,
