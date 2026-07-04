@@ -25,7 +25,10 @@
               type="button"
               data-action="start-update"
               data-resource-id="<%= record.id %>"
+              data-resource-artist-id="<%= record.artist.id %>"
               data-resource-name="<%= record.name %>"
+              data-resource-price="<%= centsToDollars(record.price) %>"
+              data-resource-quantity="<%= record.quantity %>"
               class="update-button"
             >Edit</button>
             <button

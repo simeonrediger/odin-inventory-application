@@ -75,6 +75,12 @@ function prepareCreateForm() {
 function prepareUpdateForm(updateButton) {
   modalForms.update.reset();
   const record = getRecordDataFromButton(updateButton);
+
+  modalForms.update.elements.artistId.value = record.artistId;
+  modalForms.update.elements.name.value = record.name;
+  modalForms.update.elements.price.value = record.price;
+  modalForms.update.elements.quantity.value = record.quantity;
+
   modalForms.update.action = getFormAction({
     path: getRecordPath(record),
     searchParams: { _method: 'PUT' },
@@ -124,8 +130,14 @@ function populateReturnUrl(form) {
 }
 
 function getRecordDataFromButton(button) {
-  const { resourceId: id, resourceName: name } = button.dataset;
-  const record = { id, name };
+  const {
+    resourceId: id,
+    resourceArtistId: artistId,
+    resourceName: name,
+    resourcePrice: price,
+    resourceQuantity: quantity,
+  } = button.dataset;
+  const record = { id, artistId, name, price, quantity };
   return record;
 }
 
