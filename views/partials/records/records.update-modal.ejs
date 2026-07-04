@@ -30,9 +30,7 @@
       type="text"
       name="name"
       id="update-name"
-      <% if (locals.updateFields?.name) { %>
-        value="<%= updateFields.name %>"
-      <% } %>
+      value="<%= locals.updateFields?.name %>"
       required
     />
 
@@ -55,9 +53,7 @@
       name="quantity"
       id="update-quantity"
       placeholder="0"
-      <% if (locals.updateFields?.quantity) { %>
-        value="<%= updateFields.quantity %>"
-      <% } %>
+      value="<%= locals.updateFields?.quantity %>"
       min="0"
     />
 

@@ -37,9 +37,7 @@
       type="text"
       name="name"
       id="create-name"
-      <% if (locals.createFields?.name) { %>
-        value="<%= createFields.name %>"
-      <% } %>
+      value="<%= locals.createFields?.name %>"
       required
     />
 
@@ -62,9 +60,7 @@
       name="quantity"
       id="create-quantity"
       placeholder="0"
-      <% if (locals.createFields?.quantity) { %>
-        value="<%= createFields.quantity %>"
-      <% } %>
+      value="<%= locals.createFields?.quantity %>"
       min="0"
     />
 
