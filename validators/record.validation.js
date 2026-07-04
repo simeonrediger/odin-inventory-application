@@ -1,4 +1,4 @@
-import { body, query, validationResult, matchedData } from 'express-validator';
+import { query, body, validationResult, matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
 export const validateQuery = [
