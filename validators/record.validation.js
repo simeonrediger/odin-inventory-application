@@ -49,7 +49,7 @@ function fieldIsValid(field) {
 }
 
 async function recordNameIsUnique(name, { req }) {
-  const { artistId } = matchedData(req);
+  const { artistId } = matchedData(req, { locations: ['body'] });
   const records = await db.records.find({ name, artistId });
 
   if (records.length > 0) {
