@@ -90,8 +90,10 @@ function prepareUpdateForm(updateButton) {
 function prepareDeleteForm(deleteButton) {
   modalForms.delete.reset();
   const record = getRecordDataFromButton(deleteButton);
+
   modalForms.delete.querySelector('[data-role="record-name"]').textContent =
     record.name;
+
   modalForms.delete.action = getFormAction({
     path: getRecordPath(record),
     searchParams: { _method: 'DELETE' },
