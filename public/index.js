@@ -144,6 +144,7 @@ function getRecordDataFromButton(button) {
     resourcePrice: price,
     resourceQuantity: quantity,
   } = button.dataset;
+
   const record = { id, artistId, name, price, quantity };
   return record;
 }
