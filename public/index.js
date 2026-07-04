@@ -22,7 +22,9 @@ function bindEvents() {
 
 function openModalIfFormInvalid() {
   for (const [type, form] of Object.entries(modalForms)) {
-    if (form?.hasAttribute('data-invalid')) {
+    const formInvalid = form?.hasAttribute('data-invalid');
+
+    if (formInvalid) {
       return modals[type]?.showModal();
     }
   }
