@@ -2,14 +2,14 @@ import { body } from 'express-validator';
 
 export const validateReturnUrl = [body('returnTo').custom(isRootRelative)];
 
-function isRootRelative(value) {
+function isRootRelative(url) {
   try {
-    new URL(value);
+    new URL(url);
   } catch (error) {
-    if (value.startsWith('/')) {
+    if (url.startsWith('/')) {
       return true;
     }
   }
 
-  throw new TypeError(`Return URL must be root-relative. Got "${value}"`);
+  throw new TypeError(`Return URL must be root-relative. Got "${url}"`);
 }
