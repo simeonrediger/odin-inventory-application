@@ -61,16 +61,12 @@ function handleSubmit(event) {
   switch (event.target.getAttribute('name')) {
     case 'search':
       return omitEmptyFields(event);
-
-    case 'create':
-    case 'update':
-    case 'delete':
-      return populateReturnUrl(event.target);
   }
 }
 
 function prepareCreateForm() {
   modalForms.create.reset();
+  populateReturnUrl(modalForms.create);
   modalForms.create.action = getRootRelativeUrl({ path: getRecordPath() });
 }
 
@@ -82,6 +78,7 @@ function prepareUpdateForm(updateButton) {
   modalForms.update.elements.name.value = record.name;
   modalForms.update.elements.price.value = record.price;
   modalForms.update.elements.quantity.value = record.quantity;
+  populateReturnUrl(modalForms.update);
 
   modalForms.update.action = getRootRelativeUrl({
     path: getRecordPath(record),
@@ -95,6 +92,7 @@ function prepareDeleteForm(deleteButton) {
 
   modalForms.delete.querySelector('[data-role="record-name"]').textContent =
     record.name;
+  populateReturnUrl(modalForms.delete);
 
   modalForms.delete.action = getRootRelativeUrl({
     path: getRecordPath(record),
@@ -133,8 +131,9 @@ function omitEmptyFields(event) {
 }
 
 function populateReturnUrl(form) {
-  const returnToField = form.elements.returnTo;
-  returnToField.value = location.pathname + location.search + location.hash;
+  form.elements.returnTo.value = getRootRelativeUrl({
+    path: getRecordPath(),
+  });
 }
 
 function getRecordDataFromButton(button) {
@@ -156,6 +155,8 @@ function getRootRelativeUrl({ path, searchParams = {} }) {
   for (const [key, value] of new URL(location).searchParams.entries()) {
     url.searchParams.set(key, value);
   }
+
+  url.searchParams.delete('_method');
 
   for (const [key, value] of Object.entries(searchParams)) {
     url.searchParams.set(key, value);
