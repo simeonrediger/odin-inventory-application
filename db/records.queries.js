@@ -1,18 +1,18 @@
 import pool from './pool.js';
 
-export async function find({ name, artistId } = {}) {
+export async function find({ artistId, name } = {}) {
   const parameters = [];
   const filters = [];
   let sql = 'SELECT * FROM records';
 
-  if (name !== undefined) {
-    parameters.push(name);
-    filters.push(`name ILIKE $${parameters.length}`);
-  }
-
   if (artistId !== undefined) {
     parameters.push(artistId);
     filters.push(`artist_id = $${parameters.length}`);
+  }
+
+  if (name !== undefined) {
+    parameters.push(name);
+    filters.push(`name ILIKE $${parameters.length}`);
   }
 
   if (filters.length > 0) {

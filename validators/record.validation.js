@@ -50,7 +50,7 @@ function fieldIsValid(field) {
 
 async function recordNameIsUnique(name, { req }) {
   const { artistId } = matchedData(req, { locations: ['body'] });
-  const records = await db.records.find({ name, artistId });
+  const records = await db.records.find({ artistId, name });
 
   if (records.length > 0) {
     throw new Error(`Record name already exists: ${name}`);
