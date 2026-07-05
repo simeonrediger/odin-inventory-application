@@ -71,7 +71,7 @@ function handleSubmit(event) {
 
 function prepareCreateForm() {
   modalForms.create.reset();
-  modalForms.create.action = getFormAction({ path: getRecordPath() });
+  modalForms.create.action = getRootRelativeUrl({ path: getRecordPath() });
 }
 
 function prepareUpdateForm(updateButton) {
@@ -83,7 +83,7 @@ function prepareUpdateForm(updateButton) {
   modalForms.update.elements.price.value = record.price;
   modalForms.update.elements.quantity.value = record.quantity;
 
-  modalForms.update.action = getFormAction({
+  modalForms.update.action = getRootRelativeUrl({
     path: getRecordPath(record),
     searchParams: { _method: 'PUT' },
   });
@@ -96,7 +96,7 @@ function prepareDeleteForm(deleteButton) {
   modalForms.delete.querySelector('[data-role="record-name"]').textContent =
     record.name;
 
-  modalForms.delete.action = getFormAction({
+  modalForms.delete.action = getRootRelativeUrl({
     path: getRecordPath(record),
     searchParams: { _method: 'DELETE' },
   });
@@ -150,7 +150,7 @@ function getRecordDataFromButton(button) {
   return record;
 }
 
-function getFormAction({ path, searchParams = {} }) {
+function getRootRelativeUrl({ path, searchParams = {} }) {
   const url = new URL('https://example.invalid' + path);
 
   for (const [key, value] of new URL(location).searchParams.entries()) {
