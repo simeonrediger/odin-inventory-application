@@ -74,6 +74,14 @@ async function recordNameIsUnique(name, { req }) {
   const { artistId } = matchedData(req, { locations: ['body'] });
   const records = await db.records.find({ artistId, name });
 
+  if (req.method === 'PUT' && records.length === 1) {
+    const isSameRecord = records[0].id == req.params.id;
+
+    if (isSameRecord) {
+      return true;
+    }
+  }
+
   if (records.length > 0) {
     throw new Error(`Record name already exists: ${name}`);
   }
