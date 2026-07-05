@@ -126,7 +126,7 @@ function omitEmptyFields(form) {
   }
 
   if (queryIsEmpty) {
-    location.href = location.pathname + location.hash;
+    location.href = form.action + location.hash;
     return event.preventDefault();
   }
 }
