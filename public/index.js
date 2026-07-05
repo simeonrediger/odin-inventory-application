@@ -118,10 +118,10 @@ function omitEmptyFields(form) {
   let queryIsEmpty = true;
 
   for (const field of form.elements) {
-    if (field.value === '') {
-      field.removeAttribute('name');
-    } else {
+    if (field.value) {
       queryIsEmpty = false;
+    } else {
+      field.removeAttribute('name');
     }
   }
 
