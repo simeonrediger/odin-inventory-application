@@ -35,12 +35,12 @@ export async function createRecord(req, res) {
 }
 
 export async function updateRecord(req, res) {
-  const { id } = req.params;
+  const { id } = matchedData(req, { locations: ['params'] });
   const { artistId, name, price, quantity, returnTo } = matchedData(req, {
     locations: ['body'],
   });
   const record = { id, artistId, name, price, quantity };
-  const errors = getErrorsFromLocation(req, { locations: ['body'] });
+  const errors = getErrorsFromLocation(req, { locations: ['params', 'body'] });
 
   if (errors.length !== 0) {
     const { records, genres, artists } = await getPageData(req);
@@ -59,8 +59,9 @@ export async function updateRecord(req, res) {
 }
 
 export async function deleteRecord(req, res) {
+  const { id } = matchedData(req, { locations: ['params'] });
   const { returnTo } = matchedData(req, { locations: ['body'] });
-  const errors = getErrorsFromLocation(req, { locations: ['body'] });
+  const errors = getErrorsFromLocation(req, { locations: ['params', 'body'] });
 
   if (errors.length !== 0) {
     const { records, genres, artists } = await getPageData(req);
@@ -73,7 +74,7 @@ export async function deleteRecord(req, res) {
     });
   }
 
-  await db.records.deleteById(req.params.id);
+  await db.records.deleteById(id);
   res.redirect(303, returnTo);
 }
 

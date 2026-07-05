@@ -1,5 +1,19 @@
-import { query, body, validationResult, matchedData } from 'express-validator';
+import {
+  param,
+  query,
+  body,
+  validationResult,
+  matchedData,
+} from 'express-validator';
 import db from '../db/queries.js';
+
+export const validateParams = [
+  param('id')
+    .isInt({ min: 1 })
+    .withMessage('Record ID must be a positive integer')
+    .custom(recordIdExists),
+  param('slug').optional(),
+];
 
 export const validateQuery = [
   query('genreId').optional().isInt({ min: 1 }),
@@ -35,6 +49,14 @@ export const validateRecord = [
     .isInt({ min: 0 })
     .withMessage('Quantity must be a non-negative integer'),
 ];
+
+async function recordIdExists(id) {
+  const record = await db.records.findById(id);
+
+  if (!record) {
+    throw new Error(`Record ID does not exist: ${id}`);
+  }
+}
 
 async function artistIdExists(artistId) {
   const artist = await db.artists.findById(artistId);

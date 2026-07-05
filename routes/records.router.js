@@ -2,6 +2,7 @@ import { Router } from 'express';
 import * as recordsController from '../controllers/records.controller.js';
 import { validateReturnUrl } from '../validators/validation.js';
 import {
+  validateParams,
   validateQuery,
   validateRecord,
 } from '../validators/record.validation.js';
@@ -25,7 +26,12 @@ recordsRouter
 
 recordsRouter
   .route('/:id/:slug')
-  .all(validateReturnUrl, recordsController.preserveRawQuery, validateQuery)
+  .all(
+    validateParams,
+    validateReturnUrl,
+    recordsController.preserveRawQuery,
+    validateQuery,
+  )
   .put(validateRecord, recordsController.updateRecord)
   .delete(recordsController.deleteRecord);
 

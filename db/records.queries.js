@@ -23,6 +23,18 @@ export async function find({ artistId, name } = {}) {
   return rows;
 }
 
+export async function findById(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM records
+    WHERE id = $1
+    `,
+    [id],
+  );
+
+  return rows[0];
+}
+
 export async function findWithArtist({ genreId, artistId } = {}) {
   const parameters = [];
   const filters = [];
