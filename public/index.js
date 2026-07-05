@@ -60,7 +60,7 @@ function handleClick(event) {
 function handleSubmit(event) {
   switch (event.target.getAttribute('name')) {
     case 'search':
-      return omitEmptyFields(event.target);
+      return omitEmptyFields(event);
 
     case 'create':
     case 'update':
@@ -114,7 +114,8 @@ function closeModalIfExternalClick(target) {
   }
 }
 
-function omitEmptyFields(form) {
+function omitEmptyFields(event) {
+  const form = event.target;
   let queryIsEmpty = true;
 
   for (const field of form.elements) {
