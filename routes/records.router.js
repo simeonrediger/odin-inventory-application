@@ -23,12 +23,10 @@ recordsRouter
     recordsController.createRecord,
   );
 
-recordsRouter.delete(
-  '/:id/:slug',
-  validateReturnUrl,
-  recordsController.preserveRawQuery,
-  validateQuery,
-  recordsController.deleteRecord,
-);
+recordsRouter
+  .route('/:id/:slug')
+  .all(validateReturnUrl, recordsController.preserveRawQuery, validateQuery)
+  .put(validateRecord, recordsController.updateRecord)
+  .delete(recordsController.deleteRecord);
 
 export default recordsRouter;

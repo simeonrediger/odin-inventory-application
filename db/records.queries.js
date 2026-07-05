@@ -93,6 +93,20 @@ export async function create({ artistId, name, price, quantity }) {
   );
 }
 
+export async function updateById({ id, artistId, name, price, quantity }) {
+  await pool.query(
+    `
+    UPDATE records SET
+      artist_id = $2,
+      name = $3,
+      price = $4,
+      quantity = $5
+    WHERE id = $1
+    `,
+    [id, artistId, name, price, quantity],
+  );
+}
+
 export async function deleteById(id) {
   await pool.query(
     `

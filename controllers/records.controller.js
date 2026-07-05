@@ -34,6 +34,30 @@ export async function createRecord(req, res) {
   res.redirect(303, returnTo);
 }
 
+export async function updateRecord(req, res) {
+  const { id } = req.params;
+  const { artistId, name, price, quantity, returnTo } = matchedData(req, {
+    locations: ['body'],
+  });
+  const record = { id, artistId, name, price, quantity };
+  const errors = getErrorsFromLocation(req, { locations: ['body'] });
+
+  if (errors.length !== 0) {
+    const { records, genres, artists } = await getPageData(req);
+    return res.status(400).render('records', {
+      pageName: 'Records',
+      records,
+      genres,
+      artists,
+      updateFields: record,
+      updateErrors: errors,
+    });
+  }
+
+  await db.records.updateById(record);
+  res.redirect(303, returnTo);
+}
+
 export async function deleteRecord(req, res) {
   const { returnTo } = matchedData(req, { locations: ['body'] });
   const errors = getErrorsFromLocation(req, { locations: ['body'] });
