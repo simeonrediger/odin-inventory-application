@@ -1,4 +1,5 @@
-<table class="records-table">
+<% if (records.length > 0) { %>
+  <table class="records-table">
   <thead>
     <tr>
       <th scope="col" class="record-name">Record</th>
@@ -43,3 +44,6 @@
     <% }); %>
   </tbody>
 </table>
+<% } else { %>
+  <p>No records found</p>
+<% } %>

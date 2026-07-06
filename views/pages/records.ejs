@@ -14,12 +14,7 @@
   <%- include('../partials/records/records.update-modal.ejs') %>
   <%- include('../partials/records/records.delete-modal.ejs') %>
   <%- include('../partials/records/records.search-form.ejs') %>
-
-  <% if (records.length > 0) { %>
-    <%- include('../partials/records/records.list.ejs') %>
-  <% } else { %>
-    <p>No records found</p>
-  <% } %>
+  <%- include('../partials/records/records.list.ejs') %>
 </main>
 
 <%- include('../partials/layout-end') %>
