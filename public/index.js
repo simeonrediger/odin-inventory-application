@@ -91,7 +91,7 @@ function prepareDeleteForm(deleteButton) {
   modalForms.delete.reset();
   const record = getRecordDataFromButton(deleteButton);
 
-  modalForms.delete.querySelector('[data-role="record-name"]').textContent =
+  modalForms.delete.querySelector('[data-context="record-name"]').textContent =
     record.name;
   populateReturnUrl(modalForms.delete);
 
