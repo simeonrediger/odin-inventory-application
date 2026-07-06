@@ -21,11 +21,7 @@
   
     <input type="hidden" name="returnTo" />
 
-    <% if (locals.deleteErrors?.length > 0) { %>
-      <ul data-role="errors" class="errors">
-        <% deleteErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
-      </ul>
-    <% } %>
+    <%- include('../form-errors', { errors: locals.deleteErrors }) %>
 
     <div class="cancel-confirm-button-row">
       <button
