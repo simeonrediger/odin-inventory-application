@@ -35,7 +35,7 @@ export const validateRecord = [
     .notEmpty()
     .withMessage('Record name is required')
     .if(fieldIsValid('artistId'))
-    .custom(recordNameIsUnique),
+    .custom(nameIsUnique),
   body('price')
     .trim()
     .isFloat({ min: 0 })
@@ -72,7 +72,7 @@ function fieldIsValid(field) {
   return (value, { req }) => !validationResult(req).mapped()[field];
 }
 
-async function recordNameIsUnique(name, { req }) {
+async function nameIsUnique(name, { req }) {
   const { artistId } = matchedData(req, { locations: ['body'] });
   const records = await db.records.find({ artistId, name });
 
