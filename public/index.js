@@ -90,9 +90,7 @@ function prepareUpdateForm(updateButton) {
 function prepareDeleteForm(deleteButton) {
   modalForms.delete.reset();
   const record = getRecordDataFromButton(deleteButton);
-
-  modalForms.delete.querySelector('[data-context="record-name"]').textContent =
-    record.name;
+  populateContext(record);
   populateReturnUrl(modalForms.delete);
 
   modalForms.delete.action = getRootRelativeUrl({
@@ -129,6 +127,12 @@ function omitEmptyFields(event) {
     location.href = form.action + location.hash;
     return event.preventDefault();
   }
+}
+
+function populateContext(record) {
+  document
+    .querySelectorAll('[data-context="record-name"]')
+    .forEach(element => (element.textContent = record.name));
 }
 
 function populateReturnUrl(form) {
