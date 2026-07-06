@@ -66,15 +66,13 @@ function handleSubmit(event) {
 }
 
 function prepareCreateForm() {
-  modalForms.create.reset();
-  modalForms.create.querySelector('[data-role="errors"]')?.remove();
+  resetForm(modalForms.create);
   populateReturnUrl(modalForms.create);
   modalForms.create.action = getRootRelativeUrl({ path: getRecordPath() });
 }
 
 function prepareUpdateForm(updateButton) {
-  modalForms.update.reset();
-  modalForms.update.querySelector('[data-role="errors"]')?.remove();
+  resetForm(modalForms.update);
   const record = getRecordDataFromButton(updateButton);
 
   modalForms.update.elements.artistId.value = record.artistId;
@@ -90,8 +88,7 @@ function prepareUpdateForm(updateButton) {
 }
 
 function prepareDeleteForm(deleteButton) {
-  modalForms.delete.reset();
-  modalForms.delete.querySelector('[data-role="errors"]')?.remove();
+  resetForm(modalForms.delete);
   const record = getRecordDataFromButton(deleteButton);
   populateContext(record);
 
@@ -144,6 +141,11 @@ function populateReturnUrl(form) {
   form.elements.returnTo.value = getRootRelativeUrl({
     path: getRecordPath(),
   });
+}
+
+function resetForm(form) {
+  form.reset();
+  form.querySelector('[data-role="errors"]')?.remove();
 }
 
 function getRecordDataFromButton(button) {
