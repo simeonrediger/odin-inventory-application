@@ -8,6 +8,7 @@ import {
   validateParams,
   validateQuery,
   validateRecord,
+  validateName,
 } from '../validators/record.validation.js';
 
 const recordsRouter = Router();
@@ -37,6 +38,6 @@ recordsRouter
     validateQuery,
   )
   .put(validateRecord, recordsController.updateRecord)
-  .delete(recordsController.deleteRecord);
+  .delete(validateName, recordsController.deleteRecord);
 
 export default recordsRouter;

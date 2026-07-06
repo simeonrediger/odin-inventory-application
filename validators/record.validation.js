@@ -50,6 +50,8 @@ export const validateRecord = [
     .withMessage('Quantity must be a non-negative integer'),
 ];
 
+export const validateName = [body('name').trim()];
+
 async function recordIdExists(id) {
   const record = await db.records.findById(id);
 

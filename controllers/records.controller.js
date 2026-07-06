@@ -60,7 +60,8 @@ export async function updateRecord(req, res) {
 
 export async function deleteRecord(req, res) {
   const { id } = matchedData(req, { locations: ['params'] });
-  const { returnTo } = matchedData(req, { locations: ['body'] });
+  const fields = matchedData(req, { locations: ['body'] });
+  const { returnTo } = fields;
   const errors = getErrorsFromLocation(req, { locations: ['params', 'body'] });
 
   if (errors.length !== 0) {
@@ -70,6 +71,7 @@ export async function deleteRecord(req, res) {
       records,
       genres,
       artists,
+      deleteFields: fields,
       deleteErrors: errors,
     });
   }

@@ -91,6 +91,8 @@ function prepareDeleteForm(deleteButton) {
   modalForms.delete.reset();
   const record = getRecordDataFromButton(deleteButton);
   populateContext(record);
+
+  modalForms.delete.elements.name.value = record.name;
   populateReturnUrl(modalForms.delete);
 
   modalForms.delete.action = getRootRelativeUrl({
