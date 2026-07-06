@@ -1,5 +1,6 @@
 export function getSlug(text) {
-  return text.toLowerCase().replaceAll(' ', '-');
+  const rawSlug = text.toLowerCase().replaceAll(' ', '-');
+  return encodeURIComponent(rawSlug);
 }
 
 export function getRecordPath({ id, name } = {}) {
