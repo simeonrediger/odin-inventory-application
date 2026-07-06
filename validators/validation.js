@@ -1,5 +1,11 @@
 import { body } from 'express-validator';
 
+export const validateAdminPassword = [
+  body('adminPassword')
+    .equals(process.env.ADMIN_PASSWORD)
+    .withMessage('Admin password is incorrect'),
+];
+
 export const validateReturnUrl = [body('returnTo').custom(isRootRelative)];
 
 function isRootRelative(url) {

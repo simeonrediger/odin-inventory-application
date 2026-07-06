@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import * as recordsController from '../controllers/records.controller.js';
-import { validateReturnUrl } from '../validators/validation.js';
+import {
+  validateAdminPassword,
+  validateReturnUrl,
+} from '../validators/validation.js';
 import {
   validateParams,
   validateQuery,
@@ -27,6 +30,7 @@ recordsRouter
 recordsRouter
   .route('/:id/:slug')
   .all(
+    validateAdminPassword,
     validateParams,
     validateReturnUrl,
     recordsController.preserveRawQuery,

@@ -10,6 +10,9 @@
       Delete <span data-role="record-name" class="record-name">record</span>?
     </p>
 
+    <label for="admin-password">Admin password</label>
+    <input type="password" name="adminPassword" id="admin-password" required />
+  
     <input type="hidden" name="returnTo" />
 
     <% if (locals.deleteErrors?.length > 0) { %>
