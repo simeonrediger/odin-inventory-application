@@ -137,6 +137,11 @@ button {
   color: var(--color-button-text);
 }
 
+/* Utilities */
+.fill-grid-row {
+  grid-column: 1 / -1;
+}
+
 /* App */
 header {
   margin-bottom: 0.75rem;
