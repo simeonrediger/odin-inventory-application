@@ -25,6 +25,7 @@ function openModalIfFormInvalid() {
     const formInvalid = form?.hasAttribute('data-invalid');
 
     if (formInvalid) {
+      populateReturnUrl(form);
       return modals[type]?.showModal();
     }
   }
