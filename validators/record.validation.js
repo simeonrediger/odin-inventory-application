@@ -84,7 +84,9 @@ async function nameIsUnique(name, { req }) {
     }
   }
 
-  if (records.length > 0) {
+  const nameIsUnique = records.length === 0;
+
+  if (!nameIsUnique) {
     throw new Error(`Record name already exists: ${name}`);
   }
 }
