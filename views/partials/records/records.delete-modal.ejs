@@ -22,7 +22,7 @@
     <input type="hidden" name="returnTo" />
 
     <% if (locals.deleteErrors?.length > 0) { %>
-      <ul class="errors">
+      <ul data-role="errors" class="errors">
         <% deleteErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
       </ul>
     <% } %>

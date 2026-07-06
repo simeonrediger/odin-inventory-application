@@ -67,12 +67,14 @@ function handleSubmit(event) {
 
 function prepareCreateForm() {
   modalForms.create.reset();
+  modalForms.create.querySelector('[data-role="errors"]')?.remove();
   populateReturnUrl(modalForms.create);
   modalForms.create.action = getRootRelativeUrl({ path: getRecordPath() });
 }
 
 function prepareUpdateForm(updateButton) {
   modalForms.update.reset();
+  modalForms.update.querySelector('[data-role="errors"]')?.remove();
   const record = getRecordDataFromButton(updateButton);
 
   modalForms.update.elements.artistId.value = record.artistId;
@@ -89,6 +91,7 @@ function prepareUpdateForm(updateButton) {
 
 function prepareDeleteForm(deleteButton) {
   modalForms.delete.reset();
+  modalForms.delete.querySelector('[data-role="errors"]')?.remove();
   const record = getRecordDataFromButton(deleteButton);
   populateContext(record);
 

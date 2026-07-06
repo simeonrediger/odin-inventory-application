@@ -63,7 +63,7 @@
     <input type="hidden" name="returnTo" />
 
     <% if (locals.updateErrors?.length > 0) { %>
-      <ul class="errors">
+      <ul data-role="errors" class="errors">
         <% updateErrors.forEach(error => { %> <li><%= error %></li> <% }); %>
       </ul>
     <% } %>
