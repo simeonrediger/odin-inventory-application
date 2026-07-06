@@ -1,18 +1,32 @@
 import pool from './pool.js';
 
-export async function find({ artistId, name } = {}) {
+export async function find({ artistId, name, includeArtist = false } = {}) {
   const parameters = [];
   const filters = [];
-  let sql = 'SELECT * FROM records';
+
+  let sql = 'SELECT records.*';
+
+  if (includeArtist) {
+    sql += ', to_jsonb(artists) AS artist';
+  }
+
+  sql += ' FROM records';
+
+  if (includeArtist) {
+    sql += `
+      INNER JOIN artists
+        ON artists.id = records.artist_id
+    `;
+  }
 
   if (artistId !== undefined) {
     parameters.push(artistId);
-    filters.push(`artist_id = $${parameters.length}`);
+    filters.push(`records.artist_id = $${parameters.length}`);
   }
 
   if (name !== undefined) {
     parameters.push(name);
-    filters.push(`name ILIKE $${parameters.length}`);
+    filters.push(`records.name ILIKE $${parameters.length}`);
   }
 
   if (filters.length > 0) {
