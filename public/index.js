@@ -144,7 +144,12 @@ function populateReturnUrl(form) {
 }
 
 function resetForm(form) {
-  form.reset();
+  for (const element of form.elements) {
+    if (element.hasAttribute('name')) {
+      element.value = '';
+    }
+  }
+
   form.querySelector('[data-role="errors"]')?.remove();
 }
 
