@@ -65,6 +65,7 @@ html {
   --red: #a00;
   --pale-blue: #0077ff;
   --pale-light-blue: #a4cefe;
+  --pale-light-blue-faded: #a4cefe66;
   --transparent-black: #0009;
 
   --color-app-bg: var(--dark-gray-15);
@@ -91,6 +92,9 @@ html {
   --color-submit-delete-button-bg: var(--red);
   --color-search-clear-button-bg: transparent;
   --color-search-clear-button-text: var(--light-gray-6);
+  --color-search-submit-button-bg: transparent;
+  --color-search-submit-button-text: var(--color-link);
+  --color-search-submit-button-border: var(--pale-light-blue-faded);
   --color-search-reset-button-bg: transparent;
   --color-search-reset-button-text: var(--color-error);
 }
@@ -268,6 +272,10 @@ label:has(+ :required)::after {
 }
 
 .search-submit-button {
+  background-color: var(--color-search-submit-button-bg);
+  border: 1px solid var(--color-search-submit-button-border);
+  border-radius: 0.5rem;
+  color: var(--color-search-submit-button-text);
   grid-column: span 2;
 }
 
