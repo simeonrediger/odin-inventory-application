@@ -1,3 +1,7 @@
+import {
+  MAX_RECORD_NAME_LENGTH,
+  DEFAULT_RECORD_QUANTITY,
+} from '../domains/constants.js';
 import { getRecordPath } from '../shared/formatting.js';
 
 export function assign(req, res, next) {
@@ -7,6 +11,8 @@ export function assign(req, res, next) {
 
 const siteLocals = {
   siteName: 'Record Store',
+  MAX_RECORD_NAME_LENGTH,
+  DEFAULT_RECORD_QUANTITY,
   centsToDollars,
   formatPrice(price) {
     return '$' + centsToDollars(price);

@@ -41,6 +41,7 @@
       id="create-name"
       value="<%= locals.createFields?.name %>"
       required
+      maxlength="<%= MAX_RECORD_NAME_LENGTH %>"
     />
 
     <label for="create-price">Price</label>
@@ -61,7 +62,7 @@
       type="number"
       name="quantity"
       id="create-quantity"
-      placeholder="0"
+      placeholder="<%= DEFAULT_RECORD_QUANTITY %>"
       value="<%= locals.createFields?.quantity %>"
       min="0"
     />

@@ -34,6 +34,7 @@
       id="update-name"
       value="<%= locals.updateFields?.name %>"
       required
+      maxlength="<%= MAX_RECORD_NAME_LENGTH %>"
     />
 
     <label for="update-price">Price</label>
@@ -54,7 +55,7 @@
       type="number"
       name="quantity"
       id="update-quantity"
-      placeholder="0"
+      placeholder="<%= DEFAULT_RECORD_QUANTITY %>"
       value="<%= locals.updateFields?.quantity %>"
       min="0"
     />
