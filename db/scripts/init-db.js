@@ -3,6 +3,7 @@
 
 import { Client } from 'pg';
 import fs from 'node:fs/promises';
+import reset from './reset.js';
 import seed from './seed.js';
 
 const targetEnv = process.argv[2];
@@ -16,14 +17,24 @@ const databaseUrl =
 const client = new Client({ connectionString: databaseUrl });
 await client.connect();
 
-console.log(`Resetting tables...`);
-await client.query(await fs.readFile('db/scripts/reset.sql', 'utf8'));
+try {
+  await client.query('BEGIN');
 
-console.log(`Seeding tables...`);
-await seed(client);
+  console.log(`Resetting tables...`);
+  await client.query(await fs.readFile('db/scripts/reset.sql', 'utf8'));
+
+  console.log(`Seeding tables...`);
+  await seed(client);
+
+  await client.query('COMMIT');
+} catch (error) {
+  await client.query('ROLLBACK');
+  throw error;
+} finally {
+  await client.end();
+}
 
 console.log('Done');
-await client.end();
 
 function validateEnv(targetEnv) {
   const errors = [];
