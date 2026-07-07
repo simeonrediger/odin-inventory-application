@@ -21,7 +21,7 @@ try {
   await client.query('BEGIN');
 
   console.log(`Resetting tables...`);
-  await client.query(await fs.readFile('db/scripts/reset.sql', 'utf8'));
+  await reset(client);
 
   console.log(`Seeding tables...`);
   await seed(client);
