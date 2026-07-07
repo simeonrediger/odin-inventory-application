@@ -230,6 +230,10 @@ label:has(+ :required)::after {
   margin-block: 0.75rem;
 }
 
+.errors:focus {
+  outline: none;
+}
+
 .errors > li {
   margin-inline-start: 1.125rem;
 }
