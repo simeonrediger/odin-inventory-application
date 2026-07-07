@@ -92,7 +92,9 @@ async function nameIsUnique(name, { req }) {
 
   if (!nameIsUnique) {
     const { name, artist } = records[0];
-    throw new Error(`${artist.name} record name already exists: "${name}"`);
+    throw new Error(
+      `${artist.name} record with the name "${name}" already exists`,
+    );
   }
 }
 
