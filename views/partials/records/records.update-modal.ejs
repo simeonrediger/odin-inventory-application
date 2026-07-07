@@ -1,11 +1,11 @@
-<dialog class="modal">
+<dialog class="modal" aria-labelledby="update-form-heading">
   <form
     name="update"
     method="post"
     <% if (locals.updateErrors?.length > 0) { %> data-invalid <% } %>
     class="modal-form"
   >
-    <h2>Edit record</h2>
+    <h2 id="update-form-heading">Edit record</h2>
 
     <label for="update-artist-id">Artist</label>
     <select name="artistId" id="update-artist-id" required>

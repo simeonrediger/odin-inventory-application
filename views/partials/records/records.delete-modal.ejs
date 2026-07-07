@@ -1,11 +1,11 @@
-<dialog class="modal">
+<dialog class="modal" aria-labelledby="delete-form-heading">
   <form
     name="delete"
     method="post"
     <% if (locals.deleteErrors?.length > 0) { %> data-invalid <% } %>
     class="modal-form"
   >
-    <h2>Delete record</h2>
+    <h2 id="delete-form-heading">Delete record</h2>
     <p>
       Delete
       <span

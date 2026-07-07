@@ -4,7 +4,7 @@
   class="create-button"
 >+ New record</button>
 
-<dialog class="modal">
+<dialog class="modal" aria-labelledby="create-form-heading">
   <form
     name="create"
     action="<%= getRecordPath() %>"
@@ -12,7 +12,7 @@
     <% if (locals.createErrors?.length > 0) { %> data-invalid <% } %>
     class="modal-form"
   >
-    <h2>New record</h2>
+    <h2 id="create-form-heading">New record</h2>
 
     <label for="create-artist-id">Artist</label>
     <select name="artistId" id="create-artist-id" required>
