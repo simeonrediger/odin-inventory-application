@@ -5,8 +5,12 @@ import {
   validationResult,
   matchedData,
 } from 'express-validator';
+
 import db from '../db/queries.js';
-import { MAX_RECORD_NAME_LENGTH } from '../domains/constants.js';
+import {
+  MAX_RECORD_NAME_LENGTH,
+  MAX_RECORD_PRICE_IN_DOLLARS,
+} from '../domains/constants.js';
 
 export const validateParams = [
   param('id')
@@ -43,8 +47,10 @@ export const validateRecord = [
     .custom(nameIsUnique),
   body('price')
     .trim()
-    .isFloat({ min: 0 })
-    .withMessage('Price must be a non-negative number')
+    .isFloat({ min: 0, max: MAX_RECORD_PRICE_IN_DOLLARS })
+    .withMessage(
+      `Price must be a non-negative number not exceeding ${MAX_RECORD_PRICE_IN_DOLLARS}`,
+    )
     .isDecimal({ decimal_digits: '0,2' })
     .withMessage('Price must not exceed two decimal places')
     .customSanitizer(dollarsToCents),

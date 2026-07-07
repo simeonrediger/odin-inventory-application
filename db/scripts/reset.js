@@ -2,6 +2,7 @@ import {
   MAX_GENRE_NAME_LENGTH,
   MAX_ARTIST_NAME_LENGTH,
   MAX_RECORD_NAME_LENGTH,
+  MAX_RECORD_PRICE_IN_CENTS,
   DEFAULT_RECORD_QUANTITY,
 } from '../../domains/constants.js';
 
@@ -76,7 +77,10 @@ async function createRecordsTable(client) {
         CHECK (length(name) <= ${MAX_RECORD_NAME_LENGTH}),
       UNIQUE (artist_id, name),
       price bigint NOT NULL
-        CHECK (price >= 0),
+        CHECK (
+          price >= 0
+          AND price <= ${MAX_RECORD_PRICE_IN_CENTS}
+        ),
       quantity integer NOT NULL
         DEFAULT ${DEFAULT_RECORD_QUANTITY}
     )
