@@ -1,4 +1,4 @@
-import { getSlug, getRecordPath } from '../shared/formatting.js';
+import { getRecordPath } from '../shared/formatting.js';
 
 export function assign(req, res, next) {
   Object.assign(res.locals, siteLocals);
@@ -7,7 +7,6 @@ export function assign(req, res, next) {
 
 const siteLocals = {
   siteName: 'Record Store',
-  getSlug,
   centsToDollars,
   formatPrice(price) {
     return '$' + centsToDollars(price);
@@ -18,14 +17,14 @@ const siteLocals = {
   getGenresPath() {
     return '/genres';
   },
-  getGenrePath({ id, name }) {
-    return `/genres/${id}/${getSlug(name)}`;
+  getGenrePath({ id }) {
+    return `/genres/${id}`;
   },
   getArtistsPath() {
     return '/artists';
   },
-  getArtistPath({ id, name }) {
-    return `/artists/${id}/${getSlug(name)}`;
+  getArtistPath({ id }) {
+    return `/artists/${id}`;
   },
   getRecordsPath() {
     return '/records';

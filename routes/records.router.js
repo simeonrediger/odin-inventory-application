@@ -29,7 +29,7 @@ recordsRouter
   );
 
 recordsRouter
-  .route('/:id/:slug')
+  .route('/:id')
   .all(
     validateAdminPassword,
     validateParams,

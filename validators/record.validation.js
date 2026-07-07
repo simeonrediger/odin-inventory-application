@@ -12,7 +12,6 @@ export const validateParams = [
     .isInt({ min: 1 })
     .withMessage('Record ID must be a positive integer')
     .custom(recordIdExists),
-  param('slug').optional(),
 ];
 
 export const validateQuery = [
