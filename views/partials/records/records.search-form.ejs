@@ -74,6 +74,20 @@
     class="search-clear-button"
   >Clear</button>
 
+  <label for="search-record-name">Name</label>
+  <input
+    type="search"
+    name="name"
+    id="search-record-name"
+    value="<%= rawQuery.name %>"
+  />
+  <button
+    type="button"
+    data-action="clear-field"
+    data-target="name"
+    class="search-clear-button"
+  >Clear</button>
+
   <button type="submit" class="search-submit-button">Search records</button>
   <a
     href="<%= getRecordsPath() %>"

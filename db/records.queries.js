@@ -49,7 +49,7 @@ export async function findById(id) {
   return rows[0];
 }
 
-export async function findWithArtist({ genreId, artistId } = {}) {
+export async function findWithArtist({ genreId, artistId, name } = {}) {
   const parameters = [];
   const filters = [];
   let sql = `
@@ -76,6 +76,11 @@ export async function findWithArtist({ genreId, artistId } = {}) {
   if (artistId !== undefined) {
     parameters.push(artistId);
     filters.push(`artists.id = $${parameters.length}`);
+  }
+
+  if (name !== undefined) {
+    parameters.push(`%${name}%`);
+    filters.push(`records.name ILIKE $${parameters.length}`);
   }
 
   if (filters.length > 0) {

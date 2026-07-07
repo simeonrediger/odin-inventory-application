@@ -18,6 +18,7 @@ export const validateParams = [
 export const validateQuery = [
   query('genreId').optional().isInt({ min: 1 }),
   query('artistId').optional().isInt({ min: 1 }),
+  query('name').optional().notEmpty(),
 ];
 
 export const validateRecord = [
