@@ -305,7 +305,7 @@ label:has(+ :required)::after {
   text-align: start;
 }
 
-.record-name {
+:not(thead > tr) > .record-name {
   font-style: italic;
 }
 
