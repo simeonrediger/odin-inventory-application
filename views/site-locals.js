@@ -14,9 +14,7 @@ const siteLocals = {
   MAX_RECORD_NAME_LENGTH,
   DEFAULT_RECORD_QUANTITY,
   centsToDollars,
-  formatPrice(price) {
-    return '$' + centsToDollars(price);
-  },
+  formatPrice,
   getHomePath() {
     return '/';
   },
@@ -37,6 +35,17 @@ const siteLocals = {
   },
   getRecordPath,
 };
+
+function formatPrice(price) {
+  const dollars = String(centsToDollars(price));
+  let [wholeDollars, cents] = dollars.split('.');
+
+  for (let i = wholeDollars.length - 3; i > 0; i -= 3) {
+    wholeDollars = wholeDollars.slice(0, i) + ',' + wholeDollars.slice(i);
+  }
+
+  return `$${wholeDollars}.${cents}`;
+}
 
 function centsToDollars(n) {
   return Number(n / 100).toFixed(2);
