@@ -6,6 +6,7 @@ import {
   matchedData,
 } from 'express-validator';
 import db from '../db/queries.js';
+import { MAX_RECORD_NAME_LENGTH } from '../domains/constants.js';
 
 export const validateParams = [
   param('id')
@@ -34,6 +35,10 @@ export const validateRecord = [
     .trim()
     .notEmpty()
     .withMessage('Record name is required')
+    .isLength({ max: MAX_RECORD_NAME_LENGTH })
+    .withMessage(
+      `Record name must not exceed ${MAX_RECORD_NAME_LENGTH} characters`,
+    )
     .if(fieldIsValid('artistId'))
     .custom(nameIsUnique),
   body('price')
