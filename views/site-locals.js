@@ -2,6 +2,7 @@ import {
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
   DEFAULT_RECORD_QUANTITY,
+  MAX_RECORD_QUANTITY,
 } from '../domains/constants.js';
 import { getRecordPath } from '../shared/formatting.js';
 
@@ -15,6 +16,7 @@ const siteLocals = {
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
   DEFAULT_RECORD_QUANTITY,
+  MAX_RECORD_QUANTITY,
   centsToDollars,
   formatPrice,
   getHomePath() {

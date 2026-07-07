@@ -10,6 +10,7 @@ import db from '../db/queries.js';
 import {
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
+  MAX_RECORD_QUANTITY,
 } from '../domains/constants.js';
 
 export const validateParams = [
@@ -57,8 +58,10 @@ export const validateRecord = [
   body('quantity')
     .trim()
     .optional({ checkFalsy: true })
-    .isInt({ min: 0 })
-    .withMessage('Quantity must be a non-negative integer'),
+    .isInt({ min: 0, max: MAX_RECORD_QUANTITY })
+    .withMessage(
+      `Quantity must be a non-negative integer not exceeding ${MAX_RECORD_QUANTITY}`,
+    ),
 ];
 
 export const validateName = [body('name').trim()];

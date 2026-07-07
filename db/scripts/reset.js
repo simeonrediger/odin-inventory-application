@@ -3,6 +3,7 @@ import {
   MAX_ARTIST_NAME_LENGTH,
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_CENTS,
+  MAX_RECORD_QUANTITY,
   DEFAULT_RECORD_QUANTITY,
 } from '../../domains/constants.js';
 
@@ -83,7 +84,10 @@ async function createRecordsTable(client) {
         ),
       quantity integer NOT NULL
         DEFAULT ${DEFAULT_RECORD_QUANTITY}
-        CHECK (quantity >= 0)
+        CHECK (
+          quantity >= 0
+          AND quantity <= ${MAX_RECORD_QUANTITY}
+        )
     )
   `);
 }
