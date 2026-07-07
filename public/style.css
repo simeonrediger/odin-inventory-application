@@ -89,6 +89,10 @@ html {
   --color-delete-button-bg: transparent;
   --color-delete-button-text: var(--color-error);
   --color-submit-delete-button-bg: var(--red);
+  --color-search-clear-button-bg: transparent;
+  --color-search-clear-button-text: var(--light-gray-6);
+  --color-search-reset-button-bg: transparent;
+  --color-search-reset-button-text: var(--color-error);
 }
 
 /* Base */
@@ -244,7 +248,7 @@ label:has(+ :required)::after {
   margin-block: 0.75rem;
 
   display: grid;
-  grid-template-columns: max-content max-content;
+  grid-template-columns: max-content max-content max-content;
   align-items: baseline;
   gap: 0.5rem;
 }
@@ -253,8 +257,27 @@ label:has(+ :required)::after {
   justify-self: end;
 }
 
-.search-form button {
-  grid-column: 1 / -1;
+.search-clear-button,
+.search-reset-button {
+  justify-self: center;
+}
+
+.search-clear-button {
+  background-color: var(--color-search-clear-button-bg);
+  color: var(--color-search-clear-button-text);
+}
+
+.search-submit-button {
+  grid-column: span 2;
+}
+
+.search-reset-button {
+  background-color: var(--color-search-reset-button-bg);
+  color: var(--color-search-reset-button-text);
+}
+
+.search-reset-button:hover {
+  text-decoration: none;
 }
 
 .records-table {

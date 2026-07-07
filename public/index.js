@@ -53,6 +53,14 @@ function handleClick(event) {
 
     case 'cancel-delete':
       return modals.delete.close();
+
+    case 'clear-field':
+      const fieldName = event.target.dataset.target;
+      event.target.closest('form').elements[fieldName].value = '';
+      return;
+
+    case 'clear-form':
+      return resetForm(event.target.closest('form'));
   }
 
   closeModalIfExternalClick(event.target);

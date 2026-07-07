@@ -33,6 +33,12 @@
       </option>
     <% } %>
   </select>
+  <button
+    type="button"
+    data-action="clear-field"
+    data-target="genreId"
+    class="search-clear-button"
+  >Clear</button>
 
   <label for="search-artist-id">Artist</label>
   <select name="artistId" id="search-artist-id">
@@ -61,6 +67,17 @@
       </option>
     <% } %>
   </select>
+  <button
+    type="button"
+    data-action="clear-field"
+    data-target="artistId"
+    class="search-clear-button"
+  >Clear</button>
 
-  <button type="submit">Search records</button>
+  <button type="submit" class="search-submit-button">Search records</button>
+  <a
+    href="<%= getRecordsPath() %>"
+    data-action="clear-form"
+    class="search-reset-button"
+  >Reset</a>
 </form>
