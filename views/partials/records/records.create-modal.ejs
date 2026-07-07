@@ -14,6 +14,8 @@
   >
     <h2 id="create-form-heading">New record</h2>
 
+    <%- include('../form-errors', { errors: locals.createErrors }) %>
+
     <label for="create-artist-id">Artist</label>
     <select name="artistId" id="create-artist-id" required>
       <option
@@ -65,8 +67,6 @@
     />
 
     <input type="hidden" name="returnTo" />
-
-    <%- include('../form-errors', { errors: locals.createErrors }) %>
 
     <div class="cancel-confirm-button-row">
       <button

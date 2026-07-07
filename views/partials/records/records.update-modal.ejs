@@ -7,6 +7,8 @@
   >
     <h2 id="update-form-heading">Edit record</h2>
 
+    <%- include('../form-errors', { errors: locals.updateErrors }) %>
+  
     <label for="update-artist-id">Artist</label>
     <select name="artistId" id="update-artist-id" required>
       <option
@@ -61,8 +63,6 @@
     <input type="password" name="adminPassword" id="admin-password" required />
 
     <input type="hidden" name="returnTo" />
-
-    <%- include('../form-errors', { errors: locals.updateErrors }) %>
 
     <div class="cancel-confirm-button-row">
       <button

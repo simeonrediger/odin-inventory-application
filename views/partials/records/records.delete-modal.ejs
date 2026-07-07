@@ -6,6 +6,9 @@
     class="modal-form"
   >
     <h2 id="delete-form-heading">Delete record</h2>
+
+    <%- include('../form-errors', { errors: locals.deleteErrors }) %>
+
     <p>
       Delete
       <span
@@ -20,8 +23,6 @@
     <input type="hidden" name="name" value="<%= locals.deleteFields?.name %>" />
   
     <input type="hidden" name="returnTo" />
-
-    <%- include('../form-errors', { errors: locals.deleteErrors }) %>
 
     <div class="cancel-confirm-button-row">
       <button
