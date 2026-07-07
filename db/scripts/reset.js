@@ -83,6 +83,7 @@ async function createRecordsTable(client) {
         ),
       quantity integer NOT NULL
         DEFAULT ${DEFAULT_RECORD_QUANTITY}
+        CHECK (quantity >= 0)
     )
   `);
 }
