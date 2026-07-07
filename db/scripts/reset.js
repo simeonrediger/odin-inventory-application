@@ -1,3 +1,10 @@
+import {
+  MAX_GENRE_NAME_LENGTH,
+  MAX_ARTIST_NAME_LENGTH,
+  MAX_RECORD_NAME_LENGTH,
+  DEFAULT_RECORD_QUANTITY,
+} from '../../domains/constants.js';
+
 export default async function reset(client) {
   await deleteAll(client);
   await createDomains(client);
@@ -35,7 +42,7 @@ async function createGenresTable(client) {
     CREATE TABLE genres (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       name trimmed_nonblank_text NOT NULL UNIQUE
-        CHECK (length(name) <= 100)
+        CHECK (length(name) <= ${MAX_GENRE_NAME_LENGTH})
     )
   `);
 }
@@ -45,7 +52,7 @@ async function createArtistsTable(client) {
     CREATE TABLE artists (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       name trimmed_nonblank_text NOT NULL UNIQUE
-        CHECK (length(name) <= 100)
+        CHECK (length(name) <= ${MAX_ARTIST_NAME_LENGTH})
     )
   `);
 }
@@ -66,12 +73,12 @@ async function createRecordsTable(client) {
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       artist_id integer NOT NULL REFERENCES artists,
       name trimmed_nonblank_text NOT NULL
-        CHECK (length(name) <= 100),
+        CHECK (length(name) <= ${MAX_RECORD_NAME_LENGTH}),
       UNIQUE (artist_id, name),
       price bigint NOT NULL
         CHECK (price >= 0),
       quantity integer NOT NULL
-        DEFAULT 0
+        DEFAULT ${DEFAULT_RECORD_QUANTITY}
     )
   `);
 }
