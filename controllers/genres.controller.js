@@ -4,10 +4,3 @@ export async function getGenres(req, res) {
   const genres = await db.genres.find();
   res.render('genres', { pageName: 'Genres', genres });
 }
-
-export async function getGenreArtists(req, res) {
-  const { id } = req.params;
-  const genre = await db.genres.findById(id);
-  const artists = await db.artists.findByGenreId(id);
-  res.render('genre-artists', { pageName: genre.name, genre, artists });
-}

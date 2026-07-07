@@ -9,14 +9,3 @@ export async function find() {
   );
   return rows;
 }
-
-export async function findById(id) {
-  const { rows } = await pool.query(
-    `
-    SELECT * FROM genres
-    WHERE id = $1
-    `,
-    [id],
-  );
-  return rows[0];
-}

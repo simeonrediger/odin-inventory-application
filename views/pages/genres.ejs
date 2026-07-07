@@ -13,11 +13,7 @@
   <% if (genres.length > 0) { %>
     <ul>
       <% genres.forEach(genre => { %>
-        <li>
-          <a href="<%= getGenrePath(genre) %>">
-            <%= genre.name %>
-          </a>
-        </li>
+        <li><%= genre.name %></li>
       <% }); %>
     </ul>
   <% } else { %>
