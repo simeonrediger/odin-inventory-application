@@ -8,12 +8,12 @@ CREATE DOMAIN trimmed_nonblank_text AS text CHECK (
 
 CREATE TABLE genres (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name trimmed_nonblank_text NOT NULL UNIQUE
+  name trimmed_nonblank_text NOT NULL UNIQUE CHECK (length(name) <= 100)
 );
 
 CREATE TABLE artists (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name trimmed_nonblank_text NOT NULL UNIQUE
+  name trimmed_nonblank_text NOT NULL UNIQUE CHECK (length(name) <= 100)
 );
 
 CREATE TABLE genre_artists (
@@ -25,7 +25,7 @@ CREATE TABLE genre_artists (
 CREATE TABLE records (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   artist_id integer NOT NULL REFERENCES artists,
-  name trimmed_nonblank_text NOT NULL,
+  name trimmed_nonblank_text NOT NULL CHECK (length(name) <= 100),
   UNIQUE (artist_id, name),
   price bigint NOT NULL CHECK (price >= 0),
   quantity integer NOT NULL DEFAULT 0
