@@ -1,0 +1,61 @@
+<% if (artists.length > 0) { %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="artist-name">Artist</th>
+        <th scope="col" class="artist-genres">Genres</th>
+        <th scope="col" class="artist-records">Records</th>
+        <th scope="col" aria-label="Actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% artists.forEach(artist => { %>
+        <tr>
+          <th
+            scope="row"
+            class="artist-name"
+            title="<%= artist.name %>"
+          ><%= artist.name %></th>
+          <td class="artist-genres">
+            <ul>
+              <% artist.genres.forEach(genre => { %>
+                <li><%= genre.name %></li>
+              <% }); %>
+            </ul>
+          </td>
+          <td class="artist-records">
+            <ul>
+              <% artist.records.forEach(record => { %>
+                <li class="artist-record"><%= record.name %></li>
+              <% }); %>
+            </ul>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button
+                type="button"
+                data-action="start-update"
+                data-resource-id="<%= artist.id %>"
+                data-resource-name="<%= artist.name %>"
+                <%
+                  const genreIdsList = artist.genres
+                    .map(genre => genre.id).join(', ');
+                %>
+                data-resource-genreIds="<%= genreIdsList %>"
+                class="update-button"
+              >Edit</button>
+              <button
+                data-action="start-delete"
+                data-resource-id="<%= artist.id %>"
+                data-resource-name="<%= artist.name %>"
+                class="delete-button"
+              >Delete</button>
+            </div>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <p>No artists found</p>
+<% } %>

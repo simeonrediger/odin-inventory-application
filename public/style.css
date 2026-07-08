@@ -331,6 +331,9 @@ label:has(+ :required)::after {
   vertical-align: top;
 }
 
+.artist-name,
+.artist-genres,
+.artist-records,
 .record-name,
 .record-artist {
   text-align: start;
@@ -343,7 +346,8 @@ label:has(+ :required)::after {
   text-overflow: ellipsis;
 }
 
-:not(thead > tr) > .record-name {
+:not(thead > tr) > :is(.record-name),
+.artist-record {
   font-style: italic;
 }
 
