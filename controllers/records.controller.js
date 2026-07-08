@@ -1,4 +1,4 @@
-import { validationResult, matchedData } from 'express-validator';
+import { matchedData, validationResult } from 'express-validator';
 import db from '../db/queries.js';
 
 export function preserveRawQuery(req, res, next) {
