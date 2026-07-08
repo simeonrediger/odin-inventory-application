@@ -309,6 +309,13 @@ label:has(+ :required)::after {
   text-align: start;
 }
 
+.record-name,
+.record-artist {
+  max-width: 15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 :not(thead > tr) > .record-name {
   font-style: italic;
 }
