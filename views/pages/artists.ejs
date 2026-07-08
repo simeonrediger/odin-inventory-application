@@ -9,16 +9,5 @@
     </ol>
   </nav>
 </header>
-<main>
-  <% if (artists.length > 0) { %>
-    <ul>
-      <% artists.forEach(artist => { %>
-        <li><%= artist.name %></li>
-      <% }); %>
-    </ul>
-  <% } else { %>
-    <p>No artists found</p>
-  <% } %>
-</main>
 
 <%- include('../partials/layout-end') %>
