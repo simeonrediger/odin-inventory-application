@@ -104,7 +104,6 @@ body {
   background-color: var(--color-app-bg);
   color: var(--color-text);
   min-height: 100vh;
-  padding: 1rem 2rem;
 }
 
 a {
@@ -151,6 +150,14 @@ button {
 }
 
 /* App */
+.page-layout {
+  min-width: fit-content;
+  max-width: 64rem;
+
+  margin-inline: auto;
+  padding: 1rem 2rem;
+}
+
 header {
   margin-bottom: 0.75rem;
 
