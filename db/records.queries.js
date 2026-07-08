@@ -93,19 +93,6 @@ export async function findWithArtist({ genreId, artistId, name } = {}) {
   return rows;
 }
 
-export async function findByArtistId(artistId) {
-  const { rows } = await pool.query(
-    `
-    SELECT * FROM records
-    WHERE artist_id = $1
-    ORDER BY name
-    `,
-    [artistId],
-  );
-
-  return rows;
-}
-
 export async function create({ artistId, name, price, quantity }) {
   const parameters = [artistId, name, price];
 
