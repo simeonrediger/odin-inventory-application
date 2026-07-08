@@ -355,10 +355,6 @@ tbody .record-name {
   text-align: end;
 }
 
-.record-actions {
-  text-align: center;
-}
-
 .action-buttons {
   display: flex;
   gap: 0.5rem;

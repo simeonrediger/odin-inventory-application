@@ -6,7 +6,7 @@
         <th scope="col" class="record-artist">Artist</th>
         <th scope="col" class="record-price">Price</th>
         <th scope="col" class="record-quantity">Quantity</th>
-        <th scope="col" class="record-actions" aria-label="Actions"></th>
+        <th scope="col" aria-label="Actions"></th>
       </tr>
     </thead>
     <tbody>
@@ -25,7 +25,7 @@
           <td class="record-quantity">
             <%= addThousandsSeparators(record.quantity) %>
           </td>
-          <td class="record-actions">
+          <td>
             <div class="action-buttons">
               <button
                 type="button"
