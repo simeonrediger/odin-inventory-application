@@ -92,7 +92,13 @@ async function searchRecords(req) {
     locations: ['query'],
   });
   const records = queryIsValid(req)
-    ? await db.records.findWithArtist({ genreId, artistId, name })
+    ? await db.records.find({
+        genreId,
+        artistId,
+        name,
+        matchNameSubstring: true,
+        includeArtist: true,
+      })
     : [];
   return records;
 }

@@ -1,6 +1,12 @@
 import pool from './pool.js';
 
-export async function find({ artistId, name, includeArtist = false } = {}) {
+export async function find({
+  genreId,
+  artistId,
+  name,
+  matchNameSubstring = false,
+  includeArtist = false,
+} = {}) {
   const parameters = [];
   const filters = [];
 
@@ -19,19 +25,30 @@ export async function find({ artistId, name, includeArtist = false } = {}) {
     `;
   }
 
+  if (genreId !== undefined) {
+    parameters.push(genreId);
+    sql += `
+      INNER JOIN genre_artists
+        ON genre_artists.artist_id = artists.id
+    `;
+    filters.push(`genre_artists.genre_id = $${parameters.length}`);
+  }
+
   if (artistId !== undefined) {
     parameters.push(artistId);
     filters.push(`records.artist_id = $${parameters.length}`);
   }
 
   if (name !== undefined) {
-    parameters.push(name);
+    parameters.push(matchNameSubstring ? `%${name}%` : name);
     filters.push(`records.name ILIKE $${parameters.length}`);
   }
 
   if (filters.length > 0) {
     sql += ` WHERE ${filters.join(' AND ')}`;
   }
+
+  sql += ' ORDER BY records.name, artists.name';
 
   const { rows } = await pool.query(sql, parameters);
   return rows;
@@ -47,50 +64,6 @@ export async function findById(id) {
   );
 
   return rows[0];
-}
-
-export async function findWithArtist({ genreId, artistId, name } = {}) {
-  const parameters = [];
-  const filters = [];
-  let sql = `
-    SELECT
-      to_jsonb(artists) AS artist,
-      records.id,
-      records.name,
-      records.price,
-      records.quantity
-    FROM records
-    INNER JOIN artists
-      ON artists.id = records.artist_id
-  `;
-
-  if (genreId !== undefined) {
-    parameters.push(genreId);
-    sql += `
-      INNER JOIN genre_artists
-        ON genre_artists.artist_id = artists.id
-    `;
-    filters.push(`genre_artists.genre_id = $${parameters.length}`);
-  }
-
-  if (artistId !== undefined) {
-    parameters.push(artistId);
-    filters.push(`artists.id = $${parameters.length}`);
-  }
-
-  if (name !== undefined) {
-    parameters.push(`%${name}%`);
-    filters.push(`records.name ILIKE $${parameters.length}`);
-  }
-
-  if (filters.length > 0) {
-    sql += ` WHERE ${filters.join(' AND ')}`;
-  }
-
-  sql += ' ORDER BY records.name, artists.name';
-
-  const { rows } = await pool.query(sql, parameters);
-  return rows;
 }
 
 export async function create({ artistId, name, price, quantity }) {
