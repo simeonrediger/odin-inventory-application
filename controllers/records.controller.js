@@ -54,7 +54,7 @@ export async function updateRecord(req, res) {
     });
   }
 
-  await db.records.updateById(record);
+  await db.records.updateById(id, record);
   res.redirect(303, returnTo);
 }
 
