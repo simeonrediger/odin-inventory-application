@@ -6,12 +6,13 @@ import {
   matchedData,
 } from 'express-validator';
 
-import db from '../db/queries.js';
 import {
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
   MAX_RECORD_QUANTITY,
 } from '../domains/constants.js';
+
+import db from '../db/queries.js';
 
 export const validateParams = [
   param('id')
