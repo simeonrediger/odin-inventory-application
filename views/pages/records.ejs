@@ -9,14 +9,18 @@
     </ol>
   </nav>
 </header>
-<main>
+
+<aside class="sidebar">
   <button type="button" data-action="start-create" class="create-button">
     + New record
   </button>
+  <%- include('../partials/records/records.search-form.ejs') %>
+</aside>
+
+<main class="main-content">
   <%- include('../partials/records/records.create-modal.ejs') %>
   <%- include('../partials/records/records.update-modal.ejs') %>
   <%- include('../partials/records/records.delete-modal.ejs') %>
-  <%- include('../partials/records/records.search-form.ejs') %>
   <%- include('../partials/records/records.list.ejs') %>
 </main>
 

@@ -4,7 +4,7 @@
   method="get"
   class="search-form"
 >
-  <h2 class="fill-grid-row">Search records</h2>
+  <h2 class="search-form-heading">Search records</h2>
 
   <label for="search-genre-id">Genre</label>
   <select name="genreId" id="search-genre-id">
@@ -33,12 +33,6 @@
       </option>
     <% } %>
   </select>
-  <button
-    type="button"
-    data-action="clear-field"
-    data-target="genreId"
-    class="search-clear-button"
-  >Clear</button>
 
   <label for="search-artist-id">Artist</label>
   <select name="artistId" id="search-artist-id">
@@ -67,12 +61,6 @@
       </option>
     <% } %>
   </select>
-  <button
-    type="button"
-    data-action="clear-field"
-    data-target="artistId"
-    class="search-clear-button"
-  >Clear</button>
 
   <label for="search-record-name">Name</label>
   <input
@@ -81,12 +69,6 @@
     id="search-record-name"
     value="<%= rawQuery.name %>"
   />
-  <button
-    type="button"
-    data-action="clear-field"
-    data-target="name"
-    class="search-clear-button"
-  >Clear</button>
 
   <button type="submit" class="search-submit-button">Search records</button>
   <a
