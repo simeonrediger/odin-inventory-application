@@ -19,6 +19,7 @@ const siteLocals = {
   MAX_RECORD_QUANTITY,
   centsToDollars,
   formatPrice,
+  addThousandsSeparators,
   getHomePath() {
     return '/';
   },
@@ -43,14 +44,25 @@ const siteLocals = {
 function formatPrice(price) {
   const dollars = String(centsToDollars(price));
   let [wholeDollars, cents] = dollars.split('.');
-
-  for (let i = wholeDollars.length - 3; i > 0; i -= 3) {
-    wholeDollars = wholeDollars.slice(0, i) + ',' + wholeDollars.slice(i);
-  }
-
+  wholeDollars = addThousandsSeparators(wholeDollars);
   return `$${wholeDollars}.${cents}`;
 }
 
 function centsToDollars(n) {
   return Number(n / 100).toFixed(2);
+}
+
+function addThousandsSeparators(integer) {
+  let formattedInteger = String(integer);
+
+  if (formattedInteger.includes('.')) {
+    throw new TypeError(`Expected an integer. Got ${integer}`);
+  }
+
+  for (let i = formattedInteger.length - 3; i > 0; i -= 3) {
+    formattedInteger =
+      formattedInteger.slice(0, i) + ',' + formattedInteger.slice(i);
+  }
+
+  return formattedInteger;
 }
