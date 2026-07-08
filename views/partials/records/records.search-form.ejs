@@ -70,10 +70,12 @@
     value="<%= rawQuery.name %>"
   />
 
+  <div class="search-form-actions">
+    <a
+      href="<%= getRecordsPath() %>"
+      data-action="clear-form"
+      class="search-reset-button button"
+    >Reset</a>
   <button type="submit" class="search-submit-button">Search records</button>
-  <a
-    href="<%= getRecordsPath() %>"
-    data-action="clear-form"
-    class="search-reset-button"
-  >Reset</a>
+  </div>
 </form>

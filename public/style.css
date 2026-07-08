@@ -62,10 +62,11 @@ html {
   --white: #fff;
 
   --pale-light-red: #f88;
+  --pale-light-red-faded: #f888;
   --red: #a00;
   --pale-blue: #0077ff;
   --pale-light-blue: #a4cefe;
-  --pale-light-blue-faded: #a4cefe66;
+  --pale-light-blue-faded: #a4cefe88;
   --transparent-black: #0009;
 
   --color-app-bg: var(--dark-gray-15);
@@ -90,11 +91,12 @@ html {
   --color-delete-button-bg: transparent;
   --color-delete-button-text: var(--color-error);
   --color-submit-delete-button-bg: var(--red);
+  --color-search-reset-button-bg: transparent;
+  --color-search-reset-button-text: var(--color-error);
+  --color-search-reset-button-border: var(--pale-light-red-faded);
   --color-search-submit-button-bg: transparent;
   --color-search-submit-button-text: var(--color-link);
   --color-search-submit-button-border: var(--pale-light-blue-faded);
-  --color-search-reset-button-bg: transparent;
-  --color-search-reset-button-text: var(--color-error);
 }
 
 /* Base */
@@ -116,7 +118,8 @@ a:hover {
 input,
 textarea,
 select,
-button {
+button,
+.button {
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
 }
@@ -291,15 +294,23 @@ label:has(+ :required)::after {
   margin-bottom: 0.25rem;
 }
 
+.search-form-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
 .search-submit-button {
   background-color: var(--color-search-submit-button-bg);
   border: 1px solid var(--color-search-submit-button-border);
   border-radius: 0.5rem;
   color: var(--color-search-submit-button-text);
+  flex-grow: 1;
 }
 
 .search-reset-button {
   background-color: var(--color-search-reset-button-bg);
+  border: 1px solid var(--color-search-reset-button-border);
+  border-radius: 0.5rem;
   color: var(--color-search-reset-button-text);
 }
 
