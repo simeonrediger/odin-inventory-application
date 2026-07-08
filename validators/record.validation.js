@@ -65,7 +65,7 @@ export const validateRecord = [
     ),
 ];
 
-export const validateName = [body('name').trim()];
+export const validateNameToDelete = [body('name').trim()];
 
 async function recordIdExists(id) {
   const record = await db.records.findById(id);
