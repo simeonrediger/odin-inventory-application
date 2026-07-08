@@ -207,6 +207,12 @@ header {
   gap: 0.125rem;
 }
 
+.modal-form p {
+  max-width: 22rem;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
 label:has(+ :required)::after {
   content: '*';
   color: var(--color-required);
