@@ -19,8 +19,10 @@ export async function find({
   sql += ' FROM records';
 
   if (includeArtist) {
+    const join = artistId === undefined ? 'LEFT JOIN' : 'INNER JOIN';
+
     sql += `
-      INNER JOIN artists
+      ${join} artists
         ON artists.id = records.artist_id
     `;
   }
