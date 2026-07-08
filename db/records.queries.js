@@ -19,7 +19,7 @@ export async function find({
   sql += ' FROM records';
 
   if (includeArtist) {
-    const join = artistId === undefined ? 'LEFT JOIN' : 'INNER JOIN';
+    const join = artistId ? 'INNER JOIN' : 'LEFT JOIN';
 
     sql += `
       ${join} artists
@@ -27,7 +27,7 @@ export async function find({
     `;
   }
 
-  if (genreId !== undefined) {
+  if (genreId) {
     parameters.push(genreId);
     sql += `
       INNER JOIN genre_artists
@@ -36,12 +36,12 @@ export async function find({
     filters.push(`genre_artists.genre_id = $${parameters.length}`);
   }
 
-  if (artistId !== undefined) {
+  if (artistId) {
     parameters.push(artistId);
     filters.push(`records.artist_id = $${parameters.length}`);
   }
 
-  if (name !== undefined) {
+  if (name) {
     parameters.push(matchNameSubstring ? `%${name}%` : name);
     filters.push(`records.name ILIKE $${parameters.length}`);
   }
@@ -71,16 +71,16 @@ export async function findById(id) {
 export async function create({ artistId, name, price, quantity }) {
   const parameters = [artistId, name, price];
 
-  if (quantity !== undefined) {
+  if (quantity) {
     parameters.push(quantity);
   }
 
   await pool.query(
     `
     INSERT INTO records
-      (artist_id, name, price${quantity === undefined ? ')' : ', quantity)'}
+      (artist_id, name, price${quantity ? ', quantity)' : ')'}
     VALUES
-      ($1, $2, $3${quantity === undefined ? ')' : ', $4)'}
+      ($1, $2, $3${quantity ? ', $4)' : ')'}
     `,
     parameters,
   );

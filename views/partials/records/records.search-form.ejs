@@ -11,7 +11,7 @@
     <% let genreSelected = false; %>
     <option
       value=""
-      <% if (rawQuery.genreId === undefined) {
+      <% if (!rawQuery.genreId) {
         genreSelected = true;
       %>
         selected
@@ -39,7 +39,7 @@
     <% let artistSelected = false; %>
     <option
       value=""
-      <% if (rawQuery.artistId === undefined) {
+      <% if (!rawQuery.artistId) {
         artistSelected = true;
       %>
         selected
