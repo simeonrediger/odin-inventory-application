@@ -78,9 +78,9 @@ export async function create({ artistId, name, price, quantity }) {
   await pool.query(
     `
     INSERT INTO records
-      (artist_id, name, price${quantity ? ', quantity)' : ')'}
+      (artist_id, name, price${quantity ? ', quantity' : ''})
     VALUES
-      ($1, $2, $3${quantity ? ', $4)' : ')'}
+      ($1, $2, $3${quantity ? ', $4' : ''})
     `,
     parameters,
   );
