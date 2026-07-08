@@ -1,11 +1,6 @@
 import { matchedData, validationResult } from 'express-validator';
 import db from '../db/queries.js';
 
-export function preserveRawQuery(req, res, next) {
-  res.locals.rawQuery = req.query;
-  next();
-}
-
 export async function getRecords(req, res) {
   const { records, genres, artists } = await getPageData(req);
   res.render('records', { pageName: 'Records', records, genres, artists });

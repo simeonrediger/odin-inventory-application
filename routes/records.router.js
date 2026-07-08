@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import * as recordsController from '../controllers/records.controller.js';
 
+import preserveRawQuery from '../middleware/preserve-raw-query.js';
+
 import {
   validateAdminPassword,
   validateReturnUrl,
@@ -17,14 +19,10 @@ const recordsRouter = Router();
 
 recordsRouter
   .route('/')
-  .get(
-    recordsController.preserveRawQuery,
-    validateQuery,
-    recordsController.getRecords,
-  )
+  .get(preserveRawQuery, validateQuery, recordsController.getRecords)
   .post(
     validateReturnUrl,
-    recordsController.preserveRawQuery,
+    preserveRawQuery,
     validateQuery,
     validateRecord,
     recordsController.createRecord,
@@ -36,7 +34,7 @@ recordsRouter
     validateAdminPassword,
     validateParams,
     validateReturnUrl,
-    recordsController.preserveRawQuery,
+    preserveRawQuery,
     validateQuery,
   )
   .put(validateRecord, recordsController.updateRecord)
