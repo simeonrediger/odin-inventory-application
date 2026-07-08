@@ -1,5 +1,10 @@
-import { matchedData, validationResult } from 'express-validator';
+import { matchedData } from 'express-validator';
 import db from '../db/queries.js';
+
+import {
+  getErrorsFromLocation,
+  queryIsValid,
+} from '../utils/validation-utils.js';
 
 export async function getRecords(req, res) {
   const { records, genres, artists } = await getPageData(req);
@@ -96,16 +101,4 @@ async function searchRecords(req) {
         includeArtist: true,
       })
     : [];
-}
-
-function getErrorsFromLocation(req, { locations }) {
-  return validationResult(req)
-    .array()
-    .filter(error => locations.includes(error.location))
-    .map(error => error.msg);
-}
-
-function queryIsValid(req) {
-  const errors = getErrorsFromLocation(req, { locations: ['query'] });
-  return errors.length === 0;
 }
