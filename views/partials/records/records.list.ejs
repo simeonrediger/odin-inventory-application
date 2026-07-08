@@ -12,8 +12,15 @@
   <tbody>
     <% records.forEach(record => { %>
       <tr>
-        <th scope="row" class="record-name"><%= record.name %></th>
-        <td class="record-artist"><%= record.artist.name %></td>
+        <th
+          scope="row"
+          class="record-name"
+          title="<%= record.name %>"
+        ><%= record.name %></th>
+        <td
+          class="record-artist"
+          title="<%= record.artist.name %>"
+        ><%= record.artist.name %></td>
         <td class="record-price"><%= formatPrice(record.price) %></td>
         <td class="record-quantity">
           <%= addThousandsSeparators(record.quantity) %>
