@@ -32,8 +32,8 @@ const siteLocals = {
   getArtistsPath() {
     return '/artists';
   },
-  getArtistPath({ id }) {
-    return `/artists/${id}`;
+  getArtistPath({ id } = {}) {
+    return id == null ? '/artists' : `/artists/${id}`;
   },
   getRecordsPath() {
     return '/records';
