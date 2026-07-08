@@ -199,6 +199,7 @@ header {
 }
 
 .modal-form {
+  max-width: 25rem;
   padding: 1.5rem;
 
   display: flex;
