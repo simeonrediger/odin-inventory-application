@@ -15,7 +15,9 @@
         <th scope="row" class="record-name"><%= record.name %></th>
         <td class="record-artist"><%= record.artist.name %></td>
         <td class="record-price"><%= formatPrice(record.price) %></td>
-        <td class="record-quantity"><%= record.quantity %></td>
+        <td class="record-quantity">
+          <%= addThousandsSeparators(record.quantity) %>
+        </td>
         <td class="record-actions">
           <div class="action-buttons">
             <button
