@@ -1,54 +1,54 @@
 <% if (records.length > 0) { %>
   <table class="records-table">
-  <thead>
-    <tr>
-      <th scope="col" class="record-name">Record</th>
-      <th scope="col" class="record-artist">Artist</th>
-      <th scope="col" class="record-price">Price</th>
-      <th scope="col" class="record-quantity">Quantity</th>
-      <th scope="col" class="record-actions" aria-label="Actions"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% records.forEach(record => { %>
+    <thead>
       <tr>
-        <th
-          scope="row"
-          class="record-name"
-          title="<%= record.name %>"
-        ><%= record.name %></th>
-        <td
-          class="record-artist"
-          title="<%= record.artist.name %>"
-        ><%= record.artist.name %></td>
-        <td class="record-price"><%= formatPrice(record.price) %></td>
-        <td class="record-quantity">
-          <%= addThousandsSeparators(record.quantity) %>
-        </td>
-        <td class="record-actions">
-          <div class="action-buttons">
-            <button
-              type="button"
-              data-action="start-update"
-              data-resource-id="<%= record.id %>"
-              data-resource-artist-id="<%= record.artist.id %>"
-              data-resource-name="<%= record.name %>"
-              data-resource-price="<%= centsToDollars(record.price) %>"
-              data-resource-quantity="<%= record.quantity %>"
-              class="update-button"
-            >Edit</button>
-            <button
-              data-action="start-delete"
-              data-resource-id="<%= record.id %>"
-              data-resource-name="<%= record.name %>"
-              class="delete-button"
-            >Delete</button>
-          </div>
-        </td>
+        <th scope="col" class="record-name">Record</th>
+        <th scope="col" class="record-artist">Artist</th>
+        <th scope="col" class="record-price">Price</th>
+        <th scope="col" class="record-quantity">Quantity</th>
+        <th scope="col" class="record-actions" aria-label="Actions"></th>
       </tr>
-    <% }); %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% records.forEach(record => { %>
+        <tr>
+          <th
+            scope="row"
+            class="record-name"
+            title="<%= record.name %>"
+          ><%= record.name %></th>
+          <td
+            class="record-artist"
+            title="<%= record.artist.name %>"
+          ><%= record.artist.name %></td>
+          <td class="record-price"><%= formatPrice(record.price) %></td>
+          <td class="record-quantity">
+            <%= addThousandsSeparators(record.quantity) %>
+          </td>
+          <td class="record-actions">
+            <div class="action-buttons">
+              <button
+                type="button"
+                data-action="start-update"
+                data-resource-id="<%= record.id %>"
+                data-resource-artist-id="<%= record.artist.id %>"
+                data-resource-name="<%= record.name %>"
+                data-resource-price="<%= centsToDollars(record.price) %>"
+                data-resource-quantity="<%= record.quantity %>"
+                class="update-button"
+              >Edit</button>
+              <button
+                data-action="start-delete"
+                data-resource-id="<%= record.id %>"
+                data-resource-name="<%= record.name %>"
+                class="delete-button"
+              >Delete</button>
+            </div>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
 <% } else { %>
   <p>No records found</p>
 <% } %>
