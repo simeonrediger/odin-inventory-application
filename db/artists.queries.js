@@ -20,7 +20,10 @@ export async function find({
     sql += `
       LEFT JOIN LATERAL (
         SELECT COALESCE(
-          jsonb_agg(to_jsonb(genres) ORDER BY genres.name),
+          jsonb_agg(
+            to_jsonb(genres)
+            ORDER BY genres.name
+          ),
           '[]'::jsonb
         ) AS genres
         FROM genre_artists
@@ -35,7 +38,10 @@ export async function find({
     sql += `
       LEFT JOIN LATERAL (
         SELECT COALESCE(
-          jsonb_agg(to_jsonb(records) ORDER BY records.name),
+          jsonb_agg(
+            to_jsonb(records)
+            ORDER BY records.name
+          ),
           '[]'::jsonb
         ) AS records
         FROM records
