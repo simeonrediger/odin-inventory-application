@@ -86,7 +86,8 @@ async function searchRecords(req) {
   const { genreId, artistId, name } = matchedData(req, {
     locations: ['query'],
   });
-  const records = queryIsValid(req)
+
+  return queryIsValid(req)
     ? await db.records.find({
         genreId,
         artistId,
@@ -95,7 +96,6 @@ async function searchRecords(req) {
         includeArtist: true,
       })
     : [];
-  return records;
 }
 
 function getErrorsFromLocation(req, { locations }) {
