@@ -1,7 +1,7 @@
 import { matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
-import { queryIsValid } from '../utils/validation-utils.js';
+import { queryIsValid } from '../validators/validation-utils.js';
 
 export async function getArtists(req, res) {
   const { artists, genres } = await getPageData(req);

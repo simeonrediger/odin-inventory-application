@@ -4,7 +4,7 @@ import db from '../db/queries.js';
 import {
   getErrorsFromLocation,
   queryIsValid,
-} from '../utils/validation-utils.js';
+} from '../validators/validation-utils.js';
 
 export async function getRecords(req, res) {
   const { records, genres, artists } = await getPageData(req);
