@@ -12,8 +12,31 @@ const modals = {
   delete: modalForms.delete?.closest('dialog'),
 };
 
+const resource = populateResourceProperties();
 bindEvents();
 openModalIfFormInvalid();
+
+function populateResourceProperties() {
+  const resourceType = document.body.dataset.resourceType;
+  const resource = {};
+
+  switch (resourceType) {
+    case 'record':
+      resource.getPath = getRecordPath;
+      resource.getDataFromButton = getRecordDataFromButton;
+      resource.populateUpdateForm = populateRecordToUpdateForm;
+      resource.populateDeleteForm = populateRecordToDeleteForm;
+      resource.populateContext = populateRecordContext;
+      break;
+    case undefined:
+    case '':
+      return;
+    default:
+      throw new TypeError(`Unexpected resource type: ${resourceType}`);
+  }
+
+  return resource;
+}
 
 function bindEvents() {
   document.addEventListener('click', handleClick);
@@ -71,35 +94,30 @@ function handleSubmit(event) {
 function prepareCreateForm() {
   resetForm(modalForms.create);
   populateReturnUrl(modalForms.create);
-  modalForms.create.action = getRootRelativeUrl({ path: getRecordPath() });
+  modalForms.create.action = getRootRelativeUrl({ path: resource.getPath() });
 }
 
 function prepareUpdateForm(updateButton) {
   resetForm(modalForms.update);
-  const record = getRecordDataFromButton(updateButton);
-
-  modalForms.update.elements.artistId.value = record.artistId;
-  modalForms.update.elements.name.value = record.name;
-  modalForms.update.elements.price.value = record.price;
-  modalForms.update.elements.quantity.value = record.quantity;
+  const resourceData = resource.getDataFromButton(updateButton);
+  resource.populateUpdateForm(modalForms.update, resourceData);
   populateReturnUrl(modalForms.update);
 
   modalForms.update.action = getRootRelativeUrl({
-    path: getRecordPath(record),
+    path: resource.getPath(resourceData),
     searchParams: { _method: 'PUT' },
   });
 }
 
 function prepareDeleteForm(deleteButton) {
   resetForm(modalForms.delete);
-  const record = getRecordDataFromButton(deleteButton);
-  populateContext(record);
-
-  modalForms.delete.elements.name.value = record.name;
+  const resourceData = resource.getDataFromButton(deleteButton);
+  resource.populateContext(resourceData);
+  resource.populateDeleteForm(modalForms.delete, resourceData);
   populateReturnUrl(modalForms.delete);
 
   modalForms.delete.action = getRootRelativeUrl({
-    path: getRecordPath(record),
+    path: resource.getPath(resourceData),
     searchParams: { _method: 'DELETE' },
   });
 }
@@ -134,15 +152,9 @@ function omitEmptyFields(event) {
   }
 }
 
-function populateContext(record) {
-  document
-    .querySelectorAll('[data-context="record-name"]')
-    .forEach(element => (element.textContent = record.name));
-}
-
 function populateReturnUrl(form) {
   form.elements.returnTo.value = getRootRelativeUrl({
-    path: getRecordPath(),
+    path: resource.getPath(),
   });
 }
 
@@ -154,19 +166,6 @@ function resetForm(form) {
   }
 
   form.querySelector('[data-role="errors"]')?.remove();
-}
-
-function getRecordDataFromButton(button) {
-  const {
-    resourceId: id,
-    resourceArtistId: artistId,
-    resourceName: name,
-    resourcePrice: price,
-    resourceQuantity: quantity,
-  } = button.dataset;
-
-  const record = { id, artistId, name, price, quantity };
-  return record;
 }
 
 function getRootRelativeUrl({ path, searchParams = {} }) {
@@ -184,4 +183,34 @@ function getRootRelativeUrl({ path, searchParams = {} }) {
 
   url.hash = location.hash;
   return url.pathname + url.search + url.hash;
+}
+
+function getRecordDataFromButton(button) {
+  const {
+    resourceId: id,
+    resourceArtistId: artistId,
+    resourceName: name,
+    resourcePrice: price,
+    resourceQuantity: quantity,
+  } = button.dataset;
+
+  const record = { id, artistId, name, price, quantity };
+  return record;
+}
+
+function populateRecordToUpdateForm(form, record) {
+  form.elements.artistId.value = record.artistId;
+  form.elements.name.value = record.name;
+  form.elements.price.value = record.price;
+  form.elements.quantity.value = record.quantity;
+}
+
+function populateRecordToDeleteForm(form, record) {
+  form.elements.name.value = record.name;
+}
+
+function populateRecordContext(record) {
+  document
+    .querySelectorAll('[data-context="record-name"]')
+    .forEach(element => (element.textContent = record.name));
 }
