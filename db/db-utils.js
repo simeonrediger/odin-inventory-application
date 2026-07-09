@@ -19,11 +19,7 @@ export async function transact({ client, pool }, transaction) {
     await client.query('ROLLBACK');
     throw error;
   } finally {
-    if (pool) {
-      await client.release();
-    } else {
-      await client.end();
-    }
+    pool ? await client.release() : await client.end();
   }
 
   return result;
