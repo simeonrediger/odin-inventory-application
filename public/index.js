@@ -23,6 +23,8 @@ function populateResourceProperties() {
   switch (resourceType) {
     case 'artist':
       resource.getPath = getArtistPath;
+      resource.getDataFromButton = getArtistDataFromButton;
+      resource.populateUpdateForm = populateArtistToUpdateForm;
       break;
     case 'record':
       resource.getPath = getRecordPath;
@@ -201,11 +203,28 @@ function getRecordDataFromButton(button) {
   return record;
 }
 
+function getArtistDataFromButton(button) {
+  const {
+    resourceId: id,
+    resourceName: name,
+    resourceGenreIds: genreIdsList,
+  } = button.dataset;
+
+  const genreIds = genreIdsList.split(', ');
+  const artist = { id, name, genreIds };
+  return artist;
+}
+
 function populateRecordToUpdateForm(form, record) {
   form.elements.artistId.value = record.artistId;
   form.elements.name.value = record.name;
   form.elements.price.value = record.price;
   form.elements.quantity.value = record.quantity;
+}
+
+function populateArtistToUpdateForm(form, artist) {
+  form.elements.name.value = artist.name;
+  selectMultiple(form.elements.genreIds, artist.genreIds);
 }
 
 function populateRecordToDeleteForm(form, record) {
@@ -216,4 +235,13 @@ function populateRecordContext(record) {
   document
     .querySelectorAll('[data-context="record-name"]')
     .forEach(element => (element.textContent = record.name));
+}
+
+function selectMultiple(selectBox, values) {
+  values.forEach(value => {
+    const option = Array.from(selectBox.options).find(
+      option => option.value === value,
+    );
+    option.selected = true;
+  });
 }

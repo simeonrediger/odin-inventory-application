@@ -1,0 +1,54 @@
+<dialog class="modal" aria-labelledby="update-form-heading">
+  <form
+    name="update"
+    method="post"
+    <% if (locals.updateErrors?.length > 0) { %> data-invalid <% } %>
+    class="modal-form"
+  >
+    <h2 id="update-form-heading">Edit artist</h2>
+
+    <%- include('../form-errors', { errors: locals.updateErrors }) %>
+  
+    <label for="update-name">Name</label>
+    <input
+      type="text"
+      name="name"
+      id="update-name"
+      value="<%= locals.updateFields?.name %>"
+      required
+      maxlength="<%= MAX_ARTIST_NAME_LENGTH %>"
+    />
+  
+    <label for="update-genre-ids">Genres</label>
+    <select name="genreIds" id="update-genre-ids" multiple>
+      <option
+        value=""
+        <% if (!locals.updateFields?.genreIds) { %> selected <% } %>
+        disabled
+        hidden
+      >Select one or more</option>
+      <% genres.forEach(genre => { %>
+        <option
+          value="<%= genre.id %>"
+          <% if (locals.updateFields?.genreIds?.includes(genre.id)) { %>
+            selected
+          <% } %>
+        ><%= genre.name %></option>
+      <% }); %>
+    </select>
+  
+    <label for="admin-password">Admin password</label>
+    <input type="password" name="adminPassword" id="admin-password" required />
+
+    <input type="hidden" name="returnTo" />
+
+    <div class="cancel-confirm-button-row">
+      <button
+        type="button"
+        data-action="cancel-update"
+        class="cancel-button"
+      >Cancel</button>
+      <button type="submit">Update artist</button>
+    </div>
+  </form>
+</dialog>

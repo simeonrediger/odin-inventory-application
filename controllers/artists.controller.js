@@ -33,6 +33,29 @@ export async function createArtist(req, res) {
   res.redirect(303, returnTo);
 }
 
+export async function updateArtist(req, res) {
+  const { id } = matchedData(req, { locations: ['params'] });
+  const { name, genreIds, returnTo } = matchedData(req, {
+    locations: ['body'],
+  });
+  const artist = { id, name, genreIds };
+  const errors = getErrorsFromLocation(req, { locations: ['params', 'body'] });
+
+  if (errors.length !== 0) {
+    const { artists, genres } = await getPageData(req);
+    return res.status(400).render('artists', {
+      pageName: 'Artists',
+      artists,
+      genres,
+      updateFields: artist,
+      updateErrors: errors,
+    });
+  }
+
+  await db.artists.updateById(id, artist);
+  res.redirect(303, returnTo);
+}
+
 async function getPageData(req) {
   const artists = await searchArtists(req);
   const genres = await db.genres.find();

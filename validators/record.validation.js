@@ -13,6 +13,7 @@ import {
 } from '../domains/constants.js';
 
 import db from '../db/queries.js';
+import { artistIdExists } from './artist.validation.js';
 
 export const validateParams = [
   param('id')
@@ -72,14 +73,6 @@ async function recordIdExists(id) {
 
   if (!record) {
     throw new Error(`Record ID does not exist: ${id}`);
-  }
-}
-
-async function artistIdExists(artistId) {
-  const artist = await db.artists.findById(artistId);
-
-  if (!artist) {
-    throw new Error(`Artist ID does not exist: ${artistId}`);
   }
 }
 

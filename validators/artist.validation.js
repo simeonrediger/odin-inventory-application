@@ -1,6 +1,13 @@
-import { query, body, matchedData } from 'express-validator';
+import { param, query, body, matchedData } from 'express-validator';
 import { MAX_ARTIST_NAME_LENGTH } from '../domains/constants.js';
 import db from '../db/queries.js';
+
+export const validateParams = [
+  param('id')
+    .isInt({ min: 1 })
+    .withMessage('Artist ID must be a positive integer')
+    .custom(artistIdExists),
+];
 
 export const validateQuery = [
   query('genreId').optional().isInt({ min: 1 }),
@@ -21,6 +28,14 @@ export const validateArtist = [
     .custom(nameIsUnique),
   body('genreIds').toArray().custom(allIntegers).bail().custom(genreIdsExist),
 ];
+
+export async function artistIdExists(id) {
+  const artist = await db.artists.findById(id);
+
+  if (!artist) {
+    throw new Error(`Artist ID does not exist: ${id}`);
+  }
+}
 
 async function nameIsUnique(name, { req }) {
   const { artistId } = matchedData(req, { locations: ['body'] });

@@ -133,3 +133,36 @@ export async function create({ name, genreIds }) {
     }
   });
 }
+
+export async function updateById(id, { name, genreIds }) {
+  await transact({ pool }, async client => {
+    await pool.query(
+      `
+      UPDATE artists
+      SET name = $2
+      WHERE id = $1
+      `,
+      [id, name],
+    );
+
+    await pool.query(
+      `
+      DELETE FROM genre_artists
+      WHERE artist_id = $1
+        AND NOT (genre_id = ANY($2::int[]))
+      `,
+      [id, genreIds],
+    );
+
+    await pool.query(
+      `
+      INSERT INTO genre_artists
+        (genre_id, artist_id)
+      SELECT genre_id, $1
+      FROM unnest($2::int[]) AS genre_id
+      ON CONFLICT (genre_id, artist_id) DO NOTHING
+      `,
+      [id, genreIds],
+    );
+  });
+}
