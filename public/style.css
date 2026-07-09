@@ -345,6 +345,9 @@ label:has(+ :required)::after {
   text-align: start;
 }
 
+.artist-name,
+.artist-genres li,
+.artist-records li,
 .record-name,
 .record-artist {
   max-width: 10rem;

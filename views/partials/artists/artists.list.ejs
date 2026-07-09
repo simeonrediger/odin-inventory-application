@@ -19,14 +19,17 @@
           <td class="artist-genres">
             <ul>
               <% artist.genres.forEach(genre => { %>
-                <li><%= genre.name %></li>
+                <li title="<%= genre.name %>"><%= genre.name %></li>
               <% }); %>
             </ul>
           </td>
           <td class="artist-records">
             <ul class="artist-records-list">
               <% artist.records.forEach(record => { %>
-                <li class="artist-record"><%= record.name %></li>
+                <li
+                  class="artist-record"
+                  title="<%= record.name %>"
+                ><%= record.name %></li>
               <% }); %>
             </ul>
           </td>
