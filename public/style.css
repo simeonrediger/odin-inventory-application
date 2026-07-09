@@ -331,6 +331,7 @@ label:has(+ :required)::after {
   vertical-align: top;
 }
 
+.genre-artists-list,
 .artist-records-list {
   display: flex;
   flex-direction: column;

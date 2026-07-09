@@ -1,12 +1,35 @@
 import pool from './pool.js';
 
-export async function find() {
-  const { rows } = await pool.query(
-    `
-    SELECT * FROM genres
-    ORDER BY name
-    `,
-  );
+export async function find({ includeArtists = false }) {
+  let sql = 'SELECT genres.*';
+
+  if (includeArtists) {
+    sql += ', a.artists';
+  }
+
+  sql += ' FROM genres';
+
+  if (includeArtists) {
+    sql += `
+      LEFT JOIN LATERAL (
+        SELECT COALESCE(
+          jsonb_agg(
+            to_jsonb(artists)
+            ORDER BY artists.name
+          ),
+          '[]'::jsonb
+        ) AS artists
+        FROM genre_artists
+        INNER JOIN artists
+          ON artists.id = genre_artists.artist_id
+        WHERE genre_artists.genre_id = genres.id
+      ) AS a ON TRUE
+    `;
+  }
+
+  sql += ' ORDER BY genres.name';
+
+  const { rows } = await pool.query(sql);
   return rows;
 }
 

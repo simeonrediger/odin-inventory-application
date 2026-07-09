@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th scope="col" class="genre-name">Genre</th>
+        <th scope="col" class="genre-artists">Artists</th>
       </tr>
     </thead>
     <tbody>
@@ -13,6 +14,13 @@
             class="genre-name"
             title="<%= genre.name %>"
           ><%= genre.name %></th>
+          <td class="genre-artists">
+            <ul class="genre-artists-list">
+              <% genre.artists.forEach(artist => { %>
+                <li title="<%= artist.name %>"><%= artist.name %></li>
+              <% }); %>
+            </ul>
+          </td>
         </tr>
       <% }); %>
     </tbody>
