@@ -108,7 +108,7 @@ export async function findById(id) {
 }
 
 export async function create({ name, genreIds }) {
-  transact({ pool }, async client => {
+  await transact({ pool }, async client => {
     const {
       rows: [{ id }],
     } = await client.query(
