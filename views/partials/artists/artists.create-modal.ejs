@@ -1,0 +1,52 @@
+<dialog class="modal" aria-labelledby="create-form-heading">
+  <form
+    name="create"
+    action="<%= getArtistPath() %>"
+    method="post"
+    <% if (locals.createErrors?.length > 0) { %> data-invalid <% } %>
+    class="modal-form"
+  >
+    <h2 id="create-form-heading">New artist</h2>
+
+    <%- include('../form-errors', { errors: locals.createErrors }) %>
+
+    <label for="create-name">Name</label>
+    <input
+      type="text"
+      name="name"
+      id="create-name"
+      value="<%= locals.createFields?.name %>"
+      required
+      maxlength="<%= MAX_ARTIST_NAME_LENGTH %>"
+    />
+
+    <label for="create-genre-ids">Genres</label>
+    <select name="genreIds" id="create-genre-ids" multiple>
+      <option
+        value=""
+        <% if (!locals.createFields?.genreIds) { %> selected <% } %>
+        disabled
+        hidden
+      >Select one or more</option>
+      <% genres.forEach(genre => { %>
+        <option
+          value="<%= genre.id %>"
+          <% if (locals.createFields?.genreIds?.includes(genre.id)) { %>
+            selected
+          <% } %>
+        ><%= genre.name %></option>
+      <% }); %>
+    </select>
+
+    <input type="hidden" name="returnTo" />
+
+    <div class="cancel-confirm-button-row">
+      <button
+        type="button"
+        data-action="cancel-create"
+        class="cancel-button"
+      >Cancel</button>
+      <button type="submit">Create artist</button>
+    </div>
+  </form>
+</dialog>

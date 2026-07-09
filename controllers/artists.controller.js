@@ -1,11 +1,36 @@
 import { matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
-import { queryIsValid } from '../validators/validation-utils.js';
+import {
+  getErrorsFromLocation,
+  queryIsValid,
+} from '../validators/validation-utils.js';
 
 export async function getArtists(req, res) {
   const { artists, genres } = await getPageData(req);
   res.render('artists', { pageName: 'Artists', artists, genres });
+}
+
+export async function createArtist(req, res) {
+  const { name, genreIds, returnTo } = matchedData(req, {
+    locations: ['body'],
+  });
+  const artist = { name, genreIds };
+  const errors = getErrorsFromLocation(req, { locations: ['body'] });
+
+  if (errors.length !== 0) {
+    const { artists, genres } = await getPageData(req);
+    return res.status(400).render('artists', {
+      pageName: 'Artists',
+      artists,
+      genres,
+      createFields: artist,
+      createErrors: errors,
+    });
+  }
+
+  await db.artists.create(artist);
+  res.redirect(303, returnTo);
 }
 
 async function getPageData(req) {

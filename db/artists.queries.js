@@ -1,4 +1,5 @@
 import pool from './pool.js';
+import { transact } from './db-utils.js';
 
 export async function find({
   genreId,
@@ -104,4 +105,31 @@ export async function findById(id) {
   );
 
   return rows[0];
+}
+
+export async function create({ name, genreIds }) {
+  transact({ pool }, async client => {
+    const {
+      rows: [{ id }],
+    } = await client.query(
+      `
+      INSERT INTO artists (name)
+      VALUES ($1)
+      RETURNING id;
+      `,
+      [name],
+    );
+
+    if (genreIds?.length > 0) {
+      await client.query(
+        `
+        INSERT INTO genre_artists
+          (genre_id, artist_id)
+        SELECT genre_id, $1
+        FROM unnest($2::int[]) AS genre_id
+        `,
+        [id, genreIds],
+      );
+    }
+  });
 }

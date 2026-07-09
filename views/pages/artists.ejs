@@ -1,4 +1,4 @@
-<%- include('../partials/layout-start') %>
+<%- include('../partials/layout-start', { resourceType: 'artist' }) %>
 
 <header>
   <h1><%= siteName %></h1>
@@ -11,10 +11,14 @@
 </header>
 
 <aside class="sidebar">
+  <button type="button" data-action="start-create" class="create-button">
+    + New artist
+  </button>
   <%- include('../partials/artists/artists.search-form.ejs') %>
 </aside>
 
 <main class="main-content">
+  <%- include('../partials/artists/artists.create-modal.ejs') %>
   <%- include('../partials/artists/artists.list.ejs') %>
 </main>
 

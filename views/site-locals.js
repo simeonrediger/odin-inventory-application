@@ -1,10 +1,11 @@
 import {
+  MAX_ARTIST_NAME_LENGTH,
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
   DEFAULT_RECORD_QUANTITY,
   MAX_RECORD_QUANTITY,
 } from '../domains/constants.js';
-import { getRecordPath } from '../shared/formatting.js';
+import { getArtistPath, getRecordPath } from '../shared/formatting.js';
 
 export function assign(req, res, next) {
   Object.assign(res.locals, siteLocals);
@@ -13,6 +14,7 @@ export function assign(req, res, next) {
 
 const siteLocals = {
   siteName: 'Record Store',
+  MAX_ARTIST_NAME_LENGTH,
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
   DEFAULT_RECORD_QUANTITY,
@@ -32,9 +34,7 @@ const siteLocals = {
   getArtistsPath() {
     return '/artists';
   },
-  getArtistPath({ id } = {}) {
-    return id == null ? '/artists' : `/artists/${id}`;
-  },
+  getArtistPath,
   getRecordsPath() {
     return '/records';
   },
