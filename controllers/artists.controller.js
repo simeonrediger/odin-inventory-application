@@ -56,6 +56,27 @@ export async function updateArtist(req, res) {
   res.redirect(303, returnTo);
 }
 
+export async function deleteArtist(req, res) {
+  const { id } = matchedData(req, { locations: ['params'] });
+  const fields = matchedData(req, { locations: ['body'] });
+  const { returnTo } = fields;
+  const errors = getErrorsFromLocation(req, { locations: ['params', 'body'] });
+
+  if (errors.length !== 0) {
+    const { artists, genres } = await getPageData(req);
+    return res.status(400).render('artists', {
+      pageName: 'Artists',
+      artists,
+      genres,
+      deleteFields: fields,
+      deleteErrors: errors,
+    });
+  }
+
+  await db.artists.deleteById(id);
+  res.redirect(303, returnTo);
+}
+
 async function getPageData(req) {
   const artists = await searchArtists(req);
   const genres = await db.genres.find();

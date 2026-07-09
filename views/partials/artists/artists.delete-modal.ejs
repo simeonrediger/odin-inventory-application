@@ -1,0 +1,37 @@
+<dialog class="modal" aria-labelledby="delete-form-heading">
+  <form
+    name="delete"
+    method="post"
+    <% if (locals.deleteErrors?.length > 0) { %> data-invalid <% } %>
+    class="modal-form"
+  >
+    <h2 id="delete-form-heading">Delete artist</h2>
+
+    <%- include('../form-errors', { errors: locals.deleteErrors }) %>
+
+    <p>
+      Delete
+      <span
+        data-context="artist-name"
+        class="artist-name"
+      ><%= locals.deleteFields?.name || 'artist' %></span>
+      and all their records?
+    </p>
+
+    <label for="admin-password">Admin password</label>
+    <input type="password" name="adminPassword" id="admin-password" required />
+  
+    <input type="hidden" name="name" value="<%= locals.deleteFields?.name %>" />
+  
+    <input type="hidden" name="returnTo" />
+
+    <div class="cancel-confirm-button-row">
+      <button
+        type="button"
+        data-action="cancel-delete"
+        class="cancel-button"
+      >Cancel</button>
+      <button type="submit" class="delete-submit-button">Delete artist</button>
+    </div>
+  </form>
+</dialog>

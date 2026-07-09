@@ -25,6 +25,8 @@ function populateResourceProperties() {
       resource.getPath = getArtistPath;
       resource.getDataFromButton = getArtistDataFromButton;
       resource.populateUpdateForm = populateArtistToUpdateForm;
+      resource.populateDeleteForm = populateArtistToDeleteForm;
+      resource.populateContext = populateArtistContext;
       break;
     case 'record':
       resource.getPath = getRecordPath;
@@ -210,7 +212,7 @@ function getArtistDataFromButton(button) {
     resourceGenreIds: genreIdsList,
   } = button.dataset;
 
-  const genreIds = genreIdsList.split(', ');
+  const genreIds = genreIdsList?.split(', ');
   const artist = { id, name, genreIds };
   return artist;
 }
@@ -231,10 +233,20 @@ function populateRecordToDeleteForm(form, record) {
   form.elements.name.value = record.name;
 }
 
+function populateArtistToDeleteForm(form, artist) {
+  form.elements.name.value = artist.name;
+}
+
 function populateRecordContext(record) {
   document
     .querySelectorAll('[data-context="record-name"]')
     .forEach(element => (element.textContent = record.name));
+}
+
+function populateArtistContext(artist) {
+  document
+    .querySelectorAll('[data-context="artist-name"]')
+    .forEach(element => (element.textContent = artist.name));
 }
 
 function selectMultiple(selectBox, values) {

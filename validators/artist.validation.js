@@ -29,6 +29,8 @@ export const validateArtist = [
   body('genreIds').toArray().custom(allIntegers).bail().custom(genreIdsExist),
 ];
 
+export const validateNameToDelete = [body('name').trim()];
+
 export async function artistIdExists(id) {
   const artist = await db.artists.findById(id);
 

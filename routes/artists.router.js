@@ -12,6 +12,7 @@ import {
   validateParams,
   validateQuery,
   validateArtist,
+  validateNameToDelete,
 } from '../validators/artist.validation.js';
 
 const artistsRouter = Router();
@@ -27,15 +28,16 @@ artistsRouter
     artistsController.createArtist,
   );
 
-artistsRouter.put(
-  '/:id',
-  validateAdminPassword,
-  validateParams,
-  validateReturnUrl,
-  preserveRawQuery,
-  validateQuery,
-  validateArtist,
-  artistsController.updateArtist,
-);
+artistsRouter
+  .route('/:id')
+  .all(
+    validateAdminPassword,
+    validateParams,
+    validateReturnUrl,
+    preserveRawQuery,
+    validateQuery,
+  )
+  .put(validateArtist, artistsController.updateArtist)
+  .delete(validateNameToDelete, artistsController.deleteArtist);
 
 export default artistsRouter;

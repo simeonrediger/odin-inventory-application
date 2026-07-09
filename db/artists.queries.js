@@ -166,3 +166,13 @@ export async function updateById(id, { name, genreIds }) {
     );
   });
 }
+
+export async function deleteById(id) {
+  await pool.query(
+    `
+    DELETE FROM artists
+    WHERE artists.id = $1
+    `,
+    [id],
+  );
+}
