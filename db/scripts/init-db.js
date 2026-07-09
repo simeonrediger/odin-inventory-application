@@ -3,6 +3,8 @@
 
 import { Client } from 'pg';
 import fs from 'node:fs/promises';
+
+import { transact } from '../db-utils.js';
 import reset from './reset.js';
 import seed from './seed.js';
 
@@ -14,27 +16,18 @@ const databaseUrl =
     ? process.env.PROD_DATABASE_URL
     : process.env.DATABASE_URL;
 
-const client = new Client({ connectionString: databaseUrl });
-await client.connect();
+await transact(
+  { client: new Client({ connectionString: databaseUrl }) },
+  async client => {
+    console.log(`Resetting tables...`);
+    await reset(client);
 
-try {
-  await client.query('BEGIN');
+    console.log(`Seeding tables...`);
+    await seed(client);
 
-  console.log(`Resetting tables...`);
-  await reset(client);
-
-  console.log(`Seeding tables...`);
-  await seed(client);
-
-  await client.query('COMMIT');
-} catch (error) {
-  await client.query('ROLLBACK');
-  throw error;
-} finally {
-  await client.end();
-}
-
-console.log('Done');
+    console.log('Done');
+  },
+);
 
 function validateEnv(targetEnv) {
   const errors = [];
