@@ -62,8 +62,10 @@ async function createArtistsTable(client) {
 async function createGenreArtistsTable(client) {
   await client.query(`
     CREATE TABLE genre_artists (
-      genre_id integer NOT NULL REFERENCES genres,
-      artist_id integer NOT NULL REFERENCES artists,
+      genre_id integer NOT NULL
+        REFERENCES genres ON DELETE CASCADE,
+      artist_id integer NOT NULL
+        REFERENCES artists ON DELETE CASCADE,
       PRIMARY KEY (genre_id, artist_id)
     )
   `);
@@ -73,7 +75,8 @@ async function createRecordsTable(client) {
   await client.query(`
     CREATE TABLE records (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      artist_id integer NOT NULL REFERENCES artists,
+      artist_id integer NOT NULL
+        REFERENCES artists ON DELETE CASCADE,
       name trimmed_nonblank_text NOT NULL
         CHECK (length(name) <= ${MAX_RECORD_NAME_LENGTH}),
       UNIQUE (artist_id, name),
