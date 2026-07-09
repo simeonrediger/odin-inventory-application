@@ -331,6 +331,12 @@ label:has(+ :required)::after {
   vertical-align: top;
 }
 
+.artist-records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
 .artist-name,
 .artist-genres,
 .artist-records,
