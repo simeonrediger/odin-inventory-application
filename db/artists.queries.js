@@ -117,7 +117,7 @@ export async function create({ name, genreIds }) {
         (name)
       VALUES
         ($1)
-      RETURNING id;
+      RETURNING id
       `,
       [name],
     );
