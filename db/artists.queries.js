@@ -138,7 +138,7 @@ export async function create({ name, genreIds }) {
 
 export async function updateById(id, { name, genreIds }) {
   await transact({ pool }, async client => {
-    await pool.query(
+    await client.query(
       `
       UPDATE artists
       SET name = $2
@@ -147,7 +147,7 @@ export async function updateById(id, { name, genreIds }) {
       [id, name],
     );
 
-    await pool.query(
+    await client.query(
       `
       DELETE FROM genre_artists
       WHERE artist_id = $1
@@ -156,7 +156,7 @@ export async function updateById(id, { name, genreIds }) {
       [id, genreIds],
     );
 
-    await pool.query(
+    await client.query(
       `
       INSERT INTO genre_artists
         (genre_id, artist_id)
