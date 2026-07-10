@@ -55,7 +55,7 @@ async function nameIsUnique(name, { req }) {
 
   if (!nameIsUnique) {
     const artist = artists[0];
-    throw new Error(`Artist with the name "${name}" already exists`);
+    throw new Error(`Artist with the name "${artist.name}" already exists`);
   }
 }
 
