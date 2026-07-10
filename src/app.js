@@ -17,9 +17,9 @@ app.use(express.static(path.join(import.meta.dirname, 'shared')));
 app.use(methodOverride('_method'));
 app.use(express.urlencoded());
 app.use(siteLocals.assign);
-app.use('/genres', genresRouter);
+app.use('/records', recordsRouter);
 app.use('/artists', artistsRouter);
-app.use('/', recordsRouter);
+app.use('/genres', genresRouter);
 
 app.use(errorController.handleNotFoundError);
 app.use(errorController.handleServerError);

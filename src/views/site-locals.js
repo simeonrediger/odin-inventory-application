@@ -34,7 +34,7 @@ const siteLocals = {
   },
   getArtistPath,
   getRecordsPath() {
-    return '/';
+    return '/records';
   },
   getRecordPath,
 };
