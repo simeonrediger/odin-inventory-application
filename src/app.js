@@ -3,7 +3,6 @@ import express from 'express';
 import methodOverride from 'method-override';
 
 import * as siteLocals from './views/site-locals.js';
-import homeRouter from './routes/home.router.js';
 import genresRouter from './routes/genres.router.js';
 import artistsRouter from './routes/artists.router.js';
 import recordsRouter from './routes/records.router.js';
@@ -18,10 +17,9 @@ app.use(express.static(path.join(import.meta.dirname, 'shared')));
 app.use(methodOverride('_method'));
 app.use(express.urlencoded());
 app.use(siteLocals.assign);
-app.use('/', homeRouter);
+app.use('/', recordsRouter);
 app.use('/genres', genresRouter);
 app.use('/artists', artistsRouter);
-app.use('/records', recordsRouter);
 
 app.use(errorController.handleNotFoundError);
 app.use(errorController.handleServerError);

@@ -25,9 +25,6 @@ const siteLocals = {
   centsToDollars,
   formatPrice,
   addThousandsSeparators,
-  getHomePath() {
-    return '/';
-  },
   getGenresPath() {
     return '/genres';
   },
@@ -37,7 +34,7 @@ const siteLocals = {
   },
   getArtistPath,
   getRecordsPath() {
-    return '/records';
+    return '/';
   },
   getRecordPath,
 };
