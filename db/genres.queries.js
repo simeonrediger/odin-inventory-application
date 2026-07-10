@@ -1,6 +1,6 @@
 import pool from './pool.js';
 
-export async function find({ includeArtists = false }) {
+export async function find({ includeArtists = false } = {}) {
   let sql = 'SELECT genres.*';
 
   if (includeArtists) {
