@@ -28,8 +28,8 @@ const siteLocals = {
   getGenresPath() {
     return '/genres';
   },
-  getGenrePath({ id }) {
-    return `/genres/${id}`;
+  getGenrePath({ id } = {}) {
+    return id == null ? '/genres' : `/genres/${id}`;
   },
   getArtistsPath() {
     return '/artists';

@@ -1,0 +1,33 @@
+<form
+  name="search"
+  action="<%= getGenrePath() %>"
+  method="get"
+  class="search-form"
+>
+  <h2 class="search-form-heading">Search genres</h2>
+
+  <label for="search-genre-name">Name</label>
+  <input
+    type="search"
+    name="name"
+    id="search-genre-name"
+    value="<%= rawQuery.name %>"
+  />
+
+  <label for="search-artist-name">Artist</label>
+  <input
+    type="search"
+    name="artistName"
+    id="search-artist-name"
+    value="<%= rawQuery.artistName %>"
+  />
+
+  <div class="search-form-actions">
+    <a
+      href="<%= getGenresPath() %>"
+      data-action="clear-form"
+      class="search-reset-button button"
+    >Reset</a>
+    <button type="submit" class="search-submit-button">Search genres</button>
+  </div>
+</form>

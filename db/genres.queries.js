@@ -1,6 +1,14 @@
 import pool from './pool.js';
 
-export async function find({ includeArtists = false } = {}) {
+export async function find({
+  name,
+  artistName,
+  matchNameSubstring = false,
+  includeArtists = false,
+} = {}) {
+  const parameters = [];
+  const filters = [];
+
   let sql = 'SELECT genres.*';
 
   if (includeArtists) {
@@ -27,9 +35,31 @@ export async function find({ includeArtists = false } = {}) {
     `;
   }
 
+  if (name) {
+    parameters.push(matchNameSubstring ? `%${name}%` : name);
+    filters.push(`genres.name ILIKE $${parameters.length}`);
+  }
+
+  if (artistName) {
+    parameters.push(matchNameSubstring ? `%${artistName}%` : artistName);
+    filters.push(`
+      EXISTS (
+        SELECT 1 FROM genre_artists
+        INNER JOIN artists
+          ON artists.id = genre_artists.artist_id
+        WHERE genre_artists.genre_id = genres.id
+          AND artists.name ILIKE $${parameters.length}
+      )
+    `);
+  }
+
+  if (filters.length > 0) {
+    sql += ` WHERE ${filters.join(' AND ')}`;
+  }
+
   sql += ' ORDER BY genres.name';
 
-  const { rows } = await pool.query(sql);
+  const { rows } = await pool.query(sql, parameters);
   return rows;
 }
 
