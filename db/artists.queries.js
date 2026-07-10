@@ -113,8 +113,10 @@ export async function create({ name, genreIds }) {
       rows: [{ id }],
     } = await client.query(
       `
-      INSERT INTO artists (name)
-      VALUES ($1)
+      INSERT INTO artists
+        (name)
+      VALUES
+        ($1)
       RETURNING id;
       `,
       [name],
