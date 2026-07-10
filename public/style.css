@@ -338,6 +338,8 @@ label:has(+ :required)::after {
   gap: 0.625rem;
 }
 
+.genre-name,
+.genre-artists,
 .artist-name,
 .artist-genres,
 .artist-records,
