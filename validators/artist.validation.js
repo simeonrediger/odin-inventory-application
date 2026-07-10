@@ -1,4 +1,4 @@
-import { param, query, body } from 'express-validator';
+import { param, query, body, matchedData } from 'express-validator';
 import { MAX_ARTIST_NAME_LENGTH } from '../domains/constants.js';
 import db from '../db/queries.js';
 
@@ -43,7 +43,8 @@ async function nameIsUnique(name, { req }) {
   const artists = await db.artists.find({ name });
 
   if (req.method === 'PUT' && artists.length === 1) {
-    const isSameArtist = artists[0].id == req.params.id;
+    const { id } = matchedData(req, { locations: ['params'] });
+    const isSameArtist = artists[0].id == id;
 
     if (isSameArtist) {
       return true;

@@ -89,7 +89,8 @@ async function nameIsUnique(name, { req }) {
   });
 
   if (req.method === 'PUT' && records.length === 1) {
-    const isSameRecord = records[0].id == req.params.id;
+    const { id } = matchedData(req, { locations: ['params'] });
+    const isSameRecord = records[0].id == id;
 
     if (isSameRecord) {
       return true;
