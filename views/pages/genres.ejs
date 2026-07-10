@@ -1,4 +1,4 @@
-<%- include('../partials/layout-start') %>
+<%- include('../partials/layout-start', { resourceType: 'genre' }) %>
 
 <header>
   <h1><%= siteName %></h1>
@@ -11,10 +11,14 @@
 </header>
 
 <aside class="sidebar">
+  <button type="button" data-action="start-create" class="create-button">
+    + New genre
+  </button>
   <%- include('../partials/genres/genres.search-form.ejs') %>
 </aside>
 
 <main class="main-content">
+  <%- include('../partials/genres/genres.create-modal.ejs') %>
   <%- include('../partials/genres/genres.list.ejs') %>
 </main>
 

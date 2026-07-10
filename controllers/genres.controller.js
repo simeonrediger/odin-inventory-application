@@ -1,11 +1,35 @@
 import { matchedData } from 'express-validator';
 import db from '../db/queries.js';
 
-import { queryIsValid } from '../validators/validation-utils.js';
+import {
+  getErrorsFromLocation,
+  queryIsValid,
+} from '../validators/validation-utils.js';
 
 export async function getGenres(req, res) {
   const genres = await searchGenres(req);
   res.render('genres', { pageName: 'Genres', genres });
+}
+
+export async function createGenre(req, res) {
+  const { name, returnTo } = matchedData(req, {
+    locations: ['body'],
+  });
+  const genre = { name };
+  const errors = getErrorsFromLocation(req, { locations: ['body'] });
+
+  if (errors.length !== 0) {
+    const genres = await searchGenres(req);
+    return res.status(400).render('genres', {
+      pageName: 'Genres',
+      genres,
+      createFields: genre,
+      createErrors: errors,
+    });
+  }
+
+  await db.genres.create(genre);
+  res.redirect(303, returnTo);
 }
 
 async function searchGenres(req) {

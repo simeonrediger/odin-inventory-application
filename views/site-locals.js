@@ -1,11 +1,17 @@
 import {
+  MAX_GENRE_NAME_LENGTH,
   MAX_ARTIST_NAME_LENGTH,
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
   DEFAULT_RECORD_QUANTITY,
   MAX_RECORD_QUANTITY,
 } from '../domains/constants.js';
-import { getArtistPath, getRecordPath } from '../shared/formatting.js';
+
+import {
+  getGenrePath,
+  getArtistPath,
+  getRecordPath,
+} from '../shared/formatting.js';
 
 export function assign(req, res, next) {
   Object.assign(res.locals, siteLocals);
@@ -14,6 +20,7 @@ export function assign(req, res, next) {
 
 const siteLocals = {
   siteName: 'Record Store',
+  MAX_GENRE_NAME_LENGTH,
   MAX_ARTIST_NAME_LENGTH,
   MAX_RECORD_NAME_LENGTH,
   MAX_RECORD_PRICE_IN_DOLLARS,
@@ -28,9 +35,7 @@ const siteLocals = {
   getGenresPath() {
     return '/genres';
   },
-  getGenrePath({ id } = {}) {
-    return id == null ? '/genres' : `/genres/${id}`;
-  },
+  getGenrePath,
   getArtistsPath() {
     return '/artists';
   },

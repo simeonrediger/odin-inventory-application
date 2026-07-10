@@ -1,4 +1,4 @@
-import { getArtistPath, getRecordPath } from '/formatting.js';
+import { getGenrePath, getArtistPath, getRecordPath } from '/formatting.js';
 
 const modalForms = {
   create: document.forms.create,
@@ -21,6 +21,9 @@ function populateResourceProperties() {
   const resource = {};
 
   switch (resourceType) {
+    case 'genre':
+      resource.getPath = getGenrePath;
+      break;
     case 'artist':
       resource.getPath = getArtistPath;
       resource.getDataFromButton = getArtistDataFromButton;

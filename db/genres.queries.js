@@ -78,3 +78,15 @@ export async function findNonExistentIds(ids) {
   const nonExistentIds = rows.map(row => row.id);
   return nonExistentIds;
 }
+
+export async function create({ name }) {
+  await pool.query(
+    `
+    INSERT INTO genres
+      (name)
+    VALUES
+      ($1)
+    `,
+    [name],
+  );
+}
