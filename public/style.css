@@ -181,7 +181,7 @@ header {
   grid-area: main;
 }
 
-.breadcrumb {
+.navbar-list {
   background-color: var(--dark-gray-11);
   border-radius: 1rem;
   display: inline-flex;
@@ -189,14 +189,10 @@ header {
   padding: 0.25rem 1rem;
 }
 
-.breadcrumb :not(a) {
+.navbar-list > :not(:last-child)::after {
+  content: '|';
   color: var(--color-text-secondary);
-}
-
-.breadcrumb > :not(:last-child)::after {
-  content: '🞂';
-  color: var(--color-text-secondary);
-  margin-inline: 0.5rem;
+  margin-inline: 1rem;
 }
 
 .create-button {

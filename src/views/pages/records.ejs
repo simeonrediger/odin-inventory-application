@@ -1,14 +1,5 @@
 <%- include('../partials/layout-start', { resourceType: 'record' }) %>
-
-<header>
-  <h1><%= siteName %></h1>
-  <nav aria-label="Breadcrumb">
-    <ol class="breadcrumb">
-      <li><a href="<%= getHomePath() %>">Inventory</a></li>
-      <li aria-current="page">Records</li>
-    </ol>
-  </nav>
-</header>
+<%- include('../partials/header') %>
 
 <aside class="sidebar">
   <button type="button" data-action="start-create" class="create-button">

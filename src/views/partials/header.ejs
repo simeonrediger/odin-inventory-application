@@ -1,14 +1,10 @@
-<%- include('../partials/layout-start') %>
-<%- include('../partials/header') %>
-
-<main>
+<header>
+  <h1><%= siteName %></h1>
   <nav>
-    <ul>
+    <ul class="navbar-list">
       <li><a href="<%= getGenresPath() %>">Genres</a></li>
       <li><a href="<%= getArtistsPath() %>">Artists</a></li>
       <li><a href="<%= getRecordsPath() %>">Records</a></li>
     </ul>
   </nav>
-</main>
-
-<%- include('../partials/layout-end') %>
+</header>
