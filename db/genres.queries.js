@@ -113,3 +113,13 @@ export async function updateById(id, { name }) {
     [id, name],
   );
 }
+
+export async function deleteById(id) {
+  await pool.query(
+    `
+    DELETE FROM genres
+    WHERE id = $1
+    `,
+    [id],
+  );
+}

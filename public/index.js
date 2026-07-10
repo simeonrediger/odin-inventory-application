@@ -25,6 +25,8 @@ function populateResourceProperties() {
       resource.getPath = getGenrePath;
       resource.getDataFromButton = getGenreDataFromButton;
       resource.populateUpdateForm = populateGenreToUpdateForm;
+      resource.populateDeleteForm = populateGenreToDeleteForm;
+      resource.populateContext = populateGenreContext;
       break;
     case 'artist':
       resource.getPath = getArtistPath;
@@ -252,6 +254,10 @@ function populateArtistToDeleteForm(form, artist) {
   form.elements.name.value = artist.name;
 }
 
+function populateGenreToDeleteForm(form, genre) {
+  form.elements.name.value = genre.name;
+}
+
 function populateRecordContext(record) {
   document
     .querySelectorAll('[data-context="record-name"]')
@@ -262,6 +268,12 @@ function populateArtistContext(artist) {
   document
     .querySelectorAll('[data-context="artist-name"]')
     .forEach(element => (element.textContent = artist.name));
+}
+
+function populateGenreContext(genre) {
+  document
+    .querySelectorAll('[data-context="genre-name"]')
+    .forEach(element => (element.textContent = genre.name));
 }
 
 function selectMultiple(selectBox, values) {

@@ -12,6 +12,7 @@ import {
   validateParams,
   validateQuery,
   validateGenre,
+  validateNameToDelete,
 } from '../validators/genre.validation.js';
 
 const genresRouter = Router();
@@ -27,15 +28,16 @@ genresRouter
     genresController.createGenre,
   );
 
-genresRouter.put(
-  '/:id',
-  validateAdminPassword,
-  validateParams,
-  validateReturnUrl,
-  preserveRawQuery,
-  validateQuery,
-  validateGenre,
-  genresController.updateGenre,
-);
+genresRouter
+  .route('/:id')
+  .all(
+    validateAdminPassword,
+    validateParams,
+    validateReturnUrl,
+    preserveRawQuery,
+    validateQuery,
+  )
+  .put(validateGenre, genresController.updateGenre)
+  .delete(validateNameToDelete, genresController.deleteGenre);
 
 export default genresRouter;

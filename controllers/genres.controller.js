@@ -54,6 +54,26 @@ export async function updateGenre(req, res) {
   res.redirect(303, returnTo);
 }
 
+export async function deleteGenre(req, res) {
+  const { id } = matchedData(req, { locations: ['params'] });
+  const fields = matchedData(req, { locations: ['body'] });
+  const { returnTo } = fields;
+  const errors = getErrorsFromLocation(req, { locations: ['params', 'body'] });
+
+  if (errors.length !== 0) {
+    const genres = await searchGenres(req);
+    return res.status(400).render('genres', {
+      pageName: 'Genres',
+      genres,
+      deleteFields: fields,
+      deleteErrors: errors,
+    });
+  }
+
+  await db.genres.deleteById(id);
+  res.redirect(303, returnTo);
+}
+
 async function searchGenres(req) {
   const { name, artistName } = matchedData(req, { locations: ['query'] });
 

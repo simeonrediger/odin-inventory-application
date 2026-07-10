@@ -27,6 +27,8 @@ export const validateGenre = [
     .custom(nameIsUnique),
 ];
 
+export const validateNameToDelete = [body('name').trim()];
+
 export async function genreIdExists(id) {
   const genre = await db.genres.findById(id);
 
