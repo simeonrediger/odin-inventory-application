@@ -7,11 +7,7 @@ import {
   MAX_RECORD_QUANTITY,
 } from '../domains/constants.js';
 
-import {
-  getGenrePath,
-  getArtistPath,
-  getRecordPath,
-} from '../shared/formatting.js';
+import { getGenrePath, getArtistPath, getRecordPath } from '../shared/paths.js';
 
 export function assign(req, res, next) {
   Object.assign(res.locals, siteLocals);

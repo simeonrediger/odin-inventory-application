@@ -1,4 +1,4 @@
-import { getGenrePath, getArtistPath, getRecordPath } from '/formatting.js';
+import { getGenrePath, getArtistPath, getRecordPath } from '/paths.js';
 
 const modalForms = {
   create: document.forms.create,
