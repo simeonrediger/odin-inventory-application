@@ -173,7 +173,7 @@ export async function deleteById(id) {
   await pool.query(
     `
     DELETE FROM artists
-    WHERE artists.id = $1
+    WHERE id = $1
     `,
     [id],
   );
