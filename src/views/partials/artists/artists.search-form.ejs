@@ -6,6 +6,22 @@
 >
   <h2 class="search-form-heading">Search artists</h2>
 
+  <label for="search-artist-name">Name</label>
+  <input
+    type="search"
+    name="name"
+    id="search-artist-name"
+    value="<%= rawQuery.name %>"
+  />
+
+  <label for="search-record-name">Record</label>
+  <input
+    type="search"
+    name="recordName"
+    id="search-record-name"
+    value="<%= rawQuery.recordName %>"
+  />
+
   <label for="search-genre-id">Genre</label>
   <select name="genreId" id="search-genre-id">
     <% let genreSelected = false; %>
@@ -33,22 +49,6 @@
       </option>
     <% } %>
   </select>
-
-  <label for="search-artist-name">Name</label>
-  <input
-    type="search"
-    name="name"
-    id="search-artist-name"
-    value="<%= rawQuery.name %>"
-  />
-
-  <label for="search-record-name">Record</label>
-  <input
-    type="search"
-    name="recordName"
-    id="search-record-name"
-    value="<%= rawQuery.recordName %>"
-  />
 
   <div class="search-form-actions">
     <a

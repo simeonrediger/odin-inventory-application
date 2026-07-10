@@ -6,33 +6,13 @@
 >
   <h2 class="search-form-heading">Search records</h2>
 
-  <label for="search-genre-id">Genre</label>
-  <select name="genreId" id="search-genre-id">
-    <% let genreSelected = false; %>
-    <option
-      value=""
-      <% if (!rawQuery.genreId) {
-        genreSelected = true;
-      %>
-        selected
-      <% } %>
-    >Any</option>
-    <% genres.forEach(genre => { %>
-      <option
-        value="<%= genre.id %>"
-        <% if (genre.id == rawQuery.genreId) {
-          genreSelected = true;
-        %>
-          selected
-        <% } %>
-      ><%= genre.name %></option>
-    <% }); %>
-    <% if (!genreSelected) { %>
-      <option value="<%= rawQuery.genreId %>" selected hidden>
-        Genre does not exist
-      </option>
-    <% } %>
-  </select>
+  <label for="search-record-name">Name</label>
+  <input
+    type="search"
+    name="name"
+    id="search-record-name"
+    value="<%= rawQuery.name %>"
+  />
 
   <label for="search-artist-id">Artist</label>
   <select name="artistId" id="search-artist-id">
@@ -62,13 +42,33 @@
     <% } %>
   </select>
 
-  <label for="search-record-name">Name</label>
-  <input
-    type="search"
-    name="name"
-    id="search-record-name"
-    value="<%= rawQuery.name %>"
-  />
+  <label for="search-genre-id">Genre</label>
+  <select name="genreId" id="search-genre-id">
+    <% let genreSelected = false; %>
+    <option
+      value=""
+      <% if (!rawQuery.genreId) {
+        genreSelected = true;
+      %>
+        selected
+      <% } %>
+    >Any</option>
+    <% genres.forEach(genre => { %>
+      <option
+        value="<%= genre.id %>"
+        <% if (genre.id == rawQuery.genreId) {
+          genreSelected = true;
+        %>
+          selected
+        <% } %>
+      ><%= genre.name %></option>
+    <% }); %>
+    <% if (!genreSelected) { %>
+      <option value="<%= rawQuery.genreId %>" selected hidden>
+        Genre does not exist
+      </option>
+    <% } %>
+  </select>
 
   <div class="search-form-actions">
     <a
