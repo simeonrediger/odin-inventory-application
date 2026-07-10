@@ -13,7 +13,7 @@ import {
   validateQuery,
   validateArtist,
   validateNameToDelete,
-} from '../validators/artist.validation.js';
+} from '../validators/artists.validation.js';
 
 const artistsRouter = Router();
 

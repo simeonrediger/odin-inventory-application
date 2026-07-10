@@ -1,7 +1,7 @@
 import { param, query, body, matchedData } from 'express-validator';
 import { MAX_ARTIST_NAME_LENGTH } from '../domains/constants.js';
 import db from '../db/queries.js';
-import { genreIdsExist } from './genre.validation.js';
+import { genreIdsExist } from './genres.validation.js';
 
 export const validateParams = [
   param('id')

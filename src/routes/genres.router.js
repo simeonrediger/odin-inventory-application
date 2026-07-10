@@ -13,7 +13,7 @@ import {
   validateQuery,
   validateGenre,
   validateNameToDelete,
-} from '../validators/genre.validation.js';
+} from '../validators/genres.validation.js';
 
 const genresRouter = Router();
 

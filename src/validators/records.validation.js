@@ -13,7 +13,7 @@ import {
 } from '../domains/constants.js';
 
 import db from '../db/queries.js';
-import { artistIdExists } from './artist.validation.js';
+import { artistIdExists } from './artists.validation.js';
 
 export const validateParams = [
   param('id')

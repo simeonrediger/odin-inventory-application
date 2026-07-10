@@ -13,7 +13,7 @@ import {
   validateQuery,
   validateRecord,
   validateNameToDelete,
-} from '../validators/record.validation.js';
+} from '../validators/records.validation.js';
 
 const recordsRouter = Router();
 
