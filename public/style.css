@@ -348,6 +348,8 @@ label:has(+ :required)::after {
   text-align: start;
 }
 
+.genre-name,
+.genre-artists li,
 .artist-name,
 .artist-genres li,
 .artist-records li,
