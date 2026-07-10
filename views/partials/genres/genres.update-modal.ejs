@@ -1,0 +1,36 @@
+<dialog class="modal" aria-labelledby="update-form-heading">
+  <form
+    name="update"
+    method="post"
+    <% if (locals.updateErrors?.length > 0) { %> data-invalid <% } %>
+    class="modal-form"
+  >
+    <h2 id="update-form-heading">Edit genre</h2>
+
+    <%- include('../form-errors', { errors: locals.updateErrors }) %>
+  
+    <label for="update-name">Name</label>
+    <input
+      type="text"
+      name="name"
+      id="update-name"
+      value="<%= locals.updateFields?.name %>"
+      required
+      maxlength="<%= MAX_GENRE_NAME_LENGTH %>"
+    />
+  
+    <label for="admin-password">Admin password</label>
+    <input type="password" name="adminPassword" id="admin-password" required />
+
+    <input type="hidden" name="returnTo" />
+
+    <div class="cancel-confirm-button-row">
+      <button
+        type="button"
+        data-action="cancel-update"
+        class="cancel-button"
+      >Cancel</button>
+      <button type="submit">Update genre</button>
+    </div>
+  </form>
+</dialog>

@@ -1,6 +1,7 @@
 import { param, query, body, matchedData } from 'express-validator';
 import { MAX_ARTIST_NAME_LENGTH } from '../domains/constants.js';
 import db from '../db/queries.js';
+import { genreIdsExist } from './genre.validation.js';
 
 export const validateParams = [
   param('id')
@@ -79,17 +80,4 @@ function allIntegers(array) {
 
 function isInteger(value) {
   return /^\d+$/.test(value);
-}
-
-async function genreIdsExist(genreIds, { req }) {
-  const nonExistentGenreIds = await db.genres.findNonExistentIds(genreIds);
-
-  if (nonExistentGenreIds.length > 0) {
-    const message =
-      nonExistentGenreIds.length === 1
-        ? `Genre ID does not exist: ${nonExistentGenreIds[0]}`
-        : `Genre IDs do not exist: ${nonExistentGenreIds.join(', ')}`;
-
-    throw new Error(message);
-  }
 }

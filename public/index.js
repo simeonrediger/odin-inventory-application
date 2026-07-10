@@ -23,6 +23,8 @@ function populateResourceProperties() {
   switch (resourceType) {
     case 'genre':
       resource.getPath = getGenrePath;
+      resource.getDataFromButton = getGenreDataFromButton;
+      resource.populateUpdateForm = populateGenreToUpdateForm;
       break;
     case 'artist':
       resource.getPath = getArtistPath;
@@ -220,6 +222,12 @@ function getArtistDataFromButton(button) {
   return artist;
 }
 
+function getGenreDataFromButton(button) {
+  const { resourceId: id, resourceName: name } = button.dataset;
+  const genre = { id, name };
+  return genre;
+}
+
 function populateRecordToUpdateForm(form, record) {
   form.elements.artistId.value = record.artistId;
   form.elements.name.value = record.name;
@@ -230,6 +238,10 @@ function populateRecordToUpdateForm(form, record) {
 function populateArtistToUpdateForm(form, artist) {
   form.elements.name.value = artist.name;
   selectMultiple(form.elements.genreIds, artist.genreIds);
+}
+
+function populateGenreToUpdateForm(form, genre) {
+  form.elements.name.value = genre.name;
 }
 
 function populateRecordToDeleteForm(form, record) {

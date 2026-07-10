@@ -4,6 +4,7 @@
       <tr>
         <th scope="col" class="genre-name">Genre</th>
         <th scope="col" class="genre-artists">Artists</th>
+        <th scope="col" aria-label="Actions"></th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,17 @@
                 <li title="<%= artist.name %>"><%= artist.name %></li>
               <% }); %>
             </ul>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button
+                type="button"
+                data-action="start-update"
+                data-resource-id="<%= genre.id %>"
+                data-resource-name="<%= genre.name %>"
+                class="update-button"
+              >Edit</button>
+            </div>
           </td>
         </tr>
       <% }); %>

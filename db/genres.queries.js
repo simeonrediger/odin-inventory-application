@@ -63,6 +63,18 @@ export async function find({
   return rows;
 }
 
+export async function findById(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM genres
+    WHERE id = $1
+    `,
+    [id],
+  );
+
+  return rows[0];
+}
+
 export async function findNonExistentIds(ids) {
   const { rows } = await pool.query(
     `
@@ -88,5 +100,16 @@ export async function create({ name }) {
       ($1)
     `,
     [name],
+  );
+}
+
+export async function updateById(id, { name }) {
+  await pool.query(
+    `
+    UPDATE genres
+    SET name = $2
+    WHERE id = $1
+    `,
+    [id, name],
   );
 }

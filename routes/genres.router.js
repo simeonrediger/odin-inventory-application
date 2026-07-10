@@ -3,9 +3,13 @@ import * as genresController from '../controllers/genres.controller.js';
 
 import preserveRawQuery from '../middleware/preserve-raw-query.js';
 
-import { validateReturnUrl } from '../validators/validation.js';
+import {
+  validateAdminPassword,
+  validateReturnUrl,
+} from '../validators/validation.js';
 
 import {
+  validateParams,
   validateQuery,
   validateGenre,
 } from '../validators/genre.validation.js';
@@ -22,5 +26,16 @@ genresRouter
     validateGenre,
     genresController.createGenre,
   );
+
+genresRouter.put(
+  '/:id',
+  validateAdminPassword,
+  validateParams,
+  validateReturnUrl,
+  preserveRawQuery,
+  validateQuery,
+  validateGenre,
+  genresController.updateGenre,
+);
 
 export default genresRouter;

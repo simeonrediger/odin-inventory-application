@@ -32,6 +32,28 @@ export async function createGenre(req, res) {
   res.redirect(303, returnTo);
 }
 
+export async function updateGenre(req, res) {
+  const { id } = matchedData(req, { locations: ['params'] });
+  const { name, returnTo } = matchedData(req, {
+    locations: ['body'],
+  });
+  const genre = { id, name };
+  const errors = getErrorsFromLocation(req, { locations: ['params', 'body'] });
+
+  if (errors.length !== 0) {
+    const genres = await searchGenres(req);
+    return res.status(400).render('genres', {
+      pageName: 'Genres',
+      genres,
+      updateFields: genre,
+      updateErrors: errors,
+    });
+  }
+
+  await db.genres.updateById(id, genre);
+  res.redirect(303, returnTo);
+}
+
 async function searchGenres(req) {
   const { name, artistName } = matchedData(req, { locations: ['query'] });
 
