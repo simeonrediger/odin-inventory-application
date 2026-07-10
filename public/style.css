@@ -165,9 +165,9 @@ header {
   grid-area: header;
   margin-bottom: 0.75rem;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: subgrid;
   align-items: end;
-  gap: 1rem;
 }
 
 .sidebar {
