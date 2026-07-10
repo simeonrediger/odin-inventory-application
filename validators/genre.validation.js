@@ -1,4 +1,4 @@
-import { query, body } from 'express-validator';
+import { query, body, matchedData } from 'express-validator';
 import { MAX_GENRE_NAME_LENGTH } from '../domains/constants.js';
 import db from '../db/queries.js';
 
