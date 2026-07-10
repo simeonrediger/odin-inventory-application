@@ -2,9 +2,9 @@
   "name": "inventory-application",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "start:dev": "node --watch --env-file-if-exists=.env app.js",
-    "db:init": "node --env-file=.env db/scripts/init-db.js"
+    "start": "node src/app.js",
+    "start:dev": "node --watch --env-file-if-exists=.env src/app.js",
+    "db:init": "node --env-file=.env src/db/scripts/init-db.js"
   },
   "engines": {
     "node": "24.11.x"

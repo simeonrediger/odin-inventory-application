@@ -1,5 +1,5 @@
 // npm script:
-// "db:init": "node --env-file=.env db/scripts/init-db.js"
+// "db:init": "node --env-file=.env src/db/scripts/init-db.js"
 
 import { Client } from 'pg';
 import fs from 'node:fs/promises';
