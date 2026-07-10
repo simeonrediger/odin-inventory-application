@@ -352,9 +352,44 @@ label:has(+ :required)::after {
 .artist-records li,
 .record-name,
 .record-artist {
-  max-width: 10rem;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.genre-name {
+  width: 15rem;
+}
+
+.genre-artists {
+  width: 22rem;
+}
+
+.artist-name {
+  width: 14.875rem;
+}
+
+.artist-genres {
+  width: 11rem;
+}
+
+.artist-records {
+  width: 11rem;
+}
+
+.record-name {
+  width: 10rem;
+}
+
+.record-artist {
+  width: 8rem;
+}
+
+.record-price {
+  width: 10.34375rem;
+}
+
+.record-quantity {
+  width: 8.396875rem;
 }
 
 :not(thead > tr) > :is(.record-name),
