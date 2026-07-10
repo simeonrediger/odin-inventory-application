@@ -388,3 +388,8 @@ tbody .record-name {
   background-color: var(--color-delete-button-bg);
   color: var(--color-delete-button-text);
 }
+
+.none-found-message {
+  margin-top: 1.25rem;
+  margin-inline-start: 1rem;
+}
